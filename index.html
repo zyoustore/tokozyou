@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyou Market | Top Up & Apps Premium</title>
+    <title>Zyou Market | Roblox Top Up & Gamepass</title>
+    <!-- Tailwind CSS untuk tampilan modern -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -24,53 +25,74 @@
 </head>
 <body class="text-slate-200 min-h-screen flex items-center justify-center p-4">
 
+    <!-- CONTAINER UTAMA -->
     <div class="w-full max-w-lg bg-slate-900/90 backdrop-blur-md border border-blue-500/30 rounded-2xl p-5 shadow-2xl shadow-blue-900/40 my-4">
         
+        <!-- HEADER TOKO -->
         <div class="text-center mb-5">
             <h1 class="text-3xl font-extrabold tracking-wide text-blue-400 drop-shadow-[0_2px_8px_rgba(56,189,248,0.4)]">
                 ⚡ ZYOU MARKET
             </h1>
-            <p class="text-xs text-blue-300/80 mt-1">Robux Via Username & Aplikasi Premium Terpercaya</p>
+            <p class="text-xs text-blue-300/80 mt-1">Robux via username & Gamepass Drag Drive Simulator Terpercaya</p>
         </div>
 
         <form id="topupForm" onsubmit="kirimOrder(event)" class="space-y-4">
             
-            <div>
-                <label class="block text-xs font-bold text-blue-300 uppercase tracking-wider mb-1.5">
-                    1. Masukkan Username & Displayname / Email (Jika membeli App Premium)
-                </label>
-                <input 
-                    type="text" 
-                    id="userId"
-                    required
-                    placeholder="Contoh: Username Roblox (Displayname) atau email@gmail.com" 
-                    class="w-full px-4 py-3 text-sm rounded-xl bg-slate-950 border border-blue-900 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-slate-600 outline-none transition-all"
-                />
+            <!-- STEP 1: INPUT DATA USER (ROBLOX ONLY) -->
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-xs font-bold text-blue-300 uppercase tracking-wider mb-1.5">
+                        1a. Username Roblox
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username"
+                        required
+                        placeholder="Contoh: ZyouAdmin" 
+                        class="w-full px-4 py-3 text-sm rounded-xl bg-slate-950 border border-blue-900 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-slate-600 outline-none transition-all"
+                    />
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-blue-300 uppercase tracking-wider mb-1.5">
+                        1b. Display Name
+                    </label>
+                    <input 
+                        type="text" 
+                        id="displayName"
+                        required
+                        placeholder="Contoh: Zyou_Market" 
+                        class="w-full px-4 py-3 text-sm rounded-xl bg-slate-950 border border-blue-900 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-slate-600 outline-none transition-all"
+                    />
+                </div>
             </div>
 
+            <!-- STEP 2: PILIH KATEGORI & PRODUK -->
             <div>
                 <label class="block text-xs font-bold text-blue-300 uppercase tracking-wider mb-1.5">
                     2. Pilih Kategori & Produk
                 </label>
                 
+                <!-- Filter Kategori Tabs -->
                 <div class="flex gap-2 overflow-x-auto pb-2 mb-2 text-xs font-semibold custom-scroll">
                     <button type="button" onclick="filterKategori('all')" id="tab-all" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white border border-blue-500 whitespace-nowrap">Semua</button>
                     <button type="button" onclick="filterKategori('Robux Kelipatan')" id="tab-rb-kelipatan" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">Robux Kelipatan</button>
                     <button type="button" onclick="filterKategori('Robux Eceran')" id="tab-rb-eceran" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">Robux Eceran</button>
-                    <button type="button" onclick="filterKategori('Streaming')" id="tab-streaming" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">Streaming Apps</button>
-                    <button type="button" onclick="filterKategori('Music')" id="tab-music" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">Music Apps</button>
-                    <button type="button" onclick="filterKategori('Editing')" id="tab-editing" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">Editing Apps</button>
-                    <button type="button" onclick="filterKategori('Other')" id="tab-other" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">Other Apps</button>
+                    <button type="button" onclick="filterKategori('DDS Uang')" id="tab-dds-uang" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">DDS (Uang)</button>
+                    <button type="button" onclick="filterKategori('DDS Gamepass')" id="tab-dds-gamepass" class="px-3 py-1.5 rounded-lg bg-slate-950 text-slate-400 border border-slate-800 whitespace-nowrap">DDS (Gamepass)</button>
                 </div>
 
+                <!-- Kotak List Produk -->
                 <div class="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1 custom-scroll" id="produkContainer">
-                    </div>
+                    <!-- Produk otomatis di-render oleh JS -->
+                </div>
                 
-                <div id="noteRobux" class="hidden mt-2 p-2.5 bg-blue-950/50 border border-blue-500/20 rounded-xl text-[11px] text-blue-300 leading-relaxed">
-                    <strong>💡 Note Robux:</strong> Akun penerima harus 18+ & terverifikasi KTP (di bawah itu harus pakai parent ku, per send 1k). Digift dari acc pribadi, clean & fast!
+                <!-- Informasi Note khusus Robux / DDS -->
+                <div id="noteBox" class="hidden mt-2 p-2.5 bg-blue-950/50 border border-blue-500/20 rounded-xl text-[11px] text-blue-300 leading-relaxed">
+                    <span id="noteText"></span>
                 </div>
             </div>
 
+            <!-- STEP 3: PILIH METODE PEMBAYARAN -->
             <div>
                 <label class="block text-xs font-bold text-blue-300 uppercase tracking-wider mb-1.5">
                     3. Pilih Rencana Pembayaran
@@ -85,25 +107,27 @@
                     <option value="GOPAY">GOPAY</option>
                     <option value="OVO">OVO</option>
                     <option value="QRIS All Payment">QRIS All Payment</option>
-                    <option value="Transfer Bank (KROM)">Transfer Bank (KROM)</option>
+                    <option value="Transfer Bank (BCA/Mandiri/BRI)">Transfer Bank (BCA / Mandiri / BRI)</option>
                 </select>
             </div>
 
+            <!-- TOMBOL BELI -->
             <button 
                 type="submit" 
                 class="w-full py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2"
             >
-                <span>🚀 Kirim Orderan Sekarang</span>
+                <span>🚀 Kirim Orderan ke WhatsApp</span>
             </button>
         </form>
 
     </div>
 
+    <!-- LOGIKA JAVASCRIPT -->
     <script>
-        // ======= PENTING: GANTI NOMOR WA KAMU DI SINI =======
+        // NOMOR WA AUTOMATIC DARI GAMBAR KAMU
         const NOMOR_WA_ADMIN = "6281973755385"; 
 
-        // ALL PRICELIST DATA DARI KAMU
+        // ALL PRICELIST DATA (ROBUX + DRAG DRIVE SIMULATOR)
         const DAFTAR_PRODUK = [
             // Robux Kelipatan
             { id: "rbk50", nama: "50 Robux", harga: "Rp 7.000", kategori: "Robux Kelipatan", icon: "🎮" },
@@ -129,90 +153,31 @@
             { id: "rbe80", nama: "80 Robux", harga: "Rp 11.200", kategori: "Robux Eceran", icon: "💎" },
             { id: "rbe90", nama: "90 Robux", harga: "Rp 12.600", kategori: "Robux Eceran", icon: "💎" },
 
-            // Streaming Apps
-            { id: "nfx1u1m", nama: "Netflix 1 User 1 Month", harga: "Rp 25.000", kategori: "Streaming", icon: "📺" },
-            { id: "nfx2u1m", nama: "Netflix 2 User 1 Month", harga: "Rp 20.000", kategori: "Streaming", icon: "📺" },
-            { id: "nfxsemi", nama: "Netflix Semi Private 1 Month", harga: "Rp 30.000", kategori: "Streaming", icon: "📺" },
-            { id: "dis1m", nama: "Disney+ U6 1 Month", harga: "Rp 15.000", kategori: "Streaming", icon: "📺" },
-            { id: "vid1y", nama: "Vidio TV Only 1 Year", harga: "Rp 5.000", kategori: "Streaming", icon: "📺" },
-            { id: "vids1m", nama: "Vidio Platinum Sharing 1 Month", harga: "Rp 11.000", kategori: "Streaming", icon: "📺" },
-            { id: "vidp1m", nama: "Vidio Platinum Private 1 Month", harga: "Rp 22.000", kategori: "Streaming", icon: "📺" },
-            { id: "viu1m", nama: "Viu Unlimited 1 Month", harga: "Rp 1.000", kategori: "Streaming", icon: "📺" },
-            { id: "viu2m", nama: "Viu Unlimited 2 Month", harga: "Rp 2.000", kategori: "Streaming", icon: "📺" },
-            { id: "viu3m", nama: "Viu Unlimited 3 Month", harga: "Rp 3.000", kategori: "Streaming", icon: "📺" },
-            { id: "viu6m", nama: "Viu Unlimited 6 Month", harga: "Rp 6.000", kategori: "Streaming", icon: "📺" },
-            { id: "viu1y", nama: "Viu Unlimited 1 Year", harga: "Rp 8.000", kategori: "Streaming", icon: "📺" },
-            { id: "lokb1ms", nama: "Loklok Basic 1 Month (Sharing)", harga: "Rp 14.000", kategori: "Streaming", icon: "📺" },
-            { id: "lokb1mp", nama: "Loklok Basic 1 Month (Private)", harga: "Rp 45.000", kategori: "Streaming", icon: "📺" },
-            { id: "loks1ms", nama: "Loklok Standar 1 Month (Sharing)", harga: "Rp 16.000", kategori: "Streaming", icon: "📺" },
-            { id: "loks1mp", nama: "Loklok Standar 1 Month (Private)", harga: "Rp 70.000", kategori: "Streaming", icon: "📺" },
-            { id: "iqs1ms", nama: "Iqiyi Standar 1 Month (Sharing)", harga: "Rp 4.000", kategori: "Streaming", icon: "📺" },
-            { id: "iqs1mp", nama: "Iqiyi Standar 1 Month (Private)", harga: "Rp 25.000", kategori: "Streaming", icon: "📺" },
-            { id: "iqp1ms", nama: "Iqiyi Premium 1 Month (Sharing)", harga: "Rp 5.000", kategori: "Streaming", icon: "📺" },
-            { id: "iqp1mp", nama: "Iqiyi Premium 1 Month (Private)", harga: "Rp 27.000", kategori: "Streaming", icon: "📺" },
-            { id: "wtv1ms", nama: "WeTV 1 Month (Sharing)", harga: "Rp 5.000", kategori: "Streaming", icon: "📺" },
-            { id: "wtv1ys", nama: "WeTV 1 Year (Sharing)", harga: "Rp 27.000", kategori: "Streaming", icon: "📺" },
-            { id: "wtv1mp", nama: "WeTV 1 Month (Private)", harga: "Rp 27.000", kategori: "Streaming", icon: "📺" },
-            { id: "vis1ms", nama: "Vision+ 1 Month (Sharing)", harga: "Rp 13.000", kategori: "Streaming", icon: "📺" },
-            { id: "vis1mp", nama: "Vision+ 1 Month (Private)", harga: "Rp 22.000", kategori: "Streaming", icon: "📺" },
-            { id: "yt1mf", nama: "YouTube 1 Month (Famplan)", harga: "Rp 1.500", kategori: "Streaming", icon: "📺" },
-            { id: "yt1mi", nama: "YouTube 1 Month (Indplan)", harga: "Rp 8.000", kategori: "Streaming", icon: "📺" },
-            { id: "yt1mh", nama: "YouTube 1 Month (Head)", harga: "Rp 8.000", kategori: "Streaming", icon: "📺" },
-            { id: "bst1ms", nama: "Bstation 1 Month (Sharing)", harga: "Rp 5.000", kategori: "Streaming", icon: "📺" },
-            { id: "bst3ms", nama: "Bstation 3 Month (Sharing)", harga: "Rp 6.000", kategori: "Streaming", icon: "📺" },
-            { id: "bst1ys", nama: "Bstation 1 Year (Sharing)", harga: "Rp 10.000", kategori: "Streaming", icon: "📺" },
-            { id: "hbos1ms", nama: "HBO Standar 1 Month (Sharing)", harga: "Rp 8.000", kategori: "Streaming", icon: "📺" },
-            { id: "hbos1mp", nama: "HBO Standar 1 Month (Private)", harga: "Rp 40.000", kategori: "Streaming", icon: "📺" },
-            { id: "hbou1ms", nama: "HBO Ultimate 1 Month (Sharing)", harga: "Rp 12.000", kategori: "Streaming", icon: "📺" },
-            { id: "hbou1mp", nama: "HBO Ultimate 1 Month (Private)", harga: "Rp 55.000", kategori: "Streaming", icon: "📺" },
-            { id: "cr1ms", nama: "Crunchyroll 1 Month (Sharing)", harga: "Rp 3.000", kategori: "Streaming", icon: "📺" },
-            { id: "cr1mp", nama: "Crunchyroll 1 Month (Private)", harga: "Rp 10.000", kategori: "Streaming", icon: "📺" },
+            // DDS Uang
+            { id: "ddsu500m", nama: "Uang Rp 500,000,000", harga: "Rp 34.500", kategori: "DDS Uang", icon: "💵" },
+            { id: "ddsu100m", nama: "Uang Rp 100,000,000", harga: "Rp 9.000", kategori: "DDS Uang", icon: "💵" },
+            { id: "ddsu50m", nama: "Uang Rp 50,000,000", harga: "Rp 5.500", kategori: "DDS Uang", icon: "💵" },
+            { id: "ddsu10m", nama: "Uang Rp 10,000,000", harga: "Rp 3.500", kategori: "DDS Uang", icon: "💵" },
+            { id: "ddsu5m", nama: "Uang Rp 5,000,000", harga: "Rp 2.000", kategori: "DDS Uang", icon: "💵" },
+            { id: "ddsu1m", nama: "Uang Rp 1,000,000", harga: "Rp 1.000", kategori: "DDS Uang", icon: "💵" },
 
-            // Music Apps
-            { id: "am1m", nama: "Apple Music 1 Month", harga: "Rp 4.000", kategori: "Music", icon: "🎵" },
-            { id: "am2m", nama: "Apple Music 2 Month", harga: "Rp 7.000", kategori: "Music", icon: "🎵" },
-            { id: "spo1mf", nama: "Spotify 1 Month (Famplan)", harga: "Rp 14.000", kategori: "Music", icon: "🎵" },
-            { id: "spo3mf", nama: "Spotify 3 Month (Famplan)", harga: "Rp 26.000", kategori: "Music", icon: "🎵" },
-            { id: "spo1mi", nama: "Spotify 1 Month (Indplan)", harga: "Rp 15.000", kategori: "Music", icon: "🎵" },
-            { id: "spo3mi", nama: "Spotify 3 Month (Indplan)", harga: "Rp 29.000", kategori: "Music", icon: "🎵" },
-
-            // Editing Apps
-            { id: "cv1m", nama: "Canva Member 1 Month", harga: "Rp 1.000", kategori: "Editing", icon: "🎨" },
-            { id: "cv2m", nama: "Canva Member 2 Month", harga: "Rp 2.000", kategori: "Editing", icon: "🎨" },
-            { id: "cv3m", nama: "Canva Member 3 Month", harga: "Rp 3.000", kategori: "Editing", icon: "🎨" },
-            { id: "cv5m", nama: "Canva Member 5 Month", harga: "Rp 5.000", kategori: "Editing", icon: "🎨" },
-            { id: "cv1y", nama: "Canva Member 1 Year", harga: "Rp 8.000", kategori: "Editing", icon: "🎨" },
-            { id: "cvlt", nama: "Canva Edu Lifetime", harga: "Rp 5.000", kategori: "Editing", icon: "🎨" },
-            { id: "cc7ds", nama: "Capcut 7 Day (Sharing)", harga: "Rp 2.000", kategori: "Editing", icon: "🎨" },
-            { id: "cc7dp", nama: "Capcut 7 Day (Private)", harga: "Rp 4.000", kategori: "Editing", icon: "🎨" },
-            { id: "cc1ms", nama: "Capcut 1 Month (Sharing)", harga: "Rp 4.500", kategori: "Editing", icon: "🎨" },
-            { id: "cc1mp", nama: "Capcut 1 Month (Private)", harga: "Rp 13.000", kategori: "Editing", icon: "🎨" },
-            { id: "am1ys", nama: "Alight Motion 1 Year (Sharing)", harga: "Rp 1.000", kategori: "Editing", icon: "🎨" },
-            { id: "am1yp", nama: "Alight Motion 1 Year (Private)", harga: "Rp 1.500", kategori: "Editing", icon: "🎨" },
-            { id: "pa1ms", nama: "Picsart 1 Month (Sharing)", harga: "Rp 5.000", kategori: "Editing", icon: "🎨" },
-            { id: "pa1mp", nama: "Picsart 1 Month (Private)", harga: "Rp 10.000", kategori: "Editing", icon: "🎨" },
-            { id: "wnk7ds", nama: "Wink 7 Day (Acc S)", harga: "Rp 5.000", kategori: "Editing", icon: "🎨" },
-            { id: "wnk7db", nama: "Wink 7 Day (Acc B)", harga: "Rp 3.000", kategori: "Editing", icon: "🎨" },
-            { id: "mt7dp", nama: "Meitu 7 Day (Private)", harga: "Rp 6.000", kategori: "Editing", icon: "🎨" },
-            { id: "mt1mp", nama: "Meitu 1 Month (Private)", harga: "Rp 15.000", kategori: "Editing", icon: "🎨" },
-            { id: "ib1mp", nama: "Ibis Paint 1 Month (Private)", harga: "Rp 5.000", kategori: "Editing", icon: "🎨" },
-            { id: "ib1yp", nama: "Ibis Paint 1 Year (Private)", harga: "Rp 10.000", kategori: "Editing", icon: "🎨" },
-            { id: "vsc1yp", nama: "Vsco 1 Year (Private)", harga: "Rp 9.000", kategori: "Editing", icon: "🎨" },
-            { id: "rmn1ms", nama: "Remini 1 Month (Sharing Web)", harga: "Rp 5.000", kategori: "Editing", icon: "🎨" },
-            { id: "rmn1yp", nama: "Remini 1 Year (Private Apk)", harga: "Rp 15.000", kategori: "Editing", icon: "🎨" },
-
-            // Other Apps
-            { id: "gpt7ds", nama: "ChatGPT 7 Day (Sharing)", harga: "Rp 8.000", kategori: "Other", icon: "🤖" },
-            { id: "gpt1ms", nama: "ChatGPT 1 Month (Sharing)", harga: "Rp 12.000", kategori: "Other", icon: "🤖" },
-            { id: "gpt1mc", nama: "ChatGPT 1 Month (Akun Cust)", harga: "Rp 12.000", kategori: "Other", icon: "🤖" },
-            { id: "gmn1mp", nama: "Gemini 1 Month (Private)", harga: "Rp 7.000", kategori: "Other", icon: "🤖" },
-            { id: "gmn1yp", nama: "Gemini 1 Year (Private)", harga: "Rp 13.000", kategori: "Other", icon: "🤖" },
+            // DDS Gamepass
+            { id: "ddsgcustom", nama: "Custom Plate Pass", harga: "Rp 7.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgdrag", nama: "Dragspec Pass", harga: "Rp 10.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgaksesori", nama: "Aksesori Premium", harga: "Rp 5.500", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgroda", nama: "Roda Eksklusif", harga: "Rp 7.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgpolisi", nama: "Pass Polisi", harga: "Rp 13.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgslot", nama: "Pembuka Batas Slot", harga: "Rp 8.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsangkat", nama: "Pass Kat Kat Lanjutan", harga: "Rp 5.500", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsggaji", nama: "2X Cek Gaji", harga: "Rp 44.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgmewah", nama: "Pass Mewah", harga: "Rp 11.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgsuspensi", nama: "Pro Suspensi", harga: "Rp 3.000", kategori: "DDS Gamepass", icon: "🏎️" },
+            { id: "ddsgboombox", nama: "Radio Boombox", harga: "Rp 3.000", kategori: "DDS Gamepass", icon: "🏎️" },
         ];
 
         let produkTerpilih = null;
         let kategoriAktif = 'all';
 
-        // Fungsi Render List Produk ke Layar
         function tampilkanProduk(filter = 'all') {
             const container = document.getElementById('produkContainer');
             container.innerHTML = '';
@@ -222,7 +187,6 @@
 
                 const card = document.createElement('div');
                 card.id = prod.id;
-                // Tetap beri highlight jika produk sedang terpilih walaupun ganti tab
                 const isSelected = produkTerpilih?.id === prod.id;
                 card.className = isSelected 
                     ? "border-2 border-blue-400 bg-blue-950/40 p-2.5 rounded-xl cursor-pointer shadow-md shadow-blue-500/10 transition-all text-left"
@@ -241,27 +205,28 @@
             });
         }
 
-        // Fungsi Memilih Produk
         function pilihProduk(prod) {
             produkTerpilih = prod;
-            
-            // Re-render biar border update rapi sesuai pilihan
             tampilkanProduk(kategoriAktif);
 
-            // Tampilkan Note khusus jika produknya adalah Robux
-            const noteBox = document.getElementById('noteRobux');
+            const noteBox = document.getElementById('noteBox');
+            const noteText = document.getElementById('noteText');
+            
             if (prod.kategori.includes('Robux')) {
                 noteBox.classList.remove('hidden');
+                noteText.innerHTML = "<strong>💡 Note Robux:</strong> Akun penerima harus 18+ & terverifikasi KTP (di bawah itu harus pakai parent ku, per send 1k). Digift dari acc pribadi, clean & fast!";
+            } else if (prod.kategori.includes('DDS')) {
+                noteBox.classList.remove('hidden');
+                noteText.innerHTML = "<strong>🏎️ Note Drag Drive Simulator:</strong> Proses cepat via gift item in-game resmi. Pastikan Username & Display Name sudah sesuai!";
             } else {
                 noteBox.classList.add('hidden');
             }
         }
 
-        // Fungsi Klik Tab Kategori
         function filterKategori(kat) {
             kategoriAktif = kat;
-            const tabs = ['all', 'rb-kelipatan', 'rb-eceran', 'streaming', 'music', 'editing', 'other'];
-            const namaKat = ['all', 'Robux Kelipatan', 'Robux Eceran', 'Streaming', 'Music', 'Editing', 'Other'];
+            const tabs = ['all', 'rb-kelipatan', 'rb-eceran', 'dds-uang', 'dds-gamepass'];
+            const namaKat = ['all', 'Robux Kelipatan', 'Robux Eceran', 'DDS Uang', 'DDS Gamepass'];
             
             tabs.forEach((tab, index) => {
                 const el = document.getElementById(`tab-${tab}`);
@@ -272,15 +237,14 @@
                 }
             });
 
-            const filterName = kat === 'all' ? 'all' : kat;
-            tampilkanProduk(filterName);
+            tampilkanProduk(kat);
         }
 
-        // Fungsi Mengirim Data ke WhatsApp
         function kirimOrder(event) {
             event.preventDefault();
 
-            const userId = document.getElementById('userId').value;
+            const username = document.getElementById('username').value;
+            const displayName = document.getElementById('displayName').value;
             const paymentMethod = document.getElementById('paymentMethod').value;
 
             if (!produkTerpilih) {
@@ -288,25 +252,25 @@
                 return;
             }
 
-            // Susun Pesan WA Cantik
+            // Format Pesan Invoice Baru & Rapi
             const teksPesan = 
-                `🛒 *FORM ORDER ZYOU MARKET* 🛒\n\n` +
+                `📢 *NEW ORDER - ZYOU MARKET* 📢\n` +
                 `-----------------------------------------\n\n` +
                 `📝 *DATA PESANAN*\n` +
-                `| *Kategori* : ${produkTerpilih.kategori}\n` +
-                `| *Produk*   : ${produkTerpilih.nama}\n` +
-                `| *Target ID* : ${userId}\n\n` +
+                `| *Kategori*     : ${produkTerpilih.kategori}\n` +
+                `| *Produk*       : ${produkTerpilih.nama}\n` +
+                `| *Username*     : ${username}\n` +
+                `| *Display Name* : ${displayName}\n\n` +
                 `💳 *PEMBAYARAN*\n` +
-                `| *Metode*   : ${paymentMethod}\n` +
-                `| *Total*    : *${produkTerpilih.harga}*\n\n` +
+                `| *Metode*       : ${paymentMethod}\n` +
+                `| *Total*        : *${produkTerpilih.harga}*\n\n` +
                 `-----------------------------------------\n` +
-                `Halo Admin Zyou Market, saya mau order produk di atas. Tolong kirimkan info pembayarannya ya! Terima kasih.`;
+                `_Halo Admin Zyou Market, saya sudah mengisi data di website. Mohon instruksi selanjutnya untuk pembayaran ya, terima kasih!_`;
 
             const urlWhatsApp = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksPesan)}`;
             window.open(urlWhatsApp, '_blank');
         }
 
-        // Tampilan Awal
         tampilkanProduk('all');
     </script>
 </body>
