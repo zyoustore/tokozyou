@@ -1,34 +1,58 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Top Up Modern</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .card-product {
+            transition: all 0.3s ease;
+        }
+        .card-product:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-slate-950 text-white font-sans">
 
     <!-- Navbar -->
-    <nav class="p-6 flex justify-between items-center bg-gray-800">
-        <h1 class="text-2xl font-bold text-blue-500">TokoAnda</h1>
-        <div class="space-x-4">
+    <nav class="max-w-6xl mx-auto p-6 flex justify-between items-center">
+        <h1 class="text-2xl font-black text-blue-500 tracking-tighter">TOKOPRO</h1>
+        <div class="space-x-6 text-sm font-medium">
             <a href="#" class="hover:text-blue-400">Home</a>
             <a href="#" class="hover:text-blue-400">Status</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="py-16 text-center">
-        <h2 class="text-4xl font-bold mb-4">Top Up Games Termurah</h2>
-        <p class="text-gray-400">Proses kilat, aman, dan terpercaya.</p>
+    <!-- Header -->
+    <header class="text-center py-16 px-4">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Top Up Games Terpercaya</h2>
+        <p class="text-slate-400">Solusi top up cepat, aman, dan harga bersahabat.</p>
     </header>
 
     <!-- Product Grid -->
-    <main class="max-w-4xl mx-auto p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <!-- Contoh Kartu Produk -->
-        <div class="bg-gray-800 p-4 rounded-lg hover:border border-blue-500 transition">
-            <img src="https://via.placeholder.com/150" alt="Roblox" class="rounded mb-2">
-            <h3 class="font-bold">Roblox</h3>
-            <button class="w-full mt-2 bg-blue-600 py-2 rounded hover:bg-blue-700">Beli</button>
+    <main class="max-w-6xl mx-auto p-4 grid grid-cols-2 md:grid-cols-4 gap-6">
+        
+        <!-- Kartu Produk 1 -->
+        <div class="card-product bg-slate-900 p-4 rounded-2xl border border-slate-800">
+            <img src="https://via.placeholder.com/300x200" class="rounded-xl mb-4 w-full h-32 object-cover">
+            <h3 class="font-bold text-lg">Roblox</h3>
+            <p class="text-blue-400 font-bold mt-1">Rp 15.000</p>
+            <a href="#" class="block text-center mt-4 bg-blue-600 hover:bg-blue-500 py-2.5 rounded-xl font-bold transition">Beli</a>
         </div>
-        <!-- Tambahkan lagi di sini -->
+
+        <!-- Kartu Produk 2 -->
+        <div class="card-product bg-slate-900 p-4 rounded-2xl border border-slate-800">
+            <img src="https://via.placeholder.com/300x200" class="rounded-xl mb-4 w-full h-32 object-cover">
+            <h3 class="font-bold text-lg">Mobile Legends</h3>
+            <p class="text-blue-400 font-bold mt-1">Rp 20.000</p>
+            <a href="#" class="block text-center mt-4 bg-blue-600 hover:bg-blue-500 py-2.5 rounded-xl font-bold transition">Beli</a>
+        </div>
+
+        <!-- Tambahkan lagi di bawah sini sesuai kebutuhan -->
+
     </main>
 
 </body>
