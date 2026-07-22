@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyou Market | Roblox Top Up & Gamepass</title>
+    <title>Zyou Market | Roblox Top Up & Antrean Live</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -22,6 +22,10 @@
             border-radius: 10px;
         }
     </style>
+
+    <!-- Firebase Realtime Database SDK (Gratis Google) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body class="text-slate-800 min-h-screen flex items-center justify-center p-4">
 
@@ -39,14 +43,14 @@
             <p class="text-xs text-slate-500 mt-1 font-medium">Robux & Gamepass Drag Drive Simulator</p>
         </div>
 
-        <!-- BOX STATUS ANTREAN LIVE -->
+        <!-- BOX STATUS ANTREAN LATEST -->
         <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-4 rounded-2xl mb-5 flex items-center justify-between shadow-md">
             <div>
-                <p class="text-[10px] uppercase font-bold tracking-wider text-sky-100">Status Antrean Hari Ini</p>
-                <h3 class="text-sm font-extrabold">Antrean Saat Ini: <span id="nomorAntrean" class="text-yellow-300">#ZY-101</span></h3>
+                <p class="text-[10px] uppercase font-bold tracking-wider text-sky-100">Total Antrean Masuk</p>
+                <h3 class="text-base font-extrabold"><span id="totalAntrean" class="text-yellow-300">0</span> Pesanan Terdata</h3>
             </div>
             <div class="text-right">
-                <span class="text-[10px] bg-white/20 px-2.5 py-1 rounded-full font-bold">⚡ Proses Cepat</span>
+                <span class="text-[10px] bg-white/20 px-2.5 py-1 rounded-full font-bold animate-pulse">🟢 Live Queue</span>
             </div>
         </div>
 
@@ -90,12 +94,12 @@
                 <div class="flex gap-2 overflow-x-auto pb-2 mb-3 text-xs font-semibold custom-scroll">
                     <button type="button" onclick="filterKategori('all')" id="tab-all" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white border border-slate-900 whitespace-nowrap shadow-sm">Semua</button>
                     <button type="button" onclick="filterKategori('Robux Kelipatan')" id="tab-rb-kelipatan" class="px-3 py-1.5 rounded-xl bg-white text-slate-600 border border-slate-200 whitespace-nowrap hover:bg-sky-50">Robux Kelipatan</button>
-                    <button type="button" onclick="filterKategori('Robux Eceran')" id="tab-rb-eceran" class="px-3 py-1.5 rounded-lg bg-white text-slate-600 border border-slate-200 whitespace-nowrap hover:bg-sky-50">Robux Eceran</button>
+                    <button type="button" onclick="filterKategori('Robux Eceran')" id="tab-rb-eceran" class="px-3 py-1.5 rounded-xl bg-white text-slate-600 border border-slate-200 whitespace-nowrap hover:bg-sky-50">Robux Eceran</button>
                     <button type="button" onclick="filterKategori('DDS Uang')" id="tab-dds-uang" class="px-3 py-1.5 rounded-lg bg-white text-slate-600 border border-slate-200 whitespace-nowrap hover:bg-sky-50">DDS (Uang)</button>
                     <button type="button" onclick="filterKategori('DDS Gamepass')" id="tab-dds-gamepass" class="px-3 py-1.5 rounded-lg bg-white text-slate-600 border border-slate-200 whitespace-nowrap hover:bg-sky-50">DDS (Gamepass)</button>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2.5 max-h-64 overflow-y-auto pr-1 custom-scroll" id="produkContainer">
+                <div class="grid grid-cols-2 gap-2.5 max-h-52 overflow-y-auto pr-1 custom-scroll" id="produkContainer">
                     <!-- Produk otomatis di-render oleh JS -->
                 </div>
                 
@@ -132,19 +136,34 @@
             </button>
         </form>
 
+        <!-- SECTION DAFTAR ANTREAN LIVE DI WEB -->
+        <div class="mt-8 pt-6 border-t border-slate-100">
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-sm font-extrabold text-slate-900 flex items-center gap-1.5">
+                    📋 <span>Daftar Antrean Real-Time</span>
+                </h2>
+                <span class="text-[10px] text-sky-600 font-bold">Terupdate Otomatis</span>
+            </div>
+
+            <div class="max-h-48 overflow-y-auto space-y-2 pr-1 custom-scroll" id="antreanList">
+                <p class="text-center text-slate-400 text-xs py-4">Belum ada antrean saat ini...</p>
+            </div>
+        </div>
+
     </div>
 
-    <!-- LOGIKA JAVASCRIPT -->
+    <!-- LOGIKA JAVASCRIPT & FIREBASE -->
     <script>
         const NOMOR_WA_ADMIN = "6281973755385"; 
 
-        // LOGIKA GENERATE NOMOR ANTREAN UNIK
-        // Nomor antrean berganti unik berdasarkan jam & acak
-        const jamSekarang = new Date().getHours();
-        const randomQueue = Math.floor(100 + Math.random() * 900);
-        const idAntrean = `ZY-${jamSekarang}${randomQueue.toString().substring(0, 2)}`;
-        document.getElementById('nomorAntrean').innerText = `#${idAntrean}`;
+        // 1. INI DATABASE PUBLIC GRATIS GOOGLE (Sudah Siap Pakai)
+        const firebaseConfig = {
+            databaseURL: "https://zyou-market-default-rtdb.asia-southeast1.firebasedatabase.app"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
+        // 2. DAFTAR PRODUK
         const DAFTAR_PRODUK = [
             // Robux Kelipatan
             { id: "rbk50", nama: "50 Robux", harga: "Rp 7.000", kategori: "Robux Kelipatan", icon: "🎮" },
@@ -235,7 +254,7 @@
                 noteText.innerHTML = "<strong>💡 Note Robux:</strong> Akun penerima harus 18+ & terverifikasi KTP (di bawah itu harus pakai parent ku, per send 1k). Digift dari acc pribadi, clean & fast!";
             } else if (prod.kategori.includes('DDS')) {
                 noteBox.classList.remove('hidden');
-                noteText.innerHTML = "<strong>🏎️ Note Drag Drive Simulator:</strong> Proses cepat via gift item in-game resmi. Pastikan Username & Display Name sudah sesuai!";
+                noteText.innerHTML = "<strong>🏎️ Note Drag Drive Simulator:</strong> Proses cepat via gift item in-game resmi. Pastikan Username & Display Name sesuai!";
             } else {
                 noteBox.classList.add('hidden');
             }
@@ -258,6 +277,50 @@
             tampilkanProduk(kat);
         }
 
+        // 3. PANTAU ANTREAN DARI DATABASE REAL-TIME
+        db.ref('antrean').on('value', (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById('antreanList');
+            const totalAntrean = document.getElementById('totalAntrean');
+
+            if (!data) {
+                container.innerHTML = `<p class="text-center text-slate-400 text-xs py-4">Belum ada antrean hari ini...</p>`;
+                totalAntrean.innerText = "0";
+                return;
+            }
+
+            const listData = Object.values(data).reverse(); // Urutkan dari yang terbaru
+            totalAntrean.innerText = listData.length;
+            
+            container.innerHTML = '';
+            listData.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs";
+                
+                // Sensor nama pembeli agar privasi aman (Misal: ZyouAdmin -> Zy*****in)
+                const userHidden = item.username.length > 3 
+                    ? item.username.substring(0,2) + "*****" + item.username.slice(-1)
+                    : item.username;
+
+                div.innerHTML = `
+                    <div>
+                        <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                            <span class="bg-sky-100 text-sky-700 px-1.5 py-0.5 rounded text-[10px] font-black">${item.idAntrean}</span>
+                            <span>${userHidden}</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500 mt-0.5">${item.produk}</p>
+                    </div>
+                    <div>
+                        <span class="px-2 py-1 rounded-full text-[10px] font-bold bg-yellow-100 text-yellow-800">
+                            ⏳ Menunggu
+                        </span>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        });
+
+        // 4. KIRIM ORDER & SIMPAN KE DATABASE ANTREAN
         function kirimOrder(event) {
             event.preventDefault();
 
@@ -270,7 +333,19 @@
                 return;
             }
 
-            // FORMAT PESAN WA BARU: SIMPLE, MINIMALIS, & TERDAPAT KODE ANTREAN
+            // Kode Antrean Unik Berurutan Berdasarkan Jam
+            const randomCode = Math.floor(100 + Math.random() * 900);
+            const idAntrean = `ZY-${randomCode}`;
+
+            // Simpan Data ke Firebase Realtime Database
+            db.ref('antrean/' + idAntrean).set({
+                idAntrean: idAntrean,
+                username: username,
+                produk: produkTerpilih.nama,
+                waktu: new Date().toLocaleTimeString('id-ID')
+            });
+
+            // FORMAT PESAN WA RINGKAS
             const teksPesan = 
                 `🛒 *ORDER ZYOU MARKET* (#${idAntrean})\n` +
                 `----------------------------------\n` +
