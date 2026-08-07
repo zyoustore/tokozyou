@@ -1,375 +1,389 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyou Market | Roblox Top Up & Gamepass</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f2b48 100%);
-        }
-        .custom-scroll::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scroll::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        .custom-scroll::-webkit-scrollbar-thumb {
-            background: #38bdf8;
-            border-radius: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gelo Store - Top Up Game, Gift In-Game & Apps Premium</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
-<body class="text-slate-800 min-h-screen flex items-center justify-center p-4">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
 
-    <!-- CONTAINER UTAMA -->
-    <div class="w-full max-w-lg bg-white rounded-3xl p-6 shadow-2xl border-4 border-sky-200 my-4">
-        
-        <!-- HEADER TOKO -->
-        <div class="text-center mb-6">
-            <div class="inline-block px-3 py-1 bg-sky-100 text-sky-700 text-xs font-bold rounded-full mb-2">
-                STORE RESMI & TERPERCAYA
-            </div>
-            <h1 class="text-3xl font-extrabold tracking-wide text-slate-900">
-                ⚡ ZYOU <span class="text-sky-500">MARKET</span>
-            </h1>
-            <p class="text-xs text-slate-500 mt-1 font-medium">Robux & Gamepass Drag Drive Simulator</p>
-        </div>
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      
+      <!-- LOGO STORE -->
+      <a href="#" class="flex items-center gap-3">
+        <img 
+          src="https://via.placeholder.com/150x150.png?text=Logo" 
+          alt="Gelo Store Logo" 
+          class="w-10 h-10 rounded-xl object-cover border border-indigo-500/30"
+        />
+        <span class="text-xl font-black tracking-wider text-indigo-400">GELO<span class="text-white">STORE</span></span>
+      </a>
 
-        <form id="topupForm" onsubmit="kirimOrder(event)" class="space-y-5">
-            
-            <!-- STEP 1: INPUT DATA USER -->
-            <div class="bg-slate-50 p-4 rounded-2xl border border-sky-100">
-                <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">
-                    1. Data Akun Roblox
-                </label>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <span class="text-[11px] text-slate-500 mb-1 block">Username</span>
-                        <input 
-                            type="text" 
-                            id="username"
-                            required
-                            placeholder="ZyouAdmin" 
-                            class="w-full px-3.5 py-2.5 text-sm rounded-xl bg-white border border-slate-300 focus:border-sky-500 text-slate-800 placeholder-slate-400 outline-none transition-all"
-                        />
-                    </div>
-                    <div>
-                        <span class="text-[11px] text-slate-500 mb-1 block">Display Name</span>
-                        <input 
-                            type="text" 
-                            id="displayName"
-                            required
-                            placeholder="Zyou_Market" 
-                            class="w-full px-3.5 py-2.5 text-sm rounded-xl bg-white border border-slate-300 focus:border-sky-500 text-slate-800 placeholder-slate-400 outline-none transition-all"
-                        />
-                    </div>
-                </div>
-            </div>
+      <!-- Quick Nav Buttons -->
+      <div class="hidden md:flex gap-4 text-xs font-semibold text-slate-300">
+        <a href="#mlbb" class="hover:text-indigo-400 transition">Mobile Legends</a>
+        <a href="#roblox" class="hover:text-indigo-400 transition">Roblox</a>
+        <a href="#freefire" class="hover:text-indigo-400 transition">Free Fire</a>
+        <a href="#apps" class="hover:text-indigo-400 transition">Apps Premium</a>
+      </div>
 
-            <!-- STEP 2: PILIH KATEGORI BERGAMBAR -->
-            <div class="bg-slate-50 p-4 rounded-2xl border border-sky-100">
-                <div class="flex justify-between items-center mb-3">
-                    <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider">
-                        2. Pilih Kategori Produk
-                    </label>
-                    <button type="button" id="btnKembaliKategori" onclick="kembaliKeKategori()" class="hidden text-xs font-bold text-sky-600 hover:underline">
-                        ← Ganti Kategori
-                    </button>
-                </div>
-
-                <!-- TAMPILAN GAMBAR KATEGORI UTAMA (Awal) -->
-                <div id="gridKategori" class="grid grid-cols-2 gap-3">
-                    <!-- Card Kategori 1 -->
-                    <div onclick="bukaKategori('Robux Kelipatan')" class="group cursor-pointer rounded-2xl overflow-hidden border-2 border-slate-200 hover:border-sky-500 bg-gradient-to-br from-sky-50 to-blue-100 p-3 text-center transition-all hover:shadow-md">
-                        <div class="text-3xl mb-1 group-hover:scale-110 transition-transform">🎮</div>
-                        <h3 class="text-xs font-bold text-slate-800">Robux Kelipatan</h3>
-                        <p class="text-[10px] text-slate-500 mt-0.5">Mulai Rp 7.000</p>
-                    </div>
-
-                    <!-- Card Kategori 2 -->
-                    <div onclick="bukaKategori('Robux Eceran')" class="group cursor-pointer rounded-2xl overflow-hidden border-2 border-slate-200 hover:border-sky-500 bg-gradient-to-br from-sky-50 to-blue-100 p-3 text-center transition-all hover:shadow-md">
-                        <div class="text-3xl mb-1 group-hover:scale-110 transition-transform">💎</div>
-                        <h3 class="text-xs font-bold text-slate-800">Robux Eceran</h3>
-                        <p class="text-[10px] text-slate-500 mt-0.5">Mulai Rp 1.400</p>
-                    </div>
-
-                    <!-- Card Kategori 3 -->
-                    <div onclick="bukaKategori('DDS Uang')" class="group cursor-pointer rounded-2xl overflow-hidden border-2 border-slate-200 hover:border-sky-500 bg-gradient-to-br from-sky-50 to-blue-100 p-3 text-center transition-all hover:shadow-md">
-                        <div class="text-3xl mb-1 group-hover:scale-110 transition-transform">💵</div>
-                        <h3 class="text-xs font-bold text-slate-800">DDS (Uang)</h3>
-                        <p class="text-[10px] text-slate-500 mt-0.5">Mulai Rp 1.000</p>
-                    </div>
-
-                    <!-- Card Kategori 4 -->
-                    <div onclick="bukaKategori('DDS Gamepass')" class="group cursor-pointer rounded-2xl overflow-hidden border-2 border-slate-200 hover:border-sky-500 bg-gradient-to-br from-sky-50 to-blue-100 p-3 text-center transition-all hover:shadow-md">
-                        <div class="text-3xl mb-1 group-hover:scale-110 transition-transform">🏎️</div>
-                        <h3 class="text-xs font-bold text-slate-800">DDS (Gamepass)</h3>
-                        <p class="text-[10px] text-slate-500 mt-0.5">Mulai Rp 3.000</p>
-                    </div>
-                </div>
-
-                <!-- DAFTAR ITEM DI DALAM KATEGORI (Default Tersembunyi) -->
-                <div id="containerProdukDetail" class="hidden">
-                    <p id="judulKategoriAktif" class="text-xs font-bold text-sky-600 mb-2"></p>
-                    <div class="grid grid-cols-2 gap-2 max-h-52 overflow-y-auto pr-1 custom-scroll" id="produkContainer">
-                        <!-- Item produk akan dirender di sini -->
-                    </div>
-                </div>
-                
-                <div id="noteBox" class="hidden mt-3 p-3 bg-sky-50 border border-sky-200 rounded-xl text-[11px] text-sky-900 leading-relaxed">
-                    <span id="noteText"></span>
-                </div>
-            </div>
-
-            <!-- STEP 3: PILIH METODE PEMBAYARAN -->
-            <div class="bg-slate-50 p-4 rounded-2xl border border-sky-100">
-                <label class="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">
-                    3. Pilih Pembayaran
-                </label>
-                <select 
-                    id="paymentMethod"
-                    required
-                    class="w-full px-4 py-3 text-sm rounded-xl bg-white border border-slate-300 focus:border-sky-500 text-slate-800 outline-none transition-all cursor-pointer"
-                >
-                    <option value="" disabled selected>-- Pilih E-Wallet / Bank --</option>
-                    <option value="DANA">DANA</option>
-                    <option value="GOPAY">GOPAY</option>
-                    <option value="OVO">OVO</option>
-                    <option value="QRIS All Payment">QRIS All Payment</option>
-                    <option value="Transfer Bank (BCA/Mandiri/BRI)">Transfer Bank (BCA / Mandiri / BRI)</option>
-                </select>
-            </div>
-
-            <!-- TOMBOL BELI -->
-            <button 
-                type="submit" 
-                class="w-full py-4 bg-gradient-to-r from-slate-900 via-sky-900 to-sky-600 hover:from-slate-800 hover:to-sky-500 text-white text-sm font-bold rounded-2xl shadow-lg shadow-sky-200 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2"
-            >
-                <span>🚀 Order Sekarang Via WA</span>
-            </button>
-        </form>
-
-        <!-- SECTION TESTIMONI & RATING REAL -->
-        <div class="mt-8 pt-6 border-t border-slate-100">
-            <h2 class="text-sm font-extrabold text-slate-900 mb-3 flex items-center gap-1.5">
-                ⭐ <span>Testimoni Pembeli</span>
-            </h2>
-
-            <!-- FORM ISI TESTIMONI REAL -->
-            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-4">
-                <p class="text-xs font-bold text-slate-700 mb-2">Tulis Testimoni Kamu:</p>
-                <div class="space-y-2">
-                    <input type="text" id="namaUlasan" placeholder="Nama / Username kamu" class="w-full px-3 py-2 text-xs rounded-xl bg-white border border-slate-300 outline-none">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs text-slate-500 font-medium">Rating:</span>
-                        <select id="ratingUlasan" class="px-2 py-1 text-xs rounded-lg bg-white border border-slate-300 font-bold text-amber-500">
-                            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ (5/5)</option>
-                            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4/5)</option>
-                            <option value="⭐⭐⭐">⭐⭐⭐ (3/5)</option>
-                        </select>
-                    </div>
-                    <textarea id="pesanUlasan" rows="2" placeholder="Prosesnya cepat banget, recommended seller!" class="w-full px-3 py-2 text-xs rounded-xl bg-white border border-slate-300 outline-none resize-none"></textarea>
-                    <button type="button" onclick="tambahUlasan()" class="w-full py-2 bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold rounded-xl transition-all">
-                        Kirim Testimoni
-                    </button>
-                </div>
-            </div>
-
-            <!-- DAFTAR TESTIMONI -->
-            <div class="max-h-48 overflow-y-auto space-y-2.5 pr-1 custom-scroll" id="testimoniList">
-                <!-- Testimoni Bawaan Toko -->
-                <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-slate-800">Rizky*****</span>
-                        <span class="text-[10px] text-amber-500">⭐⭐⭐⭐⭐</span>
-                    </div>
-                    <p class="text-[11px] text-slate-600">"Top up Robux 200 via gift aman banget, gak sampe 5 menit masuk. Thanks Zyou Market!"</p>
-                </div>
-                <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs">
-                    <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-slate-800">Bintang*****</span>
-                        <span class="text-[10px] text-amber-500">⭐⭐⭐⭐⭐</span>
-                    </div>
-                    <p class="text-[11px] text-slate-600">"Beli DDS Uang 100M aman jaya, admin ramah puol!"</p>
-                </div>
-            </div>
-        </div>
-
+      <a href="#katalog" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
+        <i class="fa-solid fa-cart-shopping"></i> Order Sekarang
+      </a>
     </div>
+  </header>
 
-    <!-- LOGIKA JAVASCRIPT -->
-    <script>
-        const NOMOR_WA_ADMIN = "6281973755385"; 
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-4 py-12 md:py-16 text-center">
+    <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 px-4 py-1.5 rounded-full text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6">
+      <i class="fa-solid fa-bolt"></i> Layanan Kilat & Terpercaya
+    </div>
+    <h1 class="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
+      Top-Up Game & Aplikasi Premium <br class="hidden md:block"/>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Murah, Cepat & Bergaransi</span>
+    </h1>
+    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-8">
+      Pusat top-up Mobile Legends, Roblox (Login, Gamepass, Username), Free Fire, Gift Item In-Game, serta akun & langganan aplikasi premium terlengkap.
+    </p>
 
-        const DAFTAR_PRODUK = [
-            // Robux Kelipatan
-            { id: "rbk50", nama: "50 Robux", harga: "Rp 7.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk100", nama: "100 Robux", harga: "Rp 14.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk150", nama: "150 Robux", harga: "Rp 21.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk200", nama: "200 Robux", harga: "Rp 28.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk250", nama: "250 Robux", harga: "Rp 35.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk300", nama: "300 Robux", harga: "Rp 42.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk350", nama: "350 Robux", harga: "Rp 49.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk400", nama: "400 Robux", harga: "Rp 56.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk450", nama: "450 Robux", harga: "Rp 63.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk500", nama: "500 Robux", harga: "Rp 70.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            { id: "rbk550", nama: "550 Robux", harga: "Rp 77.000", kategori: "Robux Kelipatan", icon: "🎮" },
-            
-            // Robux Eceran
-            { id: "rbe10", nama: "10 Robux", harga: "Rp 1.400", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe20", nama: "20 Robux", harga: "Rp 2.800", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe30", nama: "30 Robux", harga: "Rp 4.200", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe40", nama: "40 Robux", harga: "Rp 5.600", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe50", nama: "50 Robux (Ecer)", harga: "Rp 7.000", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe60", nama: "60 Robux", harga: "Rp 8.400", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe70", nama: "70 Robux", harga: "Rp 9.800", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe80", nama: "80 Robux", harga: "Rp 11.200", kategori: "Robux Eceran", icon: "💎" },
-            { id: "rbe90", nama: "90 Robux", harga: "Rp 12.600", kategori: "Robux Eceran", icon: "💎" },
+    <!-- Category Shortcuts -->
+    <div class="flex flex-wrap justify-center gap-3 text-xs font-bold">
+      <a href="#mlbb" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl transition flex items-center gap-2">
+        <i class="fa-solid fa-mobile-screen text-indigo-400"></i> Mobile Legends
+      </a>
+      <a href="#roblox" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl transition flex items-center gap-2">
+        <i class="fa-solid fa-cube text-red-400"></i> Roblox
+      </a>
+      <a href="#freefire" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl transition flex items-center gap-2">
+        <i class="fa-solid fa-fire text-amber-400"></i> Free Fire
+      </a>
+      <a href="#apps" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl transition flex items-center gap-2">
+        <i class="fa-solid fa-crown text-pink-400"></i> Apps Premium
+      </a>
+    </div>
+  </section>
 
-            // DDS Uang
-            { id: "ddsu500m", nama: "Uang Rp 500,000,000", harga: "Rp 34.500", kategori: "DDS Uang", icon: "💵" },
-            { id: "ddsu100m", nama: "Uang Rp 100,000,000", harga: "Rp 9.000", kategori: "DDS Uang", icon: "💵" },
-            { id: "ddsu50m", nama: "Uang Rp 50,000,000", harga: "Rp 5.500", kategori: "DDS Uang", icon: "💵" },
-            { id: "ddsu10m", nama: "Uang Rp 10,000,000", harga: "Rp 3.500", kategori: "DDS Uang", icon: "💵" },
-            { id: "ddsu5m", nama: "Uang Rp 5,000,000", harga: "Rp 2.000", kategori: "DDS Uang", icon: "💵" },
-            { id: "ddsu1m", nama: "Uang Rp 1,000,000", harga: "Rp 1.000", kategori: "DDS Uang", icon: "💵" },
+  <!-- Main Catalog -->
+  <main id="katalog" class="max-w-6xl mx-auto px-4 pb-20 space-y-12">
 
-            // DDS Gamepass
-            { id: "ddsgcustom", nama: "Custom Plate Pass", harga: "Rp 7.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgdrag", nama: "Dragspec Pass", harga: "Rp 10.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgaksesori", nama: "Aksesori Premium", harga: "Rp 5.500", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgroda", nama: "Roda Eksklusif", harga: "Rp 7.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgpolisi", nama: "Pass Polisi", harga: "Rp 13.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgslot", nama: "Pembuka Batas Slot", harga: "Rp 8.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsangkat", nama: "Pass Kat Kat Lanjutan", harga: "Rp 5.500", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsggaji", nama: "2X Cek Gaji", harga: "Rp 44.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgmewah", nama: "Pass Mewah", harga: "Rp 11.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgsuspensi", nama: "Pro Suspensi", harga: "Rp 3.000", kategori: "DDS Gamepass", icon: "🏎️" },
-            { id: "ddsgboombox", nama: "Radio Boombox", harga: "Rp 3.000", kategori: "DDS Gamepass", icon: "🏎️" },
-        ];
+    <!-- GAME 1: MOBILE LEGENDS -->
+    <section id="mlbb" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
+      <div class="flex items-center gap-4 mb-6 border-b border-slate-800 pb-4">
+        <img src="https://via.placeholder.com/100.png?text=MLBB" alt="MLBB Logo" class="w-12 h-12 rounded-xl object-cover" />
+        <div>
+          <h2 class="text-xl font-extrabold text-white">Mobile Legends: Bang Bang</h2>
+          <p class="text-xs text-slate-400">Diamond Direct, Membership & Gift In-Game Item</p>
+        </div>
+      </div>
 
-        let produkTerpilih = null;
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- MLBB Item 1 -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Weekly+Pass" alt="Weekly Pass" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-indigo-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Top-Up Direct</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Weekly Diamond Pass</h3>
+            <p class="text-xs text-slate-400 mt-1">Butuh User ID + Zone ID</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 28.000</span>
+            <button onclick="orderWA('MLBB - Weekly Diamond Pass', '28.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-        // Buka Kategori Tertentu
-        function bukaKategori(kategori) {
-            document.getElementById('gridKategori').classList.add('hidden');
-            document.getElementById('containerProdukDetail').classList.remove('hidden');
-            document.getElementById('btnKembaliKategori').classList.remove('hidden');
-            document.getElementById('judulKategoriAktif').innerText = `Kategori: ${kategori}`;
+        <!-- MLBB Item 2 -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=86+Diamonds" alt="86 Diamonds" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-indigo-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Top-Up Direct</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">86 Diamonds</h3>
+            <p class="text-xs text-slate-400 mt-1">Butuh User ID + Zone ID</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 20.000</span>
+            <button onclick="orderWA('MLBB - 86 Diamonds', '20.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            const container = document.getElementById('produkContainer');
-            container.innerHTML = '';
+        <!-- MLBB Item 3: Gift Skin -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Gift+Skin+Epic" alt="Gift Skin Epic" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-purple-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Gift In-Game</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Gift Skin Epic (7 Days Friend)</h3>
+            <p class="text-xs text-slate-400 mt-1">Sesuai request skin di shop</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 85.000</span>
+            <button onclick="orderWA('MLBB - Gift Skin Epic', '85.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            const filtered = DAFTAR_PRODUK.filter(p => p.kategori === kategori);
-            
-            filtered.forEach(prod => {
-                const card = document.createElement('div');
-                card.id = prod.id;
-                const isSelected = produkTerpilih?.id === prod.id;
+        <!-- MLBB Item 4: Gift Item Starlight/Charis -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Gift+Item+ML" alt="Gift Item ML" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-purple-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Gift In-Game</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Gift Charisma / Starlight Card</h3>
+            <p class="text-xs text-slate-400 mt-1">Gift via in-game pertemanan</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 30.000</span>
+            <button onclick="orderWA('MLBB - Gift Starlight Card / Item', '30.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-                card.className = isSelected 
-                    ? "border-2 border-sky-500 bg-sky-50/80 p-2.5 rounded-xl cursor-pointer shadow-md transition-all text-left"
-                    : "border border-slate-200 bg-white p-2.5 rounded-xl cursor-pointer hover:border-sky-300 hover:bg-sky-50/30 transition-all text-left";
-                
-                card.innerHTML = `
-                    <div class="text-[10px] text-sky-600 font-bold flex items-center gap-1">
-                        <span>${prod.icon}</span> <span>${prod.kategori}</span>
-                    </div>
-                    <h3 class="text-xs font-bold text-slate-800 mt-0.5 line-clamp-2 leading-tight">${prod.nama}</h3>
-                    <p class="text-xs font-black text-sky-600 mt-1">${prod.harga}</p>
-                `;
-                
-                card.onclick = () => pilihProduk(prod, kategori);
-                container.appendChild(card);
-            });
-        }
+      </div>
+    </section>
 
-        function kembaliKeKategori() {
-            document.getElementById('gridKategori').classList.remove('hidden');
-            document.getElementById('containerProdukDetail').classList.add('hidden');
-            document.getElementById('btnKembaliKategori').classList.add('hidden');
-        }
+    <!-- GAME 2: ROBLOX -->
+    <section id="roblox" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
+      <div class="flex items-center gap-4 mb-6 border-b border-slate-800 pb-4">
+        <img src="https://via.placeholder.com/100.png?text=Roblox" alt="Roblox Logo" class="w-12 h-12 rounded-xl object-cover" />
+        <div>
+          <h2 class="text-xl font-extrabold text-white">Roblox (Robux & Game Items)</h2>
+          <p class="text-xs text-slate-400">Via Username, Gamepass, Login & Gift In-Game</p>
+        </div>
+      </div>
 
-        function pilihProduk(prod, kategori) {
-            produkTerpilih = prod;
-            bukaKategori(kategori); // refresh tampilan yang terpilih
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- Roblox Via Username -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Robux+Username" alt="Robux Username" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-emerald-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Via Username</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">100 Robux (Fast)</h3>
+            <p class="text-xs text-slate-400 mt-1">Cukup isi Username Roblox</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 15.000</span>
+            <button onclick="orderWA('Roblox - 100 Robux (Username)', '15.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            const noteBox = document.getElementById('noteBox');
-            const noteText = document.getElementById('noteText');
-            
-            if (prod.kategori.includes('Robux')) {
-                noteBox.classList.remove('hidden');
-                noteText.innerHTML = "<strong>💡 Note Robux:</strong> Akun penerima harus 18+ & terverifikasi KTP. Digift dari acc pribadi, clean & fast!";
-            } else if (prod.kategori.includes('DDS')) {
-                noteBox.classList.remove('hidden');
-                noteText.innerHTML = "<strong>🏎️ Note Drag Drive Simulator:</strong> Proses cepat via gift item in-game resmi.";
-            } else {
-                noteBox.classList.add('hidden');
-            }
-        }
+        <!-- Roblox Via Gamepass -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Robux+Gamepass" alt="Robux Gamepass" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-amber-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Via Gamepass</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">500 Robux (Cover Tax)</h3>
+            <p class="text-xs text-slate-400 mt-1">Proses via Gamepass (Pending 5-7 Hari)</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 65.000</span>
+            <button onclick="orderWA('Roblox - 500 Robux (Gamepass)', '65.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-        // TAMBAH TESTIMONI REAL (LOKAL)
-        function tambahUlasan() {
-            const nama = document.getElementById('namaUlasan').value.trim();
-            const rating = document.getElementById('ratingUlasan').value;
-            const pesan = document.getElementById('pesanUlasan').value.trim();
+        <!-- Roblox Via Login -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Robux+Login" alt="Robux Login" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-red-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Via Login</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">1,000 Robux (Instant)</h3>
+            <p class="text-xs text-slate-400 mt-1">Butuh Username + Password</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 120.000</span>
+            <button onclick="orderWA('Roblox - 1000 Robux (Login)', '120.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            if (!nama || !pesan) {
-                alert("Isi nama dan ulasannya terlebih dahulu ya kak!");
-                return;
-            }
+        <!-- Roblox Gift In-Game -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Gift+In-Game+Roblox" alt="Gift Roblox" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-purple-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Gift In-Game</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Gift Gamepass / Fruit / Item</h3>
+            <p class="text-xs text-slate-400 mt-1">Gift langsung server Blox Fruits, Adopt Me, dll.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 50.000</span>
+            <button onclick="orderWA('Roblox - Gift In-Game Item', '50.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            const container = document.getElementById('testimoniList');
-            const div = document.createElement('div');
-            div.className = "p-3 bg-sky-50 border border-sky-200 rounded-xl text-xs transition-all";
-            
-            div.innerHTML = `
-                <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-slate-800">${nama}</span>
-                    <span class="text-[10px] text-amber-500">${rating}</span>
-                </div>
-                <p class="text-[11px] text-slate-600">"${pesan}"</p>
-            `;
+      </div>
+    </section>
 
-            container.prepend(div);
+    <!-- GAME 3: FREE FIRE -->
+    <section id="freefire" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
+      <div class="flex items-center gap-4 mb-6 border-b border-slate-800 pb-4">
+        <img src="https://via.placeholder.com/100.png?text=FreeFire" alt="Free Fire Logo" class="w-12 h-12 rounded-xl object-cover" />
+        <div>
+          <h2 class="text-xl font-extrabold text-white">Free Fire</h2>
+          <p class="text-xs text-slate-400">Diamond Direct ID & Membership</p>
+        </div>
+      </div>
 
-            // Reset Form Input Ulasan
-            document.getElementById('namaUlasan').value = '';
-            document.getElementById('pesanUlasan').value = '';
-            alert("Terima kasih atas testimoni dan ratingnya!");
-        }
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- FF Item 1 -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=140+Diamond+FF" alt="140 Diamond FF" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-indigo-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Direct ID</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">140 Diamonds</h3>
+            <p class="text-xs text-slate-400 mt-1">Proses Kilat 1-3 Menit</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 19.000</span>
+            <button onclick="orderWA('Free Fire - 140 Diamonds', '19.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-        function kirimOrder(event) {
-            event.preventDefault();
+        <!-- FF Item 2 -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Member+Mingguan+FF" alt="Member FF" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-indigo-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Direct ID</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Member Mingguan</h3>
+            <p class="text-xs text-slate-400 mt-1">Cukup Player ID</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 29.000</span>
+            <button onclick="orderWA('Free Fire - Member Mingguan', '29.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            const username = document.getElementById('username').value;
-            const displayName = document.getElementById('displayName').value;
-            const paymentMethod = document.getElementById('paymentMethod').value;
+      </div>
+    </section>
 
-            if (!produkTerpilih) {
-                alert("Pilih dulu produknya ya kak dengan cara mengkliknya!");
-                return;
-            }
+    <!-- CATEGORY 4: APLIKASI PREMIUM -->
+    <section id="apps" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
+      <div class="flex items-center gap-4 mb-6 border-b border-slate-800 pb-4">
+        <div class="w-12 h-12 bg-pink-600/20 text-pink-400 rounded-xl flex items-center justify-center text-xl font-bold">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-extrabold text-white">Aplikasi Premium & Streaming</h2>
+          <p class="text-xs text-slate-400">Langganan Streaming, Editing & Productivity Bergaransi</p>
+        </div>
+      </div>
 
-            // FORMAT PESAN WA RINGKAS
-            const teksPesan = 
-                `🛒 *ORDER ZYOU MARKET*\n` +
-                `----------------------------------\n` +
-                `• *Item:* ${produkTerpilih.nama}\n` +
-                `• *Harga:* ${produkTerpilih.harga}\n` +
-                `• *User Roblox:* ${username}\n` +
-                `• *Display Name:* ${displayName}\n` +
-                `• *Bayar Via:* ${paymentMethod}\n` +
-                `----------------------------------\n` +
-                `Halo Admin, tolong instruksi pembayarannya ya!`;
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- App 1: Canva Pro -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Canva+Pro" alt="Canva Pro" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-cyan-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Invite Email</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Canva Pro (1 Bulan)</h3>
+            <p class="text-xs text-slate-400 mt-1">Unlock all template, fitur AI & brand kit</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 10.000</span>
+            <button onclick="orderWA('Canva Pro (1 Bulan)', '10.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
 
-            const urlWhatsApp = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksPesan)}`;
-            window.open(urlWhatsApp, '_blank');
-        }
-    </script>
+        <!-- App 2: CapCut Pro -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=CapCut+Pro" alt="CapCut Pro" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-slate-900/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Akun Sharing</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">CapCut Pro (1 Bulan)</h3>
+            <p class="text-xs text-slate-400 mt-1">Fitur efek, transisi & export tanpa watermark</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 15.000</span>
+            <button onclick="orderWA('CapCut Pro (1 Bulan)', '15.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
+
+        <!-- App 3: Netflix Premium -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Netflix+Premium" alt="Netflix" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-red-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">1 Profile 1 User</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Netflix Premium (1 Bulan)</h3>
+            <p class="text-xs text-slate-400 mt-1">Kualitas Ultra HD 4K + Pin Lock Profile</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 35.000</span>
+            <button onclick="orderWA('Netflix Premium (1 Bulan)', '35.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
+
+        <!-- App 4: Spotify Premium -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+          <div>
+            <div class="relative overflow-hidden rounded-xl mb-3">
+              <img src="https://via.placeholder.com/300x150.png?text=Spotify+Premium" alt="Spotify Premium" class="w-full h-32 object-cover hover:scale-105 transition duration-300" />
+              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase tracking-wider bg-emerald-600/90 text-white px-2.5 py-1 rounded-md backdrop-blur-sm">Individual / Plan</span>
+            </div>
+            <h3 class="font-bold text-lg text-white">Spotify Premium (1 Bulan)</h3>
+            <p class="text-xs text-slate-400 mt-1">Bebas iklan & download lagu sepuasnya</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
+            <span class="text-indigo-400 font-extrabold text-lg">Rp 18.000</span>
+            <button onclick="orderWA('Spotify Premium (1 Bulan)', '18.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+    <p>© 2026 Gelo Store. All Rights Reserved. Hosted on Vercel.</p>
+  </footer>
+
+  <!-- Script Integrasi WhatsApp Auto-Order -->
+  <script>
+    // GANTI NOMOR DI BAWAH INI DENGAN NOMOR WHATSAPP KAMU (Gunakan awalan 62)
+    const nomorWA = "6281234567890"; 
+
+    function orderWA(namaProduk, harga) {
+      const teks = `Halo Admin Gelo Store, saya ingin order:\n\n` +
+                   `• *Produk:* ${namaProduk}\n` +
+                   `• *Harga:* Rp ${harga}\n\n` +
+                   `Mohon info format data/ID yang dibutuhkan dan metode pembayarannya. Terima kasih!`;
+      
+      const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teks)}`;
+      window.open(url, '_blank');
+    }
+  </script>
 </body>
 </html>
