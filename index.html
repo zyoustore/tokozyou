@@ -27,6 +27,7 @@
         <a href="#roblox" class="hover:text-indigo-400 transition">Roblox</a>
         <a href="#freefire" class="hover:text-indigo-400 transition">Free Fire</a>
         <a href="#apps" class="hover:text-indigo-400 transition">Apps Premium</a>
+        <a href="#payment" class="hover:text-indigo-400 transition text-indigo-400"><i class="fa-solid fa-wallet"></i> Pembayaran</a>
       </div>
 
       <a href="#katalog" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
@@ -48,7 +49,6 @@
       Pusat top-up Mobile Legends, Roblox, Free Fire, Gift Item In-Game, serta langganan aplikasi premium terlengkap.
     </p>
 
-    <!-- Shortcut Buttons -->
     <div class="flex flex-wrap justify-center gap-3 text-xs font-bold">
       <a href="#mlbb" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl transition flex items-center gap-2">
         <i class="fa-solid fa-mobile-screen text-indigo-400"></i> Mobile Legends
@@ -62,11 +62,14 @@
       <a href="#apps" class="bg-slate-800/80 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-xl transition flex items-center gap-2">
         <i class="fa-solid fa-crown text-pink-400"></i> Apps Premium
       </a>
+      <a href="#payment" class="bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/50 text-indigo-300 px-4 py-2 rounded-xl transition flex items-center gap-2">
+        <i class="fa-solid fa-qrcode"></i> Metode Pembayaran
+      </a>
     </div>
   </section>
 
   <!-- Main Catalog -->
-  <main id="katalog" class="max-w-6xl mx-auto px-4 pb-20 space-y-12">
+  <main id="katalog" class="max-w-6xl mx-auto px-4 pb-12 space-y-12">
 
     <!-- GAME 1: MOBILE LEGENDS -->
     <section id="mlbb" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
@@ -79,7 +82,6 @@
           </div>
         </div>
 
-        <!-- MLBB SUB-CATEGORY TABS -->
         <div class="flex flex-wrap gap-2 text-xs font-semibold">
           <button onclick="filterCategory('mlbb', 'all', this)" class="mlbb-tab bg-indigo-600 text-white px-3 py-1.5 rounded-lg border border-indigo-500 transition">Semua</button>
           <button onclick="filterCategory('mlbb', 'ml-dm', this)" class="mlbb-tab bg-slate-800 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition">Diamond ML</button>
@@ -88,7 +90,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Diamond ML -->
         <div class="mlbb-item ml-dm bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
           <div>
             <div class="relative overflow-hidden rounded-xl mb-3">
@@ -100,26 +101,10 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 28.000</span>
-            <button onclick="orderWA('MLBB - Weekly Diamond Pass', '28.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('id_zone', 'Weekly Diamond Pass', '28.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
         </div>
 
-        <div class="mlbb-item ml-dm bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
-          <div>
-            <div class="relative overflow-hidden rounded-xl mb-3">
-              <img src="https://via.placeholder.com/300x150.png?text=86+Diamonds" alt="86 Diamonds" class="w-full h-32 object-cover" />
-              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase bg-indigo-600/90 text-white px-2.5 py-1 rounded-md">Diamond ML</span>
-            </div>
-            <h3 class="font-bold text-lg text-white">86 Diamonds</h3>
-            <p class="text-xs text-slate-400 mt-1">Butuh User ID + Zone ID</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-            <span class="text-indigo-400 font-extrabold text-lg">Rp 20.000</span>
-            <button onclick="orderWA('MLBB - 86 Diamonds', '20.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
-          </div>
-        </div>
-
-        <!-- Gift Item ML -->
         <div class="mlbb-item ml-gift bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
           <div>
             <div class="relative overflow-hidden rounded-xl mb-3">
@@ -131,22 +116,7 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 85.000</span>
-            <button onclick="orderWA('MLBB - Gift Skin Epic', '85.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
-          </div>
-        </div>
-
-        <div class="mlbb-item ml-gift bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
-          <div>
-            <div class="relative overflow-hidden rounded-xl mb-3">
-              <img src="https://via.placeholder.com/300x150.png?text=Gift+Starlight+Card" alt="Starlight Card" class="w-full h-32 object-cover" />
-              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase bg-purple-600/90 text-white px-2.5 py-1 rounded-md">Gift Item ML</span>
-            </div>
-            <h3 class="font-bold text-lg text-white">Gift Starlight Card</h3>
-            <p class="text-xs text-slate-400 mt-1">Dikirim via sistem gift pertemanan</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-            <span class="text-indigo-400 font-extrabold text-lg">Rp 30.000</span>
-            <button onclick="orderWA('MLBB - Gift Starlight Card', '30.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('ml_gift', 'Gift Skin Epic MLBB', '85.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
         </div>
       </div>
@@ -163,7 +133,6 @@
           </div>
         </div>
 
-        <!-- ROBLOX SUB-CATEGORY TABS -->
         <div class="flex flex-wrap gap-2 text-xs font-semibold">
           <button onclick="filterCategory('roblox', 'all', this)" class="roblox-tab bg-indigo-600 text-white px-3 py-1.5 rounded-lg border border-indigo-500 transition">Semua</button>
           <button onclick="filterCategory('roblox', 'rb-username', this)" class="roblox-tab bg-slate-800 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition">Via Username</button>
@@ -186,23 +155,7 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 15.000</span>
-            <button onclick="orderWA('Roblox - 100 Robux (Username)', '15.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
-          </div>
-        </div>
-
-        <!-- Via Gamepass -->
-        <div class="roblox-item rb-gamepass bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
-          <div>
-            <div class="relative overflow-hidden rounded-xl mb-3">
-              <img src="https://via.placeholder.com/300x150.png?text=Robux+Gamepass" alt="Robux Gamepass" class="w-full h-32 object-cover" />
-              <span class="absolute top-2 left-2 text-[10px] font-bold uppercase bg-amber-600/90 text-white px-2.5 py-1 rounded-md">Via Gamepass</span>
-            </div>
-            <h3 class="font-bold text-lg text-white">500 Robux (Cover Tax)</h3>
-            <p class="text-xs text-slate-400 mt-1">Bikin Gamepass (Pending 5-7 Hari)</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-            <span class="text-indigo-400 font-extrabold text-lg">Rp 65.000</span>
-            <button onclick="orderWA('Roblox - 500 Robux (Gamepass)', '65.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('username_only', '100 Robux (Via Username)', '15.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
         </div>
 
@@ -218,23 +171,23 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 120.000</span>
-            <button onclick="orderWA('Roblox - 1000 Robux (Login)', '120.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('account_login', '1.000 Robux (Via Login)', '120.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
         </div>
 
-        <!-- Gift In-Game Roblox -->
+        <!-- Gift In-Game -->
         <div class="roblox-item rb-gift bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
           <div>
             <div class="relative overflow-hidden rounded-xl mb-3">
               <img src="https://via.placeholder.com/300x150.png?text=Blox+Fruits+Gift" alt="Gift Roblox" class="w-full h-32 object-cover" />
               <span class="absolute top-2 left-2 text-[10px] font-bold uppercase bg-purple-600/90 text-white px-2.5 py-1 rounded-md">Gift In-Game</span>
             </div>
-            <h3 class="font-bold text-lg text-white">Gift Gamepass / Fruit (Blox Fruits)</h3>
-            <p class="text-xs text-slate-400 mt-1">Gift via server in-game</p>
+            <h3 class="font-bold text-lg text-white">Gift Gamepass / Fruit</h3>
+            <p class="text-xs text-slate-400 mt-1">Gift via server Blox Fruits, etc.</p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 50.000</span>
-            <button onclick="orderWA('Roblox - Gift In-Game Item', '50.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('roblox_gift', 'Gift Item Blox Fruits', '50.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
         </div>
       </div>
@@ -257,12 +210,12 @@
               <img src="https://via.placeholder.com/300x150.png?text=140+Diamond+FF" alt="140 Diamond FF" class="w-full h-32 object-cover" />
               <span class="absolute top-2 left-2 text-[10px] font-bold uppercase bg-indigo-600/90 text-white px-2.5 py-1 rounded-md">Direct ID</span>
             </div>
-            <h3 class="font-bold text-lg text-white">140 Diamonds</h3>
+            <h3 class="font-bold text-lg text-white">140 Diamonds FF</h3>
             <p class="text-xs text-slate-400 mt-1">Proses Kilat 1-3 Menit</p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 19.000</span>
-            <button onclick="orderWA('Free Fire - 140 Diamonds', '19.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('id_only', '140 Diamonds FF', '19.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
         </div>
       </div>
@@ -292,8 +245,46 @@
           </div>
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
             <span class="text-indigo-400 font-extrabold text-lg">Rp 10.000</span>
-            <button onclick="orderWA('Canva Pro (1 Bulan)', '10.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
+            <button onclick="orderWA('app_email', 'Canva Pro (1 Bulan)', '10.000')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Beli</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION PEMBAYARAN / PAYMENT -->
+    <section id="payment" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <span class="text-indigo-400 text-xs font-bold uppercase tracking-wider bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Metode Pembayaran</span>
+        <h2 class="text-2xl font-black text-white mt-3">Mendukung Berbagai Pembayaran</h2>
+        <p class="text-slate-400 text-xs md:text-sm mt-1">Transaksi cepat, mudah, dan terverifikasi otomatis setelah konfirmasi admin via WA.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50 text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center text-2xl mb-3">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <h3 class="font-bold text-white mb-1">QRIS All Payment</h3>
+          <p class="text-xs text-slate-400 mb-3">GoPay, OVO, DANA, ShopeePay, LinkAja & All Bank</p>
+          <span class="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-md">Bebas Biaya Admin</span>
+        </div>
+
+        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50 text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center text-2xl mb-3">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+          <h3 class="font-bold text-white mb-1">E-Wallet Direct</h3>
+          <p class="text-xs text-slate-400 mb-3">DANA, OVO, GoPay, & ShopeePay</p>
+          <span class="text-[10px] font-bold bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-md">Transfer Langsung</span>
+        </div>
+
+        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50 text-center flex flex-col items-center">
+          <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center text-2xl mb-3">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <h3 class="font-bold text-white mb-1">Transfer Bank / SeaBank</h3>
+          <p class="text-xs text-slate-400 mb-3">BCA, Mandiri, BRI, BNI & SeaBank</p>
+          <span class="text-[10px] font-bold bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-md">24 Jam Online</span>
         </div>
       </div>
     </section>
@@ -305,34 +296,153 @@
     <p>© 2026 Gelo Store. All Rights Reserved. Hosted on Vercel.</p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- SCRIPT DENGAN MULTI-FORMAT ORDER AUTOMATIC -->
   <script>
-    const nomorWA = "6281234567890"; // Ganti dengan nomor WA milikmu
+    const nomorWA = "6281234567890"; // Ganti dengan nomor WhatsApp milikmu
 
-    function orderWA(namaProduk, harga) {
-      const teks = `Halo Admin Gelo Store, saya ingin order:\n\n` +
-                   `• *Produk:* ${namaProduk}\n` +
-                   `• *Harga:* Rp ${harga}\n\n` +
-                   `Mohon info format data/ID yang dibutuhkan dan metode pembayarannya. Terima kasih!`;
+    function orderWA(tipeFormat, namaProduk, harga) {
+      let teks = "";
+
+      // Format 1: Khusus MLBB / Game yang butuh ID + Zone
+      if (tipeFormat === 'id_zone') {
+        teks = `Halo Admin Gelo Store!
+
+` +
+               ` ORDER TOP-UP GAME
+` +
+               `• Produk: ${namaProduk}
+` +
+               `• Harga: Rp ${harga}
+
+` +
+               ` DATA AKUN:
+` +
+               `• User ID: 
+` +
+               `• Zone ID: 
+` +
+               `• Nickname: 
+` +
+               `• Pembayaran: (QRIS / DANA / Bank)`;
+      } 
       
+      // Format 2: Khusus Free Fire / Game ID Only
+      else if (tipeFormat === 'id_only') {
+        teks = `Halo Admin Gelo Store!
+
+` +
+               ` ORDER DIRECT ID
+` +
+               `• Produk: ${namaProduk}
+` +
+               `• Harga: Rp ${harga}
+
+` +
+               ` DATA AKUN:
+` +
+               `• User ID / Player ID: 
+` +
+               `• Nickname: 
+` +
+               `• Pembayaran: (QRIS / DANA / Bank)`;
+      }
+
+      // Format 3: Khusus Roblox Via Username
+      else if (tipeFormat === 'username_only') {
+        teks = `Halo Admin Gelo Store!
+
+` +
+               ` ORDER ROBUX VIA USERNAME
+` +
+               `• Produk: ${namaProduk}
+` +
+               `• Harga: Rp ${harga}
+
+` +
+               ` DATA AKUN:
+` +
+               `• Username Roblox: 
+` +
+               `• Pembayaran: (QRIS / DANA / Bank)`;
+      }
+
+      // Format 4: Khusus Roblox Via Login
+      else if (tipeFormat === 'account_login') {
+        teks = `Halo Admin Gelo Store!
+
+` +
+               ` ORDER VIA LOGIN
+` +
+               `• Produk: ${namaProduk}
+` +
+               `• Harga: Rp ${harga}
+
+` +
+               ` DATA LOGIN:
+` +
+               `• Username / Email: 
+` +
+               `• Password: 
+` +
+               `• Login Via: (Roblox / VK / FB)
+` +
+               `• Pembayaran: (QRIS / DANA / Bank)`;
+      }
+
+      // Format 5: Khusus Gift Item MLBB / Roblox
+      else if (tipeFormat === 'ml_gift' || tipeFormat === 'roblox_gift') {
+        teks = `Halo Admin Gelo Store!
+
+` +
+               ` ORDER GIFT ITEM IN-GAME
+` +
+               `• Produk: ${namaProduk}
+` +
+               `• Harga: Rp ${harga}
+
+` +
+               ` DATA PENERIMA:
+` +
+               `• Nickname / ID Penerima: 
+` +
+               `• Request Item / Skin: 
+` +
+               `• Pembayaran: (QRIS / DANA / Bank)`;
+      }
+
+      // Format 6: Khusus Aplikasi Premium (Canva, Netflix, dll.)
+      else if (tipeFormat === 'app_email') {
+        teks = `Halo Admin Gelo Store!
+
+` +
+               ` ORDER APLIKASI PREMIUM
+` +
+               `• Produk: ${namaProduk}
+` +
+               `• Harga: Rp ${harga}
+
+` +
+               ` DATA PELANGGAN:
+` +
+               `• Email Aktif (untuk invite/kirim akun): 
+` +
+               `• Pembayaran: (QRIS / DANA / Bank)`;
+      }
+
       const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(teks)}`;
       window.open(url, '_blank');
     }
 
-    // Fungsi Filter Sub-Kategori
     function filterCategory(gameGroup, category, btnElement) {
-      // Dapatkan semua tab pada kelompok game ini
       const tabs = document.querySelectorAll(`.${gameGroup}-tab`);
       tabs.forEach(tab => {
         tab.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-500');
         tab.classList.add('bg-slate-800', 'text-slate-400', 'border-slate-700');
       });
 
-      // Aktifkan tab yang diklik
       btnElement.classList.remove('bg-slate-800', 'text-slate-400', 'border-slate-700');
       btnElement.classList.add('bg-indigo-600', 'text-white', 'border-indigo-500');
 
-      // Tampilkan/Sembunyikan Item
       const items = document.querySelectorAll(`.${gameGroup}-item`);
       items.forEach(item => {
         if (category === 'all' || item.classList.contains(category)) {
