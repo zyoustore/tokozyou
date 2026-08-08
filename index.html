@@ -25,8 +25,8 @@
       <div class="hidden md:flex gap-4 text-xs font-semibold text-slate-300">
         <a href="#mlbb" class="hover:text-indigo-400 transition">Mobile Legends</a>
         <a href="#roblox" class="hover:text-indigo-400 transition">Roblox</a>
-        <a href="#freefire" class="hover:text-indigo-400 transition">Free Fire</a>
         <a href="#apps" class="hover:text-indigo-400 transition">Apps Premium</a>
+        <a href="#testimoni" class="hover:text-indigo-400 transition">Testimoni</a>
         <a href="#payment" class="hover:text-indigo-400 transition text-indigo-400"><i class="fa-solid fa-wallet"></i> Pembayaran</a>
       </div>
 
@@ -66,7 +66,7 @@
   <!-- Main Catalog -->
   <main id="katalog" class="max-w-6xl mx-auto px-4 pb-12 space-y-12">
 
-    <!-- GAME 1: ROBLOX STORE (ALUR HANASTORE) -->
+    <!-- GAME 1: ROBLOX STORE -->
     <section id="roblox" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-4">
         <div class="flex items-center gap-4">
@@ -84,7 +84,6 @@
         </div>
       </div>
 
-      <!-- PETUNJUK CARA ORDER HANASTORE STYLE -->
       <div class="bg-indigo-950/40 border border-indigo-500/20 p-4 rounded-2xl mb-6 text-xs text-slate-300 space-y-1">
         <p class="font-bold text-indigo-400 flex items-center gap-2 text-sm mb-2">
           <i class="fa-solid fa-circle-info"></i> Petunjuk Top Up Robux Via Username:
@@ -182,6 +181,55 @@
       </div>
     </section>
 
+    <!-- SECTION TESTIMONI INTERAKTIF -->
+    <section id="testimoni" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
+      <div class="text-center max-w-xl mx-auto mb-8">
+        <span class="text-indigo-400 text-xs font-bold uppercase tracking-wider bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
+          Ulasan Pembeli
+        </span>
+        <h2 class="text-2xl font-black text-white mt-3">Testimoni Zyou Market</h2>
+        <p class="text-slate-400 text-xs md:text-sm mt-1">Kirim ulasan pengalamanku berbelanja di sini!</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <!-- FORM INPUT TESTIMONI -->
+        <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+          <h3 class="font-bold text-white text-base mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square text-indigo-400"></i> Tulis Testimoni Kamu
+          </h3>
+          <form id="review-form" onsubmit="addReview(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs text-slate-300 font-medium mb-1">Nama / Username</label>
+              <input type="text" id="review-name" required placeholder="Contoh: Rian_Roblox" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+            </div>
+
+            <div>
+              <label class="block text-xs text-slate-300 font-medium mb-1">Rating Bintang</label>
+              <select id="review-rating" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
+                <option value="5">⭐⭐⭐⭐⭐ (5 / 5) - Sangat Puas</option>
+                <option value="4">⭐⭐⭐⭐ (4 / 5) - Bagus</option>
+                <option value="3">⭐⭐⭐ (3 / 3) - Cukup</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs text-slate-300 font-medium mb-1">Ulasan Kamu</label>
+              <textarea id="review-text" required rows="3" placeholder="Tuliskan kesan kamu berbelanja di Zyou Market..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow-md">
+              Kirim Testimoni
+            </button>
+          </form>
+        </div>
+
+        <!-- LIST TAMPILAN TESTIMONI (REALTIME & DYNAMIC) -->
+        <div class="lg:col-span-2 space-y-3" id="reviews-list">
+          <!-- JS inserted reviews -->
+        </div>
+      </div>
+    </section>
+
     <!-- SECTION PEMBAYARAN / PAYMENT -->
     <section id="payment" class="bg-slate-900/50 border border-slate-800 p-6 md:p-8 rounded-3xl">
       <div class="text-center max-w-xl mx-auto mb-8">
@@ -227,7 +275,7 @@
     <p>© 2026 Zyou Market. All Rights Reserved. Hosted on Vercel.</p>
   </footer>
 
-  <!-- MODAL 1: INPUT DATA AKUN & ALUR HANASTORE -->
+  <!-- MODAL 1: INPUT DATA AKUN -->
   <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
       <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -237,21 +285,16 @@
       
       <form id="product-form" onsubmit="submitToCart(event)" class="space-y-3">
         
-        <!-- INSTRUKSI ROBUX GAMEPASS (HANASTORE STYLE) -->
         <div id="field-gamepass-info" class="hidden bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl text-xs text-amber-300 space-y-1">
           <p class="font-bold flex items-center gap-1"><i class="fa-solid fa-triangle-exclamation"></i> Instruksi Setting Gamepass:</p>
           <p>Harap set harga Gamepass / Place kamu senilai: <span id="gamepass-target-price" class="font-black text-white text-sm bg-amber-600 px-2 py-0.5 rounded">0 Robux</span></p>
-          <p class="text-[10px] text-amber-400/80 mt-1">*Agar Robux bersih yang kamu terima dari Roblox sesuai pesanan.</p>
         </div>
 
-        <!-- FIELD USERNAME -->
         <div id="field-username" class="hidden">
           <label class="block text-xs font-semibold text-slate-300 mb-1">Username Roblox</label>
           <input type="text" id="input-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Username Roblox kamu" />
-          <p class="text-[10px] text-slate-400 mt-1"><i class="fa-solid fa-circle-info"></i> Pastikan ejaan username huruf besar/kecil sudah tepat.</p>
         </div>
 
-        <!-- FIELD ID & ZONE -->
         <div id="field-id" class="hidden">
           <label class="block text-xs font-semibold text-slate-300 mb-1">User ID / Player ID</label>
           <input type="text" id="input-id" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Contoh: 12345678" />
@@ -262,13 +305,11 @@
           <input type="text" id="input-zone" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Contoh: 2123" />
         </div>
 
-        <!-- FIELD PASSWORD -->
         <div id="field-password" class="hidden">
           <label class="block text-xs font-semibold text-slate-300 mb-1">Password Akun</label>
           <input type="password" id="input-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Password akun" />
         </div>
 
-        <!-- PILIHAN METODE PEMBAYARAN -->
         <div>
           <label class="block text-xs font-semibold text-slate-300 mb-1">Pilih Metode Pembayaran</label>
           <select id="input-payment" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
@@ -330,9 +371,57 @@
   </button>
 
   <script>
-    const nomorWA = "6281234567890"; // Ganti dengan nomor WhatsApp kamu
+    const nomorWA = "6281234567890"; // Ganti dengan nomor WhatsApp milikmu
     let cart = [];
     let currentProduct = null;
+
+    // DATA TESTIMONI AWAL
+    let defaultReviews = [
+      { name: "Rian_Roblox", rating: 5, text: "Proses beli Robux via username-nya cepet banget! Dalam beberapa menit langsung di-process sama admin. Recomended lah Zyou Market!", date: "Baru saja" },
+      { name: "Andi_Gamer", rating: 5, text: "Awalnya ragu, tapi pas coba order WDP MLBB ternyata amanah banget & harganya murah. Makasih min!", date: "1 hari yang lalu" }
+    ];
+
+    function loadReviews() {
+      const savedReviews = JSON.parse(localStorage.getItem('zyou_reviews')) || defaultReviews;
+      const container = document.getElementById('reviews-list');
+      container.innerHTML = '';
+
+      savedReviews.forEach(r => {
+        let stars = "⭐".repeat(r.rating);
+        container.innerHTML += `
+          <div class="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 flex flex-col justify-between">
+            <p class="text-xs text-slate-300 italic mb-3">"${r.text}"</p>
+            <div class="flex items-center justify-between border-t border-slate-700/40 pt-2 text-[11px]">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white text-[10px]">${r.name.charAt(0).toUpperCase()}</div>
+                <span class="font-bold text-white">${r.name}</span>
+              </div>
+              <span class="text-amber-400 font-semibold">${stars}</span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function addReview(e) {
+      e.preventDefault();
+      const name = document.getElementById('review-name').value;
+      const rating = parseInt(document.getElementById('review-rating').value);
+      const text = document.getElementById('review-text').value;
+
+      const newReview = { name, rating, text, date: "Baru saja" };
+      let savedReviews = JSON.parse(localStorage.getItem('zyou_reviews')) || defaultReviews;
+      savedReviews.unshift(newReview);
+
+      localStorage.setItem('zyou_reviews', JSON.stringify(savedReviews));
+      loadReviews();
+
+      document.getElementById('review-form').reset();
+      alert("Terima kasih! Ulasan kamu berhasil dikirim.");
+    }
+
+    // LOAD INITIAL REVIEWS ON START
+    window.onload = loadReviews;
 
     function openProductModal(name, price, type, gamepassRobux = 0) {
       currentProduct = { name, price, type, gamepassRobux };
