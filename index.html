@@ -46,7 +46,7 @@
           Zyou Market Roblox Store
         </span>
         <h2 class="text-xl font-black text-white mt-2">Top Up Robux Murah & Terpercaya</h2>
-        <p class="text-xs text-slate-300 mt-1 max-w-md">Pilih nominal Robux yang kamu inginkan di Zyou Market. Pengrosesan cepat dan terjamin aman!</p>
+        <p class="text-xs text-slate-300 mt-1 max-w-md">Pilih nominal Robux yang kamu inginkan di Zyou Market. Proses kilat dan terjamin aman!</p>
       </div>
     </div>
 
@@ -68,17 +68,39 @@
       </div>
     </div>
 
-    <!-- NOMINAL SELECTION LIST -->
+    <!-- NOMINAL SELECTION LIST WITH CATEGORY TABS -->
     <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 mb-6">
-      <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
         <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">2</span>
         Pilih Nominal Robux
       </h3>
 
+      <!-- CATEGORY TAB BUTTONS -->
+      <div class="flex gap-2 overflow-x-auto pb-3 mb-4 scrollbar-none text-xs">
+        <button onclick="filterCategory('all')" class="cat-btn active border border-indigo-500 bg-indigo-600 text-white font-bold px-3.5 py-1.5 rounded-xl whitespace-nowrap transition">
+          Semua Nominal
+        </button>
+        <button onclick="filterCategory('login-80')" class="cat-btn border border-slate-700 bg-slate-800 hover:border-indigo-500 text-slate-300 font-medium px-3.5 py-1.5 rounded-xl whitespace-nowrap transition">
+          Login 80R
+        </button>
+        <button onclick="filterCategory('login-500')" class="cat-btn border border-slate-700 bg-slate-800 hover:border-indigo-500 text-slate-300 font-medium px-3.5 py-1.5 rounded-xl whitespace-nowrap transition">
+          Login 500R
+        </button>
+        <button onclick="filterCategory('user-10')" class="cat-btn border border-slate-700 bg-slate-800 hover:border-emerald-500 text-slate-300 font-medium px-3.5 py-1.5 rounded-xl whitespace-nowrap transition">
+          Username 10R
+        </button>
+        <button onclick="filterCategory('user-50')" class="cat-btn border border-slate-700 bg-slate-800 hover:border-emerald-500 text-slate-300 font-medium px-3.5 py-1.5 rounded-xl whitespace-nowrap transition">
+          Username 50R
+        </button>
+        <button onclick="filterCategory('gamepass')" class="cat-btn border border-slate-700 bg-slate-800 hover:border-amber-500 text-slate-300 font-medium px-3.5 py-1.5 rounded-xl whitespace-nowrap transition">
+          Gamepass
+        </button>
+      </div>
+
       <div class="space-y-6">
 
         <!-- KATEGORI 1: VIA LOGIN (KELIPATAN 80R) -->
-        <div>
+        <div class="category-block" data-category="login-80">
           <p class="text-xs font-bold text-indigo-400 mb-2.5 flex items-center gap-2">
             <i class="fa-solid fa-key text-[10px]"></i> TOPUP ROBUX VIA LOGIN — KELIPATAN 80R
           </p>
@@ -107,7 +129,7 @@
         </div>
 
         <!-- KATEGORI 2: VIA LOGIN (KELIPATAN 500R) -->
-        <div>
+        <div class="category-block" data-category="login-500">
           <p class="text-xs font-bold text-indigo-400 mb-2.5 flex items-center gap-2">
             <i class="fa-solid fa-shield-halved text-[10px]"></i> TOPUP ROBUX VIA LOGIN — KELIPATAN 500R
           </p>
@@ -140,7 +162,7 @@
         </div>
 
         <!-- KATEGORI 3: VIA USERNAME (ECERAN 10R) -->
-        <div>
+        <div class="category-block" data-category="user-10">
           <p class="text-xs font-bold text-emerald-400 mb-2.5 flex items-center gap-2">
             <i class="fa-solid fa-user-tag text-[10px]"></i> ROBUX VIA USERNAME — ECERAN KELIPATAN 10R
           </p>
@@ -185,7 +207,7 @@
         </div>
 
         <!-- KATEGORI 4: VIA USERNAME (KELIPATAN 50R) -->
-        <div>
+        <div class="category-block" data-category="user-50">
           <p class="text-xs font-bold text-emerald-400 mb-2.5 flex items-center gap-2">
             <i class="fa-solid fa-users text-[10px]"></i> ROBUX VIA USERNAME — KELIPATAN 50R
           </p>
@@ -230,51 +252,11 @@
               <p class="text-xs font-extrabold text-white">500 Robux</p>
               <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 82.500</p>
             </div>
-            <div onclick="selectNominal(this, '550 Robux (Username 50R)', 90750)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">550 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 90.750</p>
-            </div>
-            <div onclick="selectNominal(this, '600 Robux (Username 50R)', 99000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">600 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 99.000</p>
-            </div>
-            <div onclick="selectNominal(this, '650 Robux (Username 50R)', 107250)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">650 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 107.250</p>
-            </div>
-            <div onclick="selectNominal(this, '700 Robux (Username 50R)', 115500)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">700 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 115.500</p>
-            </div>
-            <div onclick="selectNominal(this, '750 Robux (Username 50R)', 123750)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">750 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 123.750</p>
-            </div>
-            <div onclick="selectNominal(this, '800 Robux (Username 50R)', 132000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">800 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 132.000</p>
-            </div>
-            <div onclick="selectNominal(this, '850 Robux (Username 50R)', 140250)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">850 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 140.250</p>
-            </div>
-            <div onclick="selectNominal(this, '900 Robux (Username 50R)', 148500)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">900 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 148.500</p>
-            </div>
-            <div onclick="selectNominal(this, '950 Robux (Username 50R)', 156750)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">950 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 156.750</p>
-            </div>
-            <div onclick="selectNominal(this, '1.000 Robux (Username 50R)', 165000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-emerald-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.000 Robux</p>
-              <p class="text-[11px] font-semibold text-emerald-400 mt-0.5">Rp 165.000</p>
-            </div>
           </div>
         </div>
 
         <!-- KATEGORI 5: GAMEPASS AFTER TAX -->
-        <div>
+        <div class="category-block" data-category="gamepass">
           <p class="text-xs font-bold text-amber-400 mb-2.5 flex items-center gap-2">
             <i class="fa-solid fa-ticket text-[10px]"></i> ROBUX GAMEPASS AFTER TAX
           </p>
@@ -299,66 +281,6 @@
               <p class="text-xs font-extrabold text-white">500 Robux</p>
               <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 65.000</p>
             </div>
-            <div onclick="selectNominal(this, '600 Robux (Gamepass)', 78000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">600 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 78.000</p>
-            </div>
-            <div onclick="selectNominal(this, '700 Robux (Gamepass)', 91000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">700 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 91.000</p>
-            </div>
-            <div onclick="selectNominal(this, '800 Robux (Gamepass)', 104000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">800 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 104.000</p>
-            </div>
-            <div onclick="selectNominal(this, '900 Robux (Gamepass)', 117000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">900 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 117.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.000 Robux (Gamepass)', 130000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.000 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 130.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.100 Robux (Gamepass)', 143000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.100 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 143.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.200 Robux (Gamepass)', 156000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.200 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 156.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.300 Robux (Gamepass)', 169000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.300 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 169.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.400 Robux (Gamepass)', 182000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.400 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 182.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.500 Robux (Gamepass)', 195000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.500 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 195.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.600 Robux (Gamepass)', 208000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.600 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 208.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.700 Robux (Gamepass)', 221000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.700 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 221.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.800 Robux (Gamepass)', 234000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.800 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 234.000</p>
-            </div>
-            <div onclick="selectNominal(this, '1.900 Robux (Gamepass)', 247000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">1.900 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 247.000</p>
-            </div>
-            <div onclick="selectNominal(this, '2.000 Robux (Gamepass)', 260000)" class="nominal-card border border-slate-800 bg-slate-950/60 hover:border-amber-500 p-3 rounded-2xl cursor-pointer transition">
-              <p class="text-xs font-extrabold text-white">2.000 Robux</p>
-              <p class="text-[11px] font-semibold text-amber-400 mt-0.5">Rp 260.000</p>
-            </div>
           </div>
         </div>
 
@@ -366,9 +288,69 @@
     </div>
 
     <!-- SUBMIT ORDER BUTTON -->
-    <button type="button" onclick="checkoutOrder()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-3.5 rounded-2xl text-sm transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+    <button type="button" onclick="checkoutOrder()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-3.5 rounded-2xl text-sm transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 mb-8">
       <i class="fa-solid fa-cart-shopping"></i> Beli Sekarang di Zyou Market
     </button>
+
+    <!-- SECTION TESTIMONI PELANGGAN -->
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-comments text-indigo-400"></i> Ulasan & Testimoni Pelanggan
+          </h3>
+          <p class="text-[11px] text-slate-400">Pengalaman asli dari para pembeli di Zyou Market</p>
+        </div>
+      </div>
+
+      <!-- FEEDBACK INPUT FORM -->
+      <form onsubmit="addTestimonial(event)" class="bg-slate-950/60 border border-slate-800 rounded-2xl p-3.5 mb-5 space-y-2.5">
+        <p class="text-xs font-semibold text-indigo-400">Tulis Ulasan Kamu</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <input type="text" id="review-name" required placeholder="Nama / Username" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-indigo-500">
+          <select id="review-rating" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-amber-400 font-bold focus:outline-none focus:border-indigo-500">
+            <option value="5">⭐⭐⭐⭐⭐ (5/5 Perfect)</option>
+            <option value="4">⭐⭐⭐⭐ (4/5 Bagus)</option>
+            <option value="3">⭐⭐⭐ (3/5 Cukup)</option>
+          </select>
+        </div>
+        <textarea id="review-text" required rows="2" placeholder="Bagikan pengalaman top up kamu di sini..." class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-4 py-2 rounded-xl text-xs transition">
+          Kirim Ulasan
+        </button>
+      </form>
+
+      <!-- TESTIMONIAL LIST CONTAINER -->
+      <div id="testimonial-list" class="space-y-3">
+        <!-- Sample Testi 1 -->
+        <div class="bg-slate-950/40 border border-slate-800/80 p-3.5 rounded-2xl flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-400 flex items-center justify-center font-bold text-xs shrink-0">
+            A
+          </div>
+          <div class="flex-1">
+            <div class="flex justify-between items-center">
+              <h4 class="text-xs font-bold text-white">Andra_Rblx</h4>
+              <span class="text-[10px] text-amber-400">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mt-1">Proses fast respon banget! Robux lansung masuk via username, langganan terus di Zyou Market.</p>
+          </div>
+        </div>
+
+        <!-- Sample Testi 2 -->
+        <div class="bg-slate-950/40 border border-slate-800/80 p-3.5 rounded-2xl flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">
+            R
+          </div>
+          <div class="flex-1">
+            <div class="flex justify-between items-center">
+              <h4 class="text-xs font-bold text-white">RianGamerz</h4>
+              <span class="text-[10px] text-amber-400">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mt-1">Harganya murah dibanding lapak lain, adminnya ramah banget lagi. Recommended!</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </main>
 
@@ -386,11 +368,11 @@
       <form id="form-login" onsubmit="handleLogin(event)" class="space-y-3">
         <div>
           <label class="block text-xs text-slate-300 mb-1">Nomor HP / Username</label>
-          <input type="text" id="login-identifier" required placeholder="Contoh: 081234567890" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+          <input type="text" required placeholder="Contoh: 081234567890" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div>
           <label class="block text-xs text-slate-300 mb-1">Password</label>
-          <input type="password" id="login-password" required placeholder="Masukkan password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+          <input type="password" required placeholder="Masukkan password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-indigo-600/30 mt-2">
           Masuk Sekarang
@@ -401,15 +383,15 @@
       <form id="form-register" onsubmit="handleRegister(event)" class="hidden space-y-3">
         <div>
           <label class="block text-xs text-slate-300 mb-1">Nama / Username</label>
-          <input type="text" id="reg-username" required placeholder="Contoh: Player_Roblox" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+          <input type="text" required placeholder="Contoh: Player_Roblox" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div>
           <label class="block text-xs text-slate-300 mb-1">Nomor WhatsApp / HP</label>
-          <input type="text" id="reg-phone" required placeholder="Contoh: 081234567890" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+          <input type="text" required placeholder="Contoh: 081234567890" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <div>
           <label class="block text-xs text-slate-300 mb-1">Password</label>
-          <input type="password" id="reg-password" required placeholder="Buat password baru" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+          <input type="password" required placeholder="Buat password baru" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
         <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-emerald-600/30 mt-2">
           Buat Akun Sekarang
@@ -423,6 +405,29 @@
   <script>
     let selectedItem = null;
 
+    // Filter Kategori
+    function filterCategory(category) {
+      // Manage Active Tab State
+      const buttons = document.querySelectorAll('.cat-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'border-indigo-500', 'text-white', 'font-bold');
+        btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300', 'font-medium');
+      });
+
+      event.currentTarget.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300', 'font-medium');
+      event.currentTarget.classList.add('bg-indigo-600', 'border-indigo-500', 'text-white', 'font-bold');
+
+      // Filter Visibility
+      const blocks = document.querySelectorAll('.category-block');
+      blocks.forEach(block => {
+        if (category === 'all' || block.getAttribute('data-category') === category) {
+          block.style.display = 'block';
+        } else {
+          block.style.display = 'none';
+        }
+      });
+    }
+
     // Fungsi Pilih Nominal Card
     function selectNominal(element, itemTitle, price) {
       document.querySelectorAll('.nominal-card').forEach(card => {
@@ -434,6 +439,38 @@
       element.classList.add('border-indigo-500', 'bg-indigo-950/40');
 
       selectedItem = { title: itemTitle, price: price };
+    }
+
+    // Add Testimonial Function
+    function addTestimonial(e) {
+      e.preventDefault();
+      const name = document.getElementById('review-name').value;
+      const ratingVal = document.getElementById('review-rating').value;
+      const text = document.getElementById('review-text').value;
+
+      const stars = '⭐'.repeat(parseInt(ratingVal));
+      const firstLetter = name.charAt(0).toUpperCase();
+
+      const newTestiHTML = `
+        <div class="bg-slate-950/40 border border-slate-800/80 p-3.5 rounded-2xl flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-indigo-400 flex items-center justify-center font-bold text-xs shrink-0">
+            ${firstLetter}
+          </div>
+          <div class="flex-1">
+            <div class="flex justify-between items-center">
+              <h4 class="text-xs font-bold text-white">${name}</h4>
+              <span class="text-[10px] text-amber-400">${stars}</span>
+            </div>
+            <p class="text-[11px] text-slate-300 mt-1">${text}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('testimonial-list').insertAdjacentHTML('afterbegin', newTestiHTML);
+      
+      document.getElementById('review-name').value = '';
+      document.getElementById('review-text').value = '';
+      alert('Terima kasih! Ulasan kamu berhasil ditambahkan.');
     }
 
     // Modal Control Logic
@@ -465,7 +502,6 @@
       }
     }
 
-    // Handle Form Action
     function handleLogin(e) {
       e.preventDefault();
       alert('Selamat datang kembali di Zyou Market!');
@@ -478,7 +514,6 @@
       closeAuthModal();
     }
 
-    // Checkout Logic
     function checkoutOrder() {
       const username = document.getElementById('target-username').value;
       const phone = document.getElementById('target-phone').value;
