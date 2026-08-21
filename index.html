@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zyou Market — Top Up Robux & Gift In Game</title>
+  <title>Zyou Market — Top Up Game 24 Jam</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
@@ -36,10 +36,23 @@
         <a href="#payment" class="hover:text-indigo-400 transition text-indigo-400"><i class="fa-solid fa-wallet"></i> Pembayaran</a>
       </div>
 
-      <button onclick="toggleCartModal()" class="relative bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
-        <i class="fa-solid fa-cart-shopping"></i> Keranjang
-        <span id="cart-count" class="bg-red-500 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
-      </button>
+      <!-- User Auth Section / Cart -->
+      <div class="flex items-center gap-2">
+        <div id="user-nav-profile" class="hidden flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700 text-xs">
+          <i class="fa-solid fa-user-check text-emerald-400"></i>
+          <span id="nav-username-display" class="font-bold text-white">User</span>
+          <button onclick="logoutUser()" class="ml-2 text-red-400 hover:text-red-300 text-[11px]" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </div>
+
+        <button id="btn-open-login" onclick="openAuthModal('login')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5">
+          <i class="fa-solid fa-right-to-bracket text-indigo-400"></i> Login
+        </button>
+
+        <button onclick="toggleCartModal()" class="relative bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count" class="bg-red-500 text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -55,13 +68,6 @@
     <p class="text-slate-400 text-xs md:text-sm max-w-xl mx-auto mb-6">
       Proses kilat, buka 24 jam nonstop. Pilih paket favoritmu, masukkan data akun, lalu bayar secara otomatis & praktis!
     </p>
-
-    <!-- Pilihan Cepat Game -->
-    <div class="flex flex-wrap justify-center gap-3 text-xs font-bold">
-      <a href="#roblox" class="bg-slate-900/80 hover:bg-slate-800 border border-slate-800 px-4 py-2 rounded-xl transition flex items-center gap-2 text-slate-200">
-        <i class="fa-solid fa-cube text-red-500"></i> Roblox Store
-      </a>
-    </div>
   </section>
 
   <!-- Main Catalog -->
@@ -78,18 +84,12 @@
             <h2 class="text-xl font-extrabold text-white flex items-center gap-2">
               Roblox Store <span class="bg-indigo-500/20 text-indigo-400 text-[10px] px-2 py-0.5 rounded-full border border-indigo-500/30">24/7 Auto</span>
             </h2>
-            <p class="text-xs text-slate-400">Top Up Robux Via Username & Gamepass</p>
+            <p class="text-xs text-slate-400">Top Up Robux Murah & Cepat</p>
           </div>
-        </div>
-
-        <div class="flex flex-wrap gap-2 text-xs font-semibold">
-          <button onclick="filterCategory('roblox', 'all', this)" class="roblox-tab bg-indigo-600 text-white px-3 py-1.5 rounded-lg border border-indigo-500 transition">Semua Paket</button>
-          <button onclick="filterCategory('roblox', 'rb-username', this)" class="roblox-tab bg-slate-800 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition">Via Username</button>
-          <button onclick="filterCategory('roblox', 'rb-login', this)" class="roblox-tab bg-slate-800 text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition">Via Login</button>
         </div>
       </div>
 
-      <!-- NOTE / PETUNJUK ROBLOX (DISESUAIKAN PERSIS PENJELASAN KAMU) -->
+      <!-- NOTE ROBLOX -->
       <div class="bg-amber-500/10 border border-amber-500/30 p-4 rounded-2xl mb-6 text-xs text-amber-200 space-y-1.5">
         <p class="font-bold text-amber-400 flex items-center gap-2 text-sm mb-1">
           <i class="fa-solid fa-triangle-exclamation"></i> Syarat & Catatan Penting Top Up Roblox:
@@ -99,15 +99,15 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- PAKET 100 ROBUX -->
-        <div class="roblox-item rb-username bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-indigo-500/50 transition">
+        <!-- PAKET SAMPLE ROBUX -->
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-indigo-500/50 transition">
           <div>
             <div class="flex justify-between items-start mb-2">
               <span class="text-[10px] font-bold uppercase bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md">Via Username</span>
               <span class="text-[10px] font-semibold text-slate-400"><i class="fa-solid fa-clock text-indigo-400"></i> Pending 5-7 Hari</span>
             </div>
             <h3 class="font-bold text-base text-white">100 Robux Clean</h3>
-            <p class="text-xs text-slate-400 mt-1">Menggunakan Sistem Gamepass</p>
+            <p class="text-xs text-slate-400 mt-1">Sistem Gamepass</p>
             <p class="text-[11px] text-amber-300 font-semibold mt-2 bg-slate-900/80 border border-slate-700/80 p-2 rounded-xl">
               <i class="fa-solid fa-tags text-amber-400"></i> Set Gamepass: <strong>143 Robux</strong>
             </p>
@@ -117,69 +117,8 @@
             <button onclick="openProductModal('100 Robux Clean (Via Username)', 15000, 'username_gamepass', 143)" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
           </div>
         </div>
-
-        <!-- PAKET 400 ROBUX -->
-        <div class="roblox-item rb-username bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-indigo-500/50 transition">
-          <div>
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-[10px] font-bold uppercase bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md">Via Username</span>
-              <span class="text-[10px] font-semibold text-slate-400"><i class="fa-solid fa-clock text-indigo-400"></i> Pending 5-7 Hari</span>
-            </div>
-            <h3 class="font-bold text-base text-white">400 Robux Clean</h3>
-            <p class="text-xs text-slate-400 mt-1">Menggunakan Sistem Gamepass</p>
-            <p class="text-[11px] text-amber-300 font-semibold mt-2 bg-slate-900/80 border border-slate-700/80 p-2 rounded-xl">
-              <i class="fa-solid fa-tags text-amber-400"></i> Set Gamepass: <strong>572 Robux</strong>
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-            <span class="text-indigo-400 font-extrabold text-base">Rp 55.000</span>
-            <button onclick="openProductModal('400 Robux Clean (Via Username)', 55000, 'username_gamepass', 572)" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-          </div>
-        </div>
-
-        <!-- PAKET VIA LOGIN -->
-        <div class="roblox-item rb-login bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-indigo-500/50 transition">
-          <div>
-            <div class="flex justify-between items-start mb-2">
-              <span class="text-[10px] font-bold uppercase bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Via Login</span>
-              <span class="text-[10px] font-semibold text-emerald-400"><i class="fa-solid fa-bolt"></i> Proses 15-30m</span>
-            </div>
-            <h3 class="font-bold text-base text-white">1,000 Robux Fast</h3>
-            <p class="text-xs text-slate-400 mt-1">Pengisian Langsung ke Akun</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between">
-            <span class="text-indigo-400 font-extrabold text-base">Rp 120.000</span>
-            <button onclick="openProductModal('1000 Robux (Via Login)', 120000, 'account_login')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-          </div>
-        </div>
       </div>
     </section>
-
-    <!-- GAME 2: MOBILE LEGENDS -->
-    <section id="mlbb" class="bg-slate-900/60 border border-slate-800 p-6 md:p-8 rounded-3xl">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-slate-800 pb-4">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-2xl font-bold">
-            <i class="fa-solid fa-mobile-screen"></i>
-          </div>
-          <div>
-            <h2 class="text-xl font-extrabold text-white flex items-center gap-2">
-              Mobile Legends: Bang Bang <span class="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full border border-emerald-500/30">Otomatis 24 Jam</span>
-            </h2>
-            <p class="text-xs text-slate-400">Proses Kilat Via User ID & Zone ID</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- NOTE MOBILE LEGENDS STANDAR PASARAN -->
-      <div class="bg-indigo-950/40 border border-indigo-500/30 p-4 rounded-2xl mb-6 text-xs text-indigo-200 space-y-1">
-        <p class="font-bold text-indigo-400 flex items-center gap-2 text-sm mb-1">
-          <i class="fa-solid fa-circle-info"></i> Petunjuk Order Mobile Legends:
-        </p>
-        <p>1. Masukkan <strong>User ID</strong> dan <strong>Zone ID</strong> akun Mobile Legends kamu dengan benar (Contoh: ID 12345678, Zone 2123).</p>
-        <p>2. Pilih nominal Diamond atau Weekly Pass yang diinginkan.</p>
-        <p>3. Pilih pembayaran, lalu checkout langsung ke WhatsApp!</p>
-      </div>
 
     <!-- SECTION TESTIMONI INTERAKTIF -->
     <section id="testimoni" class="bg-slate-900/60 border border-slate-800 p-6 md:p-8 rounded-3xl">
@@ -188,19 +127,34 @@
           Ulasan Pembeli
         </span>
         <h2 class="text-2xl font-black text-white mt-2">Testimoni Pelanggan Zyou Market</h2>
-        <p class="text-slate-400 text-xs md:text-sm mt-1">Tulis pengalamanku berbelanja di Zyou Market!</p>
+        <p class="text-slate-400 text-xs md:text-sm mt-1">Login ke akun kamu untuk mengirim testimoni!</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <!-- FORM INPUT TESTIMONI -->
+        
+        <!-- FORM TESTIMONI (Hanya Tampil Jika Sudah Login) -->
         <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
           <h3 class="font-bold text-white text-sm mb-3 flex items-center gap-2">
             <i class="fa-solid fa-pen-to-square text-indigo-400"></i> Tulis Ulasan Kamu
           </h3>
-          <form id="review-form" onsubmit="addReview(event)" class="space-y-3">
-            <div>
-              <label class="block text-xs text-slate-300 font-medium mb-1">Nama / Username</label>
-              <input type="text" id="review-name" required placeholder="Contoh: Rian_Roblox" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+
+          <!-- JIKA BELUM LOGIN -->
+          <div id="review-login-notice" class="bg-slate-900/80 p-4 rounded-xl text-center border border-slate-700">
+            <i class="fa-solid fa-lock text-indigo-400 text-2xl mb-2"></i>
+            <p class="text-xs text-slate-300 mb-3">Kamu harus login dengan Nomor HP atau Username untuk mengirimkan testimoni.</p>
+            <button onclick="openAuthModal('login')" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-xs transition">
+              Login Sekarang
+            </button>
+          </div>
+
+          <!-- JIKA SUDAH LOGIN -->
+          <form id="review-form" onsubmit="addReview(event)" class="hidden space-y-3">
+            <div class="bg-indigo-950/40 border border-indigo-500/30 p-2.5 rounded-xl flex items-center gap-2">
+              <div class="w-7 h-7 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white text-xs" id="review-user-avatar">U</div>
+              <div>
+                <p class="text-[10px] text-slate-400">Mengirim sebagai:</p>
+                <p class="text-xs font-bold text-white" id="review-user-name">Username</p>
+              </div>
             </div>
 
             <div>
@@ -213,8 +167,8 @@
             </div>
 
             <div>
-              <label class="block text-xs text-slate-300 font-medium mb-1">Ulasan</label>
-              <textarea id="review-text" required rows="3" placeholder="Tulis masukan atau pesan kamu di sini..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
+              <label class="block text-xs text-slate-300 font-medium mb-1">Ulasan / Pesan</label>
+              <textarea id="review-text" required rows="3" placeholder="Tuliskan pengalaman belanja kamu di sini..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
             </div>
 
             <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow-md">
@@ -223,164 +177,189 @@
           </form>
         </div>
 
-        <!-- LIST DISPLAY TESTIMONI -->
+        <!-- LIST TESTIMONI DISPLAY -->
         <div class="lg:col-span-2 space-y-3" id="reviews-list">
           <!-- JS inserted reviews -->
         </div>
       </div>
     </section>
 
-    <!-- SECTION PEMBAYARAN / PAYMENT -->
-    <section id="payment" class="bg-slate-900/60 border border-slate-800 p-6 md:p-8 rounded-3xl">
-      <div class="text-center max-w-xl mx-auto mb-8">
-        <span class="text-indigo-400 text-xs font-bold uppercase tracking-wider bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Metode Pembayaran</span>
-        <h2 class="text-2xl font-black text-white mt-2">Dukungan Pembayaran Lengkap</h2>
-        <p class="text-slate-400 text-xs md:text-sm mt-1">Otomatis 24 jam via QRIS, E-Wallet, dan Bank Transfer.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50 text-center flex flex-col items-center">
-          <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center text-2xl mb-3">
-            <i class="fa-solid fa-qrcode"></i>
-          </div>
-          <h3 class="font-bold text-white text-sm mb-1">QRIS All Payment</h3>
-          <p class="text-xs text-slate-400 mb-3">GoPay, OVO, DANA, ShopeePay & All Bank</p>
-          <span class="text-[10px] font-bold bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-md">Bebas Admin</span>
-        </div>
-
-        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50 text-center flex flex-col items-center">
-          <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center text-2xl mb-3">
-            <i class="fa-solid fa-wallet"></i>
-          </div>
-          <h3 class="font-bold text-white text-sm mb-1">E-Wallet Direct</h3>
-          <p class="text-xs text-slate-400 mb-3">DANA, OVO, GoPay, ShopeePay</p>
-          <span class="text-[10px] font-bold bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-md">Transfer Langsung</span>
-        </div>
-
-        <div class="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/50 text-center flex flex-col items-center">
-          <div class="w-12 h-12 bg-indigo-500/20 text-indigo-400 rounded-xl flex items-center justify-center text-2xl mb-3">
-            <i class="fa-solid fa-building-columns"></i>
-          </div>
-          <h3 class="font-bold text-white text-sm mb-1">Transfer Bank / SeaBank</h3>
-          <p class="text-xs text-slate-400 mb-3">BCA, Mandiri, BRI, SeaBank</p>
-          <span class="text-[10px] font-bold bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-md">24 Jam Online</span>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
-    <p>© 2026 Zyou Market — Top Up Game 24 Jam. All Rights Reserved.</p>
-  </footer>
-
-  <!-- MODAL 1: INPUT DATA AKUN -->
-  <div id="product-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+  <!-- MODAL LOGIN & REGISTER -->
+  <div id="auth-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl relative">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
       
-      <h3 id="modal-product-name" class="text-lg font-bold text-white mb-1">Nama Produk</h3>
-      <p id="modal-product-price" class="text-indigo-400 font-extrabold text-base mb-4">Rp 0</p>
-      
-      <form id="product-form" onsubmit="submitToCart(event)" class="space-y-3">
-        
-        <div id="field-gamepass-info" class="hidden bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl text-xs text-amber-300 space-y-1">
-          <p class="font-bold flex items-center gap-1"><i class="fa-solid fa-triangle-exclamation"></i> Instruksi Setting Gamepass:</p>
-          <p>Atur harga Gamepass / Place kamu senilai: <span id="gamepass-target-price" class="font-black text-white text-xs bg-amber-600 px-2 py-0.5 rounded">0 Robux</span></p>
-        </div>
+      <!-- TAB TITLE -->
+      <div class="flex gap-4 border-b border-slate-800 pb-3 mb-4">
+        <button id="tab-login-btn" onclick="switchAuthTab('login')" class="font-extrabold text-sm text-indigo-400 border-b-2 border-indigo-500 pb-1">Login</button>
+        <button id="tab-register-btn" onclick="switchAuthTab('register')" class="font-bold text-sm text-slate-400 hover:text-white pb-1">Daftar Akun Baru</button>
+      </div>
 
-        <div id="field-username" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Username Roblox</label>
-          <input type="text" id="input-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Username Roblox kamu" />
-          <p class="text-[10px] text-red-400 mt-1">*Pastikan akun sudah 18+ & verifikasi KTP!</p>
-        </div>
-
-        <div id="field-id" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1">User ID / Player ID</label>
-          <input type="text" id="input-id" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Contoh: 12345678" />
-        </div>
-
-        <div id="field-zone" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Zone ID / Server ID</label>
-          <input type="text" id="input-zone" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Contoh: 2123" />
-        </div>
-
-        <div id="field-password" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Password Akun</label>
-          <input type="password" id="input-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Password akun" />
-        </div>
-
+      <!-- FORM LOGIN -->
+      <form id="form-login" onsubmit="handleLogin(event)" class="space-y-3">
         <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Pilih Metode Pembayaran</label>
-          <select id="input-payment" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
-            <option value="" disabled selected>-- Pilih Pembayaran --</option>
-            <option value="QRIS (All Payment)">QRIS (GoPay/OVO/DANA/ShopeePay/All Bank)</option>
-            <option value="DANA">DANA</option>
-            <option value="OVO">OVO</option>
-            <option value="GoPay">GoPay</option>
-            <option value="ShopeePay">ShopeePay</option>
-            <option value="Transfer BCA">Transfer Bank BCA</option>
-            <option value="Transfer Mandiri">Transfer Bank Mandiri</option>
-            <option value="Transfer BRI">Transfer Bank BRI</option>
-            <option value="Transfer SeaBank">Transfer SeaBank</option>
-          </select>
+          <label class="block text-xs text-slate-300 mb-1">Nomor HP atau Username</label>
+          <input type="text" id="login-identifier" required placeholder="Contoh: 085767547693 / zyouuser" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
-
-        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition mt-4 shadow-lg shadow-indigo-600/30 text-xs">
-          Masukkan ke Keranjang
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Password</label>
+          <input type="password" id="login-password" required placeholder="Masukkan password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-indigo-600/30 mt-2">
+          Masuk Sekarang
         </button>
       </form>
-    </div>
-  </div>
 
-  <!-- MODAL 2: KERANJANG & CHECKOUT -->
-  <div id="cart-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full shadow-2xl relative flex flex-col max-h-[85vh]">
-      <div class="flex justify-between items-center pb-4 border-b border-slate-800">
-        <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-cart-shopping text-indigo-400"></i> Keranjang Belanja</h3>
-        <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <div id="cart-items-list" class="my-4 overflow-y-auto space-y-3 pr-2 flex-1">
-        <!-- JS Inserted Items -->
-      </div>
-
-      <div class="pt-4 border-t border-slate-800">
-        <div class="bg-slate-800/40 p-3 rounded-2xl border border-slate-700/50 mb-4 space-y-1 text-xs">
-          <div class="flex justify-between text-slate-400">
-            <span>Jumlah Pesanan:</span>
-            <span id="cart-item-count-text" class="font-bold text-white">0 Item</span>
-          </div>
-          <div class="flex justify-between text-slate-400 border-t border-slate-700/30 pt-1 mt-1">
-            <span class="text-xs font-bold text-white">Total Keseluruhan:</span>
-            <span id="cart-total-price" class="text-sm font-black text-indigo-400">Rp 0</span>
-          </div>
+      <!-- FORM REGISTER -->
+      <form id="form-register" onsubmit="handleRegister(event)" class="hidden space-y-3">
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Nama / Username Akun</label>
+          <input type="text" id="reg-username" required placeholder="Contoh: Rian_Gamers" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
         </div>
-
-        <button onclick="checkoutToWA()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 text-xs">
-          <i class="fa-brands fa-whatsapp text-base"></i> Checkout ke WhatsApp
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Nomor WhatsApp / HP</label>
+          <input type="text" id="reg-phone" required placeholder="Contoh: 081234567890" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">Password</label>
+          <input type="password" id="reg-password" required placeholder="Buat password baru" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
+        </div>
+        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-emerald-600/30 mt-2">
+          Buat Akun Sekarang
         </button>
-      </div>
+      </form>
+
     </div>
   </div>
-
-  <!-- FLOATING CART BUTTON -->
-  <button onclick="toggleCartModal()" class="fixed bottom-6 right-6 z-30 bg-indigo-600 hover:bg-indigo-500 text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center border border-indigo-400/30 transition transform hover:scale-105">
-    <i class="fa-solid fa-cart-shopping text-lg"></i>
-    <span id="floating-cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-950">0</span>
-  </button>
 
   <script>
-    // NOMOR WHATSAPP APLIKASI
-    const nomorWA = "6285767547693"; 
-    let cart = [];
-    let currentProduct = null;
+    // --- USER MANAGEMENT & AUTHENTICATION ---
+    let currentUser = null;
 
-    // DATA TESTIMONI AWAL
+    function checkLoggedInUser() {
+      const activeUser = localStorage.getItem('zyou_active_user');
+      if (activeUser) {
+        currentUser = JSON.parse(activeUser);
+        updateUserUI(true);
+      } else {
+        updateUserUI(false);
+      }
+    }
+
+    function updateUserUI(isLoggedIn) {
+      const navProfile = document.getElementById('user-nav-profile');
+      const btnOpenLogin = document.getElementById('btn-open-login');
+      const reviewNotice = document.getElementById('review-login-notice');
+      const reviewForm = document.getElementById('review-form');
+
+      if (isLoggedIn && currentUser) {
+        navProfile.classList.remove('hidden');
+        btnOpenLogin.classList.add('hidden');
+        document.getElementById('nav-username-display').innerText = currentUser.username;
+
+        // Review section updates
+        reviewNotice.classList.add('hidden');
+        reviewForm.classList.remove('hidden');
+        document.getElementById('review-user-name').innerText = currentUser.username;
+        document.getElementById('review-user-avatar').innerText = currentUser.username.charAt(0).toUpperCase();
+      } else {
+        navProfile.classList.add('hidden');
+        btnOpenLogin.classList.remove('hidden');
+
+        reviewNotice.classList.remove('hidden');
+        reviewForm.classList.add('hidden');
+      }
+    }
+
+    function openAuthModal(mode) {
+      switchAuthTab(mode);
+      document.getElementById('auth-modal').classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+    }
+
+    function switchAuthTab(tab) {
+      const formLogin = document.getElementById('form-login');
+      const formRegister = document.getElementById('form-register');
+      const tabLoginBtn = document.getElementById('tab-login-btn');
+      const tabRegBtn = document.getElementById('tab-register-btn');
+
+      if (tab === 'login') {
+        formLogin.classList.remove('hidden');
+        formRegister.classList.add('hidden');
+        tabLoginBtn.className = "font-extrabold text-sm text-indigo-400 border-b-2 border-indigo-500 pb-1";
+        tabRegBtn.className = "font-bold text-sm text-slate-400 hover:text-white pb-1";
+      } else {
+        formLogin.classList.add('hidden');
+        formRegister.classList.remove('hidden');
+        tabRegBtn.className = "font-extrabold text-sm text-emerald-400 border-b-2 border-emerald-500 pb-1";
+        tabLoginBtn.className = "font-bold text-sm text-slate-400 hover:text-white pb-1";
+      }
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const username = document.getElementById('reg-username').value.trim();
+      const phone = document.getElementById('reg-phone').value.trim();
+      const password = document.getElementById('reg-password').value;
+
+      let users = JSON.parse(localStorage.getItem('zyou_registered_users')) || [];
+
+      // Check if user exists
+      if (users.some(u => u.phone === phone || u.username.toLowerCase() === username.toLowerCase())) {
+        alert("Nomor HP atau Username tersebut sudah terdaftar! Silakan login.");
+        return;
+      }
+
+      const newUser = { username, phone, password };
+      users.push(newUser);
+      localStorage.setItem('zyou_registered_users', JSON.stringify(users));
+
+      // Auto login after register
+      localStorage.setItem('zyou_active_user', JSON.stringify(newUser));
+      currentUser = newUser;
+      updateUserUI(true);
+      closeAuthModal();
+      alert("Akun berhasil dibuat! Kamu sudah otomatis login.");
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('login-identifier').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      let users = JSON.parse(localStorage.getItem('zyou_registered_users')) || [];
+
+      const foundUser = users.find(u => 
+        (u.phone === identifier || u.username.toLowerCase() === identifier.toLowerCase()) && u.password === password
+      );
+
+      if (foundUser) {
+        localStorage.setItem('zyou_active_user', JSON.stringify(foundUser));
+        currentUser = foundUser;
+        updateUserUI(true);
+        closeAuthModal();
+        alert("Berhasil login!");
+      } else {
+        alert("Nomor HP / Username atau Password salah!");
+      }
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('zyou_active_user');
+      currentUser = null;
+      updateUserUI(false);
+      alert("Kamu berhasil keluar dari akun.");
+    }
+
+    // --- TESTIMONI MANAGEMENT ---
     let defaultReviews = [
-      { name: "Rian_Roblox", rating: 5, text: "Beli Robux via username aman banget! Padahal udah ketar-ketir akun KTP, ternyata sukses masuk. Recommended Zyou Market!", date: "Baru saja" },
-      { name: "Andi_ML", rating: 5, text: "Weekly Pass MLBB prosesnya lumayan pangkas waktu & murah. Admin fast respon via WA!", date: "1 hari yang lalu" }
+      { name: "Rian_Roblox", rating: 5, text: "Beli Robux via username aman banget! Padahal udah ketar-ketir akun KTP, ternyata sukses masuk. Recommended Zyou Market!" },
+      { name: "Andi_ML", rating: 5, text: "Weekly Pass MLBB prosesnya lumayan pangkas waktu & murah. Admin fast respon via WA!" }
     ];
 
     function loadReviews() {
@@ -397,6 +376,7 @@
               <div class="flex items-center gap-2">
                 <div class="w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white text-[10px]">${r.name.charAt(0).toUpperCase()}</div>
                 <span class="font-bold text-white">${r.name}</span>
+                <span class="bg-emerald-500/20 text-emerald-400 text-[9px] px-1.5 py-0.2 rounded font-bold border border-emerald-500/30">Terverifikasi</span>
               </div>
               <span class="text-amber-400 font-semibold">${stars}</span>
             </div>
@@ -407,159 +387,26 @@
 
     function addReview(e) {
       e.preventDefault();
-      const name = document.getElementById('review-name').value;
+      if (!currentUser) return;
+
       const rating = parseInt(document.getElementById('review-rating').value);
       const text = document.getElementById('review-text').value;
 
-      const newReview = { name, rating, text, date: "Baru saja" };
+      const newReview = { name: currentUser.username, rating, text };
       let savedReviews = JSON.parse(localStorage.getItem('zyou_reviews')) || defaultReviews;
       savedReviews.unshift(newReview);
 
       localStorage.setItem('zyou_reviews', JSON.stringify(savedReviews));
       loadReviews();
 
-      document.getElementById('review-form').reset();
-      alert("Terima kasih! Ulasan kamu berhasil diterbitkan.");
+      document.getElementById('review-text').value = '';
+      alert("Terima kasih! Testimoni kamu berhasil diterbitkan.");
     }
 
-    window.onload = loadReviews;
-
-    function openProductModal(name, price, type, gamepassRobux = 0) {
-      currentProduct = { name, price, type, gamepassRobux };
-      document.getElementById('modal-product-name').innerText = name;
-      document.getElementById('modal-product-price').innerText = `Rp ${price.toLocaleString('id-ID')}`;
-
-      ['field-id', 'field-zone', 'field-username', 'field-password', 'field-gamepass-info'].forEach(id => document.getElementById(id).classList.add('hidden'));
-      ['input-id', 'input-zone', 'input-username', 'input-password'].forEach(id => document.getElementById(id).value = '');
-      document.getElementById('input-payment').value = '';
-
-      if (type === 'username_gamepass') {
-        document.getElementById('field-username').classList.remove('hidden');
-        document.getElementById('field-gamepass-info').classList.remove('hidden');
-        document.getElementById('gamepass-target-price').innerText = `${gamepassRobux} Robux`;
-      } else if (type === 'id_zone') {
-        document.getElementById('field-id').classList.remove('hidden');
-        document.getElementById('field-zone').classList.remove('hidden');
-      } else if (type === 'account_login') {
-        document.getElementById('field-username').classList.remove('hidden');
-        document.getElementById('field-password').classList.remove('hidden');
-      }
-
-      document.getElementById('product-modal').classList.remove('hidden');
-    }
-
-    function closeProductModal() {
-      document.getElementById('product-modal').classList.add('hidden');
-    }
-
-    function submitToCart(event) {
-      event.preventDefault();
-      const paymentMethod = document.getElementById('input-payment').value;
-
-      const itemData = {
-        name: currentProduct.name,
-        price: currentProduct.price,
-        type: currentProduct.type,
-        payment: paymentMethod,
-        details: {}
-      };
-
-      if (currentProduct.type === 'username_gamepass') {
-        itemData.details['Username Roblox'] = document.getElementById('input-username').value;
-        itemData.details['Set Gamepass'] = `${currentProduct.gamepassRobux} Robux`;
-      } else if (currentProduct.type === 'id_zone') {
-        itemData.details['User ID'] = document.getElementById('input-id').value;
-        itemData.details['Zone ID'] = document.getElementById('input-zone').value;
-      } else if (currentProduct.type === 'account_login') {
-        itemData.details['Username'] = document.getElementById('input-username').value;
-        itemData.details['Password'] = document.getElementById('input-password').value;
-      }
-
-      cart.push(itemData);
-      updateCartUI();
-      closeProductModal();
-    }
-
-    function toggleCartModal() {
-      document.getElementById('cart-modal').classList.toggle('hidden');
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-    }
-
-    function updateCartUI() {
-      document.getElementById('cart-count').innerText = cart.length;
-      document.getElementById('floating-cart-count').innerText = cart.length;
-      document.getElementById('cart-item-count-text').innerText = `${cart.length} Item`;
-
-      const listContainer = document.getElementById('cart-items-list');
-      listContainer.innerHTML = '';
-
-      if (cart.length === 0) {
-        listContainer.innerHTML = `<p class="text-center text-slate-500 text-xs py-8">Keranjang belanja kamu masih kosong.</p>`;
-        document.getElementById('cart-total-price').innerText = 'Rp 0';
-        return;
-      }
-
-      let totalPrice = 0;
-      cart.forEach((item, index) => {
-        totalPrice += item.price;
-        let detailsText = Object.entries(item.details).map(([k, v]) => `${k}: ${v}`).join(' | ');
-
-        listContainer.innerHTML += `
-          <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/60 flex justify-between items-center">
-            <div>
-              <h4 class="font-bold text-xs text-white">${item.name}</h4>
-              <p class="text-[10px] text-slate-400 mt-0.5">${detailsText}</p>
-              <p class="text-[10px] text-emerald-400 font-semibold mt-0.5"><i class="fa-solid fa-wallet"></i> Bayar: ${item.payment}</p>
-              <span class="text-xs font-bold text-indigo-400 mt-1 inline-block">Rp ${item.price.toLocaleString('id-ID')}</span>
-            </div>
-            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 p-2 text-xs"><i class="fa-solid fa-trash"></i></button>
-          </div>
-        `;
-      });
-
-      document.getElementById('cart-total-price').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
-    }
-
-    function checkoutToWA() {
-      if (cart.length === 0) {
-        alert("Keranjang kamu kosong!");
-        return;
-      }
-
-      let totalPrice = 0;
-      let text = `Halo Admin Zyou Market!\nSaya mau order via Website (Top Up 24 Jam):\n\n`;
-
-      cart.forEach((item, index) => {
-        totalPrice += item.price;
-        text += `*${index + 1}. ${item.name}*\n`;
-        text += `   • Harga: Rp ${item.price.toLocaleString('id-ID')}\n`;
-        Object.entries(item.details).forEach(([k, v]) => {
-          text += `   • ${k}: ${v}\n`;
-        });
-        text += `   • Metode Bayar: ${item.payment}\n\n`;
-      });
-
-      text += `-----------------------------------\n`;
-      text += `*TOTAL PEMBAYARAN: Rp ${totalPrice.toLocaleString('id-ID')}*\n`;
-      text += `-----------------------------------\n\n`;
-      text += `Mohon instruksi pembayaran/QRIS untuk pesanan di atas min. Terima kasih!`;
-
-      const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
-    }
-
-    function filterCategory(group, cat, btn) {
-      document.querySelectorAll(`.${group}-tab`).forEach(t => t.className = `${group}-tab bg-slate-800 text-slate-400 px-3 py-1.5 rounded-lg border border-slate-700 transition`);
-      btn.className = `${group}-tab bg-indigo-600 text-white px-3 py-1.5 rounded-lg border border-indigo-500 transition`;
-      
-      document.querySelectorAll(`.${group}-item`).forEach(i => {
-        i.style.display = (cat === 'all' || i.classList.contains(cat)) ? 'flex' : 'none';
-      });
-    }
+    window.onload = function() {
+      checkLoggedInUser();
+      loadReviews();
+    };
   </script>
 </body>
 </html>
