@@ -1,336 +1,46 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zyou Market — Roblox Store 24 Jam</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    html { scroll-behavior: smooth; }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white pb-20">
-
-  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-      <a href="#" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center font-black text-xl text-white shadow-lg shadow-indigo-500/30">
-          Z
-        </div>
-        <div>
-          <span class="text-lg font-black tracking-wider text-white flex items-center gap-2">
-            ZYOU<span class="text-indigo-400">MARKET</span>
-          </span>
-          <span class="text-[10px] text-emerald-400 font-bold block -mt-1"><i class="fa-solid fa-circle text-[8px] animate-pulse"></i> Roblox Store 24 Jam</span>
-        </div>
-      </a>
-
-      <div class="hidden md:flex gap-6 text-xs font-semibold text-slate-300">
-        <a href="#katalog" class="hover:text-indigo-400 transition">Katalog Robux</a>
-        <a href="#testimoni" class="hover:text-indigo-400 transition">Testimoni</a>
-        <a href="#payment" class="hover:text-indigo-400 transition text-indigo-400"><i class="fa-solid fa-wallet"></i> Pembayaran</a>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <div id="user-nav-profile" class="hidden flex items-center gap-2 bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-700 text-xs">
-          <i class="fa-solid fa-user-check text-emerald-400"></i>
-          <span id="nav-username-display" class="font-bold text-white">User</span>
-          <button onclick="logoutUser()" class="ml-2 text-red-400 hover:text-red-300 text-[11px]" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
-        </div>
-
-        <button id="btn-open-login" onclick="openAuthModal('login')" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5">
-          <i class="fa-solid fa-right-to-bracket text-indigo-400"></i> Login
-        </button>
-
-        <button onclick="toggleCartModal()" class="relative bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span id="cart-count" class="bg-red-500 text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <section class="max-w-6xl mx-auto px-4 pt-8 pb-8 text-center">
-    <div class="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/30 px-3.5 py-1.5 rounded-full text-red-400 text-xs font-bold uppercase tracking-wider mb-4">
-      <i class="fa-solid fa-cube"></i> Pusat Top Up Robux Terpercaya 24 Jam
-    </div>
-    <h1 class="text-3xl md:text-5xl font-black text-white leading-tight mb-3">
-      Top Up Robux Impianmu <br class="hidden md:block"/>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Murah, Cepat & Amanah</span>
-    </h1>
-    <p class="text-slate-400 text-xs md:text-sm max-w-xl mx-auto mb-6">
-      Pilih metode pengisian favoritmu: Via Login (Sertakan 3 Kode Backup), Via Username + Display Name, atau Gamepass After Tax.
-    </p>
-  </section>
-
-  <main id="katalog" class="max-w-6xl mx-auto px-4 pb-12 space-y-8">
-
-    <div class="bg-amber-500/10 border border-amber-500/30 p-4 rounded-2xl text-xs text-amber-200 space-y-1.5">
-      <p class="font-bold text-amber-400 flex items-center gap-2 text-sm mb-1">
-        <i class="fa-solid fa-triangle-exclamation"></i> Syarat & Catatan Penting Top Up Roblox:
-      </p>
-      <p>• <strong>Penting (Via Login):</strong> Wajib memberikan Username, Password, dan <strong>3 Kode Backup Roblox</strong> agar proses cepat tanpa terkendala 2FA.</p>
-      <p>• <strong>Penting (Via Username):</strong> Akun WAJIB sudah berumur 18+ dan verifikasi KTP.</p>
-      <p>• <strong>Peringatan:</strong> Salah memberikan data akun <strong>BUKAN tanggung jawab kami</strong>. Mohon teliti kembali saat melakukan pemesanan!</p>
+<!-- MODAL LOGIN & REGISTER USER -->
+<div id="auth-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl relative z-10">
+    <button type="button" onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+    
+    <div class="flex gap-4 border-b border-slate-800 pb-3 mb-4">
+      <button type="button" id="tab-login-btn" onclick="switchAuthTab('login')" class="font-extrabold text-sm text-indigo-400 border-b-2 border-indigo-500 pb-1">Login</button>
+      <button type="button" id="tab-register-btn" onclick="switchAuthTab('register')" class="font-bold text-sm text-slate-400 hover:text-white pb-1">Daftar Akun Baru</button>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-2 text-xs font-bold bg-slate-900/80 p-2 rounded-2xl border border-slate-800">
-      <button onclick="filterRobux('all', this)" class="rb-tab bg-indigo-600 text-white px-4 py-2 rounded-xl transition">Semua Paket</button>
-      <button onclick="filterRobux('rb-login', this)" class="rb-tab bg-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-xl transition">Via Login</button>
-      <button onclick="filterRobux('rb-username', this)" class="rb-tab bg-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-xl transition">Via Username</button>
-      <button onclick="filterRobux('rb-aftertax', this)" class="rb-tab bg-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-xl transition">Gamepass After Tax</button>
-    </div>
-
-    <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-      <div class="rb-item rb-login bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
-        <div>
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-[10px] font-bold uppercase bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Via Login</span>
-            <span class="text-[10px] font-semibold text-emerald-400"><i class="fa-solid fa-bolt"></i> Fast Process</span>
-          </div>
-          <h3 class="font-bold text-base text-white">80 Robux (Via Login)</h3>
-          <p class="text-xs text-slate-400 mt-1">Memerlukan User, Pass & 3 Kode Backup</p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-          <span class="text-indigo-400 font-extrabold text-base">Rp 15.500</span>
-          <button onclick="openProductModal('80 Robux (Via Login)', 15500, 'account_login')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-        </div>
+    <!-- LOGIN FORM -->
+    <form id="form-login" onsubmit="handleLogin(event)" class="space-y-3">
+      <div>
+        <label class="block text-xs text-slate-300 mb-1">Nomor HP atau Username</label>
+        <input type="text" id="login-identifier" required placeholder="Contoh: 085767547693 / zyouuser" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
       </div>
-
-      <div class="rb-item rb-login bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
-        <div>
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-[10px] font-bold uppercase bg-red-600/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md">Via Login</span>
-            <span class="text-[10px] font-semibold text-emerald-400"><i class="fa-solid fa-bolt"></i> Fast Process</span>
-          </div>
-          <h3 class="font-bold text-base text-white">500 Robux (Via Login)</h3>
-          <p class="text-xs text-slate-400 mt-1">Memerlukan User, Pass & 3 Kode Backup</p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-          <span class="text-indigo-400 font-extrabold text-base">Rp 73.500</span>
-          <button onclick="openProductModal('500 Robux (Via Login)', 73500, 'account_login')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-        </div>
+      <div>
+        <label class="block text-xs text-slate-300 mb-1">Password</label>
+        <input type="password" id="login-password" required placeholder="Masukkan password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
       </div>
+      <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-indigo-600/30 mt-2">
+        Masuk Sekarang
+      </button>
+    </form>
 
-
-      <div class="rb-item rb-username bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
-        <div>
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-[10px] font-bold uppercase bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md">Via Username</span>
-            <span class="text-[10px] font-semibold text-slate-400"><i class="fa-solid fa-clock text-indigo-400"></i> Pending 5-7 Hari</span>
-          </div>
-          <h3 class="font-bold text-base text-white">50 Robux (Via Username)</h3>
-          <p class="text-xs text-slate-400 mt-1">Cukup Username & Display Name (Tanpa Pass/Gamepass)</p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-          <span class="text-indigo-400 font-extrabold text-base">Rp 8.250</span>
-          <button onclick="openProductModal('50 Robux (Via Username)', 8250, 'username_only')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-        </div>
+    <!-- REGISTER FORM -->
+    <form id="form-register" onsubmit="handleRegister(event)" class="hidden space-y-3">
+      <div>
+        <label class="block text-xs text-slate-300 mb-1">Nama / Username Akun</label>
+        <input type="text" id="reg-username" required placeholder="Contoh: Rian_Roblox" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
       </div>
-
-      <div class="rb-item rb-username bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
-        <div>
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-[10px] font-bold uppercase bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md">Via Username</span>
-            <span class="text-[10px] font-semibold text-slate-400"><i class="fa-solid fa-clock text-indigo-400"></i> Pending 5-7 Hari</span>
-          </div>
-          <h3 class="font-bold text-base text-white">100 Robux (Via Username)</h3>
-          <p class="text-xs text-slate-400 mt-1">Cukup Username & Display Name (Tanpa Pass/Gamepass)</p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-          <span class="text-indigo-400 font-extrabold text-base">Rp 16.500</span>
-          <button onclick="openProductModal('100 Robux (Via Username)', 16500, 'username_only')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-        </div>
+      <div>
+        <label class="block text-xs text-slate-300 mb-1">Nomor WhatsApp / HP</label>
+        <input type="text" id="reg-phone" required placeholder="Contoh: 081234567890" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
       </div>
-
-      <div class="rb-item rb-username bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
-        <div>
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-[10px] font-bold uppercase bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-md">Via Username</span>
-            <span class="text-[10px] font-semibold text-slate-400"><i class="fa-solid fa-clock text-indigo-400"></i> Pending 5-7 Hari</span>
-          </div>
-          <h3 class="font-bold text-base text-white">500 Robux (Via Username)</h3>
-          <p class="text-xs text-slate-400 mt-1">Cukup Username & Display Name (Tanpa Pass/Gamepass)</p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-          <span class="text-indigo-400 font-extrabold text-base">Rp 82.500</span>
-          <button onclick="openProductModal('500 Robux (Via Username)', 82500, 'username_only')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-        </div>
+      <div>
+        <label class="block text-xs text-slate-300 mb-1">Password</label>
+        <input type="password" id="reg-password" required placeholder="Buat password baru" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500" />
       </div>
+      <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-emerald-600/30 mt-2">
+        Buat Akun Sekarang
+      </button>
+    </form>
 
-
-      <div class="rb-item rb-aftertax bg-slate-900/60 p-4 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/50 transition">
-        <div>
-          <div class="flex justify-between items-start mb-2">
-            <span class="text-[10px] font-bold uppercase bg-purple-600/20 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-md">After Tax</span>
-            <span class="text-[10px] font-semibold text-slate-400"><i class="fa-solid fa-shield-halved text-indigo-400"></i> Anti Tax 30%</span>
-          </div>
-          <h3 class="font-bold text-base text-white">100 Robux After Tax</h3>
-          <p class="text-xs text-slate-400 mt-1">Bersih Masuk Ke Akun Kamu</p>
-          <p class="text-[11px] text-amber-300 font-semibold mt-2 bg-slate-950/80 border border-slate-800 p-2 rounded-xl">
-            <i class="fa-solid fa-tags text-amber-400"></i> Set Gamepass: <strong>143 Robux</strong>
-          </p>
-        </div>
-        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
-          <span class="text-indigo-400 font-extrabold text-base">Rp 13.000</span>
-          <button onclick="openProductModal('100 Robux After Tax', 13000, 'gamepass', 143)" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">+ Order</button>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <section id="testimoni" class="max-w-6xl mx-auto px-4 pb-12">
-    <div class="bg-slate-900/60 border border-slate-800 p-6 md:p-8 rounded-3xl">
-      <div class="text-center max-w-xl mx-auto mb-8">
-        <span class="text-indigo-400 text-xs font-bold uppercase tracking-wider bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
-          Ulasan Pembeli
-        </span>
-        <h2 class="text-2xl font-black text-white mt-2">Testimoni Pelanggan Zyou Market</h2>
-        <p class="text-slate-400 text-xs md:text-sm mt-1">Login ke akun kamu untuk menuliskan ulasan!</p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
-          <h3 class="font-bold text-white text-sm mb-3 flex items-center gap-2">
-            <i class="fa-solid fa-pen-to-square text-indigo-400"></i> Tulis Ulasan Kamu
-          </h3>
-
-          <div id="review-login-notice" class="bg-slate-900/80 p-4 rounded-xl text-center border border-slate-700">
-            <i class="fa-solid fa-lock text-indigo-400 text-2xl mb-2"></i>
-            <p class="text-xs text-slate-300 mb-3">Kamu harus login untuk mengirimkan testimoni.</p>
-            <button onclick="openAuthModal('login')" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-xs transition">
-              Login Sekarang
-            </button>
-          </div>
-
-          <form id="review-form" onsubmit="addReview(event)" class="hidden space-y-3">
-            <div class="bg-indigo-950/40 border border-indigo-500/30 p-2.5 rounded-xl flex items-center gap-2">
-              <div class="w-7 h-7 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white text-xs" id="review-user-avatar">U</div>
-              <div>
-                <p class="text-[10px] text-slate-400">Mengirim sebagai:</p>
-                <p class="text-xs font-bold text-white" id="review-user-name">Username</p>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs text-slate-300 font-medium mb-1">Rating</label>
-              <select id="review-rating" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500">
-                <option value="5">⭐⭐⭐⭐⭐ (5.0) - Sangat Puas</option>
-                <option value="4">⭐⭐⭐⭐ (4.0) - Bagus</option>
-                <option value="3">⭐⭐⭐ (3.0) - Cukup</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs text-slate-300 font-medium mb-1">Ulasan / Pesan</label>
-              <textarea id="review-text" required rows="3" placeholder="Tuliskan pengalaman belanja kamu di Zyou Market..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-indigo-500"></textarea>
-            </div>
-
-            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl transition text-xs shadow-md">
-              Kirim Testimoni
-            </button>
-          </form>
-        </div>
-
-        <div class="lg:col-span-2 space-y-3" id="reviews-list">
-          </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="payment" class="max-w-6xl mx-auto px-4 pb-12">
-    <div class="bg-slate-900/60 border border-slate-800 p-6 md:p-8 rounded-3xl text-center">
-      <span class="text-indigo-400 text-xs font-bold uppercase tracking-wider bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Metode Pembayaran</span>
-      <h2 class="text-2xl font-black text-white mt-2">Dukungan Pembayaran Lengkap</h2>
-      <p class="text-slate-400 text-xs md:text-sm mt-1 mb-6">QRIS, E-Wallet, dan Transfer Bank 24 Jam Nonstop.</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-          <i class="fa-solid fa-qrcode text-indigo-400 text-2xl mb-2"></i>
-          <h3 class="font-bold text-white text-xs">QRIS All Payment</h3>
-          <p class="text-[11px] text-slate-400 mt-1">DANA, GoPay, OVO, ShopeePay & All Bank</p>
-        </div>
-        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-          <i class="fa-solid fa-wallet text-indigo-400 text-2xl mb-2"></i>
-          <h3 class="font-bold text-white text-xs">E-Wallet Direct</h3>
-          <p class="text-[11px] text-slate-400 mt-1">Transfer Langsung Ke E-Wallet Admin</p>
-        </div>
-        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50">
-          <i class="fa-solid fa-building-columns text-indigo-400 text-2xl mb-2"></i>
-          <h3 class="font-bold text-white text-xs">Transfer Bank / SeaBank</h3>
-          <p class="text-[11px] text-slate-400 mt-1">BCA, BRI, Mandiri, SeaBank</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
-    <p>© 2026 Zyou Market — Roblox Store 24 Jam. All Rights Reserved.</p>
-  </footer>
-
-  <div id="product-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-md w-full shadow-2xl relative">
-      <button onclick="closeProductModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-      
-      <h3 id="modal-product-name" class="text-lg font-bold text-white mb-1">Nama Produk</h3>
-      <p id="modal-product-price" class="text-indigo-400 font-extrabold text-base mb-4">Rp 0</p>
-      
-      <form id="product-form" onsubmit="submitToCart(event)" class="space-y-3">
-        
-        <div id="field-gamepass-info" class="hidden bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl text-xs text-amber-300 space-y-1">
-          <p class="font-bold flex items-center gap-1"><i class="fa-solid fa-triangle-exclamation"></i> Instruksi Setting Gamepass:</p>
-          <p>Atur harga Gamepass kamu senilai: <span id="gamepass-target-price" class="font-black text-white text-xs bg-amber-600 px-2 py-0.5 rounded">0 Robux</span></p>
-        </div>
-
-        <div id="field-username" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Username Roblox</label>
-          <input type="text" id="input-username" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Username Roblox kamu" />
-          <p id="username-note-18" class="text-[10px] text-red-400 mt-1 hidden">*Akun WAJIB berumur 18+ & verifikasi KTP!</p>
-        </div>
-
-        <div id="field-displayname" class="hidden">
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Display Name Roblox</label>
-          <input type="text" id="input-displayname" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Display Name akun Roblox kamu" />
-        </div>
-
-        <div id="field-password" class="hidden space-y-3">
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Password Akun Roblox</label>
-            <input type="password" id="input-password" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Password akun Roblox kamu" />
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">3 Kode Backup Roblox</label>
-            <input type="text" id="input-backupcode" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500" placeholder="Contoh: 12345678, 87654321, 11223344" />
-            <p class="text-[10px] text-amber-400 mt-1">*Masukkan 3 Kode Backup (Security Backup Codes) Roblox kamu dipisah koma untuk bypass 2FA.</p>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Pilih Metode Pembayaran</label>
-          <select id="input-payment" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
-            <option value="" disabled selected>-- Pilih Pembayaran --</option>
-            <option value="QRIS (All Payment)">QRIS (GoPay/OVO/DANA/ShopeePay/All Bank)</option>
-            <option value="DANA">DANA</option>
-            <option value="OVO">OVO</option>
-            <option value="GoPay">GoPay</option>
-            <option value="ShopeePay">ShopeePay</option>
-            <option value="Transfer BCA">Transfer Bank BCA</option>
-            <option value="Transfer Mandiri">Transfer Bank Mandiri</option>
-            <option value="Transfer BRI">Transfer Bank BRI</option>
-            <option value="Transfer SeaBank">Transfer SeaBank</option>
-          </select>
-        </div>
-
-        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition mt-4 shadow-lg shadow-indigo-600/30 text-xs">
-          Masukkan ke Keranjang
-        </button>
-      </form>
-    </div>
   </div>
-
-  <div id="cart-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-3xl p
+</div>
