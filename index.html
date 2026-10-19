@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYOU MARKET - Top Up Robux & Gamepass Roblox Termurah</title>
+    <title>ZYOU MARKET - Roblox Top Up & Gamepass Store</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Plus Jakarta Sans -->
@@ -22,17 +22,16 @@
                         gold: {
                             50: '#fffbeb',
                             100: '#fef3c7',
-                            200: '#fde047', /* Bright Gold-Yellow */
-                            300: '#facc15',
-                            400: '#fbbf24', /* Core Warm Yellow */
-                            500: '#d97706', /* Yellow-Brown / Amber Accent */
-                            600: '#b45309', /* Warm Brown Accent */
+                            200: '#fde047', /* Bright Yellow Accent */
+                            300: '#facc15', /* Golden Yellow */
+                            400: '#f59e0b', /* Warm Amber */
+                            500: '#d97706', /* Yellow Brown */
+                            600: '#b45309', /* Deep Amber Brown */
                             700: '#78350f', /* Deep Brown Accent */
-                            800: '#451a03', /* Dark Brown Container */
-                            900: '#280d02', /* Dark Brown Deep Surface */
-                            950: '#170601', /* Base Background */
-                        },
-                        amberGlow: '#ffd700'
+                            800: '#451a03', /* Dark Brown Box */
+                            900: '#18110a', /* Deep Brown Surface */
+                            950: '#0f0a06', /* Main Dark Background */
+                        }
                     }
                 }
             }
@@ -44,10 +43,10 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #170601;
+            background: #0f0a06;
         }
         ::-webkit-scrollbar-thumb {
-            background: #d97706;
+            background: #f59e0b;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -55,24 +54,16 @@
         }
 
         .gold-glow {
-            box-shadow: 0 0 25px rgba(250, 204, 21, 0.22);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
         }
         .gold-glow-lg {
-            box-shadow: 0 0 45px rgba(217, 119, 6, 0.32);
+            box-shadow: 0 0 45px rgba(250, 204, 21, 0.35);
         }
         .text-glow {
             text-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
         }
 
-        /* Drawer Animations */
-        .cart-drawer {
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .backdrop-fade {
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        /* Continuous Ticker Smooth Animation */
+        /* Continuous Ticker */
         @keyframes ticker {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -86,29 +77,21 @@
             animation-play-state: paused;
         }
 
-        /* Fade-in for new items */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .cart-drawer {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .animate-fade-in {
-            animation: fadeInDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .backdrop-fade {
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
 <body class="bg-gold-950 text-gold-50 font-sans min-h-screen flex flex-col antialiased selection:bg-gold-300 selection:text-gold-950">
 
-    <!-- TOP ANNOUNCEMENT BAR -->
+    <!-- ANNOUNCEMENT BANNER -->
     <div class="bg-gradient-to-r from-gold-500 via-gold-300 to-gold-400 text-gold-950 text-xs py-2 px-4 text-center font-extrabold tracking-wide shadow-md">
         <span class="inline-flex items-center gap-2">
             <i class="fa-solid fa-bolt text-gold-950 animate-bounce"></i>
-            <span>PROMO ROBUX VIA USERNAME, PROSES 5 - 15 MENIT</span>
+            <span>PROMO TOP UP ROBUX & GAMEPASS KUNING EMAS - PROSES OTOMATIS & INTEGRATED PAYMENT MANUAL INVOICE!</span>
         </span>
     </div>
 
@@ -128,7 +111,7 @@
         </div>
     </div>
 
-    <!-- MAIN HEADER -->
+    <!-- HEADER NAVIGATION -->
     <header class="sticky top-0 z-30 bg-gold-950/95 backdrop-blur-md border-b border-gold-800/80 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20 gap-4">
@@ -142,13 +125,13 @@
                         <span class="font-black text-2xl tracking-wider text-white group-hover:text-gold-300 transition-colors">
                             ZYOU <span class="text-gold-300 font-extrabold text-glow">MARKET</span>
                         </span>
-                        <span class="text-[10px] text-gold-400 font-bold uppercase tracking-widest -mt-1">Roblox Store #1 Termurah</span>
+                        <span class="text-[10px] text-gold-400 font-bold uppercase tracking-widest -mt-1">Roblox Top Up & Payment Center</span>
                     </div>
                 </a>
 
                 <!-- SEARCH BAR (Desktop) -->
                 <div class="hidden md:flex flex-1 max-w-md mx-6 relative">
-                    <input type="text" id="searchInput" placeholder="Cari Gamepass, Blox Fruits, Robux, Adopt Me..." 
+                    <input type="text" id="searchInput" placeholder="Cari Robux, Blox Fruits, Pet Sim 99, King Legacy..." 
                         class="w-full pl-10 pr-10 py-2.5 rounded-2xl border border-gold-700/60 bg-gold-900/80 text-gold-100 placeholder-gold-500/70 text-sm focus:outline-none focus:ring-2 focus:ring-gold-300 focus:bg-gold-900 transition-all shadow-inner">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gold-400"></i>
                     <button id="clearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gold-400 hover:text-white text-sm">
@@ -160,21 +143,22 @@
                 <div class="flex items-center gap-3">
                     <nav class="hidden lg:flex items-center gap-6 text-sm font-bold text-gold-200">
                         <a href="#hero" class="hover:text-gold-300 transition-colors">Beranda</a>
-                        <a href="#queue-stats" class="hover:text-gold-300 transition-colors">Status Antrian</a>
+                        <a href="#payment-info" class="hover:text-gold-300 transition-colors">Metode Pembayaran</a>
                         <a href="#catalog" class="hover:text-gold-300 transition-colors">Katalog</a>
+                        <a href="#queue-stats" class="hover:text-gold-300 transition-colors">Lacak Antrian</a>
                         <a href="#testimonials" class="hover:text-gold-300 transition-colors">Testimoni</a>
                     </nav>
 
                     <!-- Cart Button -->
                     <button id="cartBtn" class="relative px-4 py-2.5 rounded-2xl bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 text-gold-950 font-black transition-all flex items-center justify-center gap-2 shadow-lg gold-glow">
-                        <i class="fa-solid fa-cart-shopping text-base"></i>
+                        <i class="fa-solid fa-basket-shopping text-base"></i>
                         <span class="hidden sm:inline text-xs">Keranjang</span>
                         <span id="cartCountBadge" class="bg-gold-950 text-gold-300 text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center border border-gold-300">
                             0
                         </span>
                     </button>
 
-                    <!-- Mobile Menu Button -->
+                    <!-- Mobile Menu Toggle -->
                     <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl bg-gold-900 text-gold-300 border border-gold-700">
                         <i class="fa-solid fa-bars text-lg"></i>
                     </button>
@@ -184,7 +168,7 @@
             <!-- SEARCH BAR (Mobile) -->
             <div class="pb-3 md:hidden">
                 <div class="relative w-full">
-                    <input type="text" id="searchInputMobile" placeholder="Cari Robux, Blox Fruits, Adopt Me..." 
+                    <input type="text" id="searchInputMobile" placeholder="Cari Robux, Blox Fruits, Gamepass..." 
                         class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-gold-700 bg-gold-900 text-sm text-gold-100 placeholder-gold-500">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gold-400"></i>
                 </div>
@@ -194,39 +178,36 @@
         <!-- Mobile Navigation Menu -->
         <div id="mobileMenu" class="hidden lg:hidden border-t border-gold-800 bg-gold-900 px-4 py-3 space-y-2 text-sm font-bold">
             <a href="#hero" class="block py-2 text-gold-200 hover:text-gold-300">Beranda</a>
-            <a href="#queue-stats" class="block py-2 text-gold-200 hover:text-gold-300">Status Antrian</a>
+            <a href="#payment-info" class="block py-2 text-gold-200 hover:text-gold-300">Metode Pembayaran</a>
             <a href="#catalog" class="block py-2 text-gold-200 hover:text-gold-300">Katalog Produk</a>
-            <a href="#testimonials" class="block py-2 text-gold-200 hover:text-gold-300">Testimoni Pembeli</a>
+            <a href="#queue-stats" class="block py-2 text-gold-200 hover:text-gold-300">Status Antrian Live</a>
+            <a href="#testimonials" class="block py-2 text-gold-200 hover:text-gold-300">Testimoni Realtime</a>
         </div>
     </header>
 
     <main class="flex-grow">
         <!-- HERO BANNER SECTION -->
-        <section id="hero" class="relative bg-gradient-to-b from-gold-900 via-gold-950 to-gold-950 py-16 lg:py-20 overflow-hidden border-b border-gold-800/80">
-            <!-- Background Glows -->
-            <div class="absolute -top-20 -left-20 w-80 h-80 bg-gold-400/20 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-gold-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
+        <section id="hero" class="relative bg-gradient-to-b from-gold-900 via-gold-950 to-gold-950 py-12 lg:py-16 overflow-hidden border-b border-gold-800/80">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                     
                     <div class="space-y-6 text-center lg:text-left">
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-400/40 text-gold-300 text-xs font-black uppercase tracking-wider">
-                            <i class="fa-solid fa-shield-halved text-gold-300"></i> 100% Legal, Aman & Garansi Instant
+                            <i class="fa-solid fa-qrcode text-gold-300"></i> QRIS & E-Wallet Auto Invoice Payment
                         </div>
                         <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none text-white">
-                            Top Up Robux & <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-200 via-gold-300 to-amberGlow text-glow">Gamepass Roblox</span> Termurah
+                            Top Up Robux & <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-200 via-gold-300 to-gold-400 text-glow">Gamepass Roblox</span>
                         </h1>
                         <p class="text-gold-200/90 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                            Pusat Gamepass Blox Fruits, Pet Simulator 99, Adopt Me, King Legacy, Deepwoken, & Paket Robux termurah di <strong class="text-gold-300">ZYOU MARKET</strong>. Buka 24 jam dengan antrian terintegrasi otomatis.
+                            Proses bayar serba praktis menggunakan QRIS All Payment, DANA, GoPay, OVO, ShopeePay, & Bank Transfer VA dengan instruksi bayar realtime & konfirmasi instant di <strong class="text-gold-300">ZYOU MARKET</strong>.
                         </p>
 
                         <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
                             <a href="#catalog" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 text-gold-950 font-black text-sm hover:brightness-110 transition-all shadow-xl gold-glow flex items-center gap-2">
-                                <i class="fa-solid fa-gamepad"></i> Belanja Sekarang
+                                <i class="fa-solid fa-gamepad"></i> Pilih Produk & Bayar
                             </a>
-                            <a href="#testimonials" class="px-6 py-4 rounded-2xl bg-gold-900 hover:bg-gold-800 text-gold-200 border border-gold-700 font-bold text-sm transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-comments text-gold-400"></i> Lihat Testimoni
+                            <a href="#payment-info" class="px-6 py-4 rounded-2xl bg-gold-900 hover:bg-gold-800 text-gold-200 border border-gold-700 font-bold text-sm transition-all flex items-center gap-2">
+                                <i class="fa-solid fa-credit-card text-gold-400"></i> Lihat Metode Bayar
                             </a>
                         </div>
                     </div>
@@ -235,19 +216,19 @@
                     <div class="relative flex justify-center">
                         <div class="relative w-full max-w-md rounded-3xl bg-gradient-to-b from-gold-400 via-gold-600 to-gold-900 p-1 shadow-2xl gold-glow-lg overflow-hidden group">
                             <div class="bg-gold-950 rounded-[22px] overflow-hidden p-4">
-                                <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=800&q=80" alt="Roblox Gaming" class="w-full h-64 sm:h-72 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
+                                <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=800&q=80" alt="Roblox Gaming" class="w-full h-60 sm:h-64 object-cover rounded-xl group-hover:scale-105 transition-transform duration-500">
                                 
-                                <div class="mt-4 p-4 rounded-xl bg-gold-900/90 border border-gold-700 flex items-center justify-between">
+                                <div class="mt-4 p-3.5 rounded-xl bg-gold-900/90 border border-gold-700 flex items-center justify-between">
                                     <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 rounded-xl bg-gold-400 text-gold-950 flex items-center justify-center font-black text-lg">
-                                            R$
+                                        <div class="w-10 h-10 rounded-xl bg-gold-400 text-gold-950 flex items-center justify-center font-black text-xl">
+                                            <i class="fa-solid fa-qrcode"></i>
                                         </div>
                                         <div>
-                                            <p class="text-xs text-gold-300 font-bold">Stok Robux & Pass Ready</p>
-                                            <p class="text-sm font-black text-white">Instant Gift & Group Funds</p>
+                                            <p class="text-xs text-gold-300 font-bold">QRIS & Instant VA Ready</p>
+                                            <p class="text-sm font-black text-white">Otomatis Terverifikasi</p>
                                         </div>
                                     </div>
-                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black uppercase">Active</span>
+                                    <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-black uppercase">Online</span>
                                 </div>
                             </div>
                         </div>
@@ -257,80 +238,71 @@
             </div>
         </section>
 
-        <!-- REAL-TIME QUEUE STATS BOARD -->
-        <section id="queue-stats" class="py-12 bg-gold-900/60 border-b border-gold-800">
+        <!-- PAYMENT METHOD DISPLAY SECTION -->
+        <section id="payment-info" class="py-12 bg-gold-900/60 border-b border-gold-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-8">
                     <span class="px-3 py-1 rounded-full bg-gold-400/10 border border-gold-400/30 text-gold-300 font-black uppercase text-xs tracking-widest inline-flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Dynamic Server Processing
+                        <i class="fa-solid fa-wallet text-amber-400"></i> Integrated Payment Gateway
                     </span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">Status Antrian & Server Realtime</h2>
-                    <p class="text-xs text-gold-300/80 mt-1">Sistem kami memproses orderan secara otomatis berdasarkan antrian masuk.</p>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">Pilihan Metode Pembayaran Lengkap</h2>
+                    <p class="text-xs text-gold-300/80 mt-1">Gunakan QRIS Instant atau Transfer E-Wallet / Bank VA. Lengkap dengan nomor rekening & QRIS downloadable di halaman invoice checkout!</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-700/80 shadow-xl flex items-center gap-5 relative overflow-hidden">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-gold-300 text-gold-950 flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
-                            <i class="fa-solid fa-list-check"></i>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <!-- QRIS -->
+                    <div class="p-4 bg-gold-950 border border-gold-700/80 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:border-gold-300 transition-all shadow-md group">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-qrcode"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-gold-400 uppercase tracking-wider">Antrian Saat Ini</p>
-                            <h3 id="activeQueueCount" class="text-3xl font-black text-white text-glow">5 Pesanan</h3>
-                            <p class="text-[11px] text-emerald-400 mt-1 font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-circle-check"></i> Server Lancar Jaya
-                            </p>
+                            <h4 class="font-bold text-white text-xs">QRIS ALL Payment</h4>
+                            <span class="text-[10px] text-emerald-400 font-bold">Scan All E-Wallet & Bank</span>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-700/80 shadow-xl flex items-center gap-5 relative overflow-hidden">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-gold-300 text-gold-950 flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
-                            <i class="fa-solid fa-stopwatch"></i>
+                    <!-- DANA -->
+                    <div class="p-4 bg-gold-950 border border-gold-700/80 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:border-gold-300 transition-all shadow-md group">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wallet"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-gold-400 uppercase tracking-wider">Estimasi Waktu Proses</p>
-                            <h3 id="estProcessTime" class="text-3xl font-black text-white text-glow">1 - 3 Menit</h3>
-                            <p class="text-[11px] text-gold-300/80 mt-1 font-semibold">Tergantung antrian server</p>
+                            <h4 class="font-bold text-white text-xs">E-Wallet DANA</h4>
+                            <span class="text-[10px] text-gold-400">0895-1234-5678</span>
                         </div>
                     </div>
 
-                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-700/80 shadow-xl flex items-center gap-5 relative overflow-hidden">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-gold-300 text-gold-950 flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
-                            <i class="fa-solid fa-circle-check"></i>
+                    <!-- GoPay -->
+                    <div class="p-4 bg-gold-950 border border-gold-700/80 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:border-gold-300 transition-all shadow-md group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-mobile-screen"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-gold-400 uppercase tracking-wider">Selesai Hari Ini</p>
-                            <h3 id="completedTodayCount" class="text-3xl font-black text-white text-glow">482 Transaksi</h3>
-                            <p class="text-[11px] text-emerald-400 mt-1 font-semibold flex items-center gap-1">
-                                <i class="fa-solid fa-arrow-trend-up"></i> Auto-updated Realtime
-                            </p>
+                            <h4 class="font-bold text-white text-xs">GoPay & OVO</h4>
+                            <span class="text-[10px] text-gold-400">0895-1234-5678</span>
                         </div>
                     </div>
-                </div>
 
-                <!-- DETAILED LIVE QUEUE TABLE -->
-                <div class="bg-gold-950 rounded-3xl border border-gold-700/80 p-6 shadow-2xl">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
-                            <i class="fa-solid fa-clock-rotate-left text-gold-400"></i> Tabel Antrian Pemrosesan Terkini
-                        </h3>
-                        <span class="text-[11px] text-gold-400">Pembaruan Otomatis</span>
+                    <!-- Bank BCA -->
+                    <div class="p-4 bg-gold-950 border border-gold-700/80 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:border-gold-300 transition-all shadow-md group">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-xs">Bank BCA Transfer</h4>
+                            <span class="text-[10px] text-gold-400">Rek: 8290-1122-33</span>
+                        </div>
                     </div>
 
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs">
-                            <thead>
-                                <tr class="border-b border-gold-800 text-gold-400 font-extrabold uppercase text-[10px]">
-                                    <th class="pb-3 px-3">No. TRX</th>
-                                    <th class="pb-3 px-3">Username Roblox</th>
-                                    <th class="pb-3 px-3">Produk</th>
-                                    <th class="pb-3 px-3">Waktu</th>
-                                    <th class="pb-3 px-3">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="liveQueueTableBody" class="divide-y divide-gold-900 text-gold-200 font-medium">
-                                <!-- Dynamic Queue Table Rows injected via JS -->
-                            </tbody>
-                        </table>
+                    <!-- Bank Mandiri / BRI / BNI -->
+                    <div class="p-4 bg-gold-950 border border-gold-700/80 rounded-2xl flex flex-col items-center justify-center text-center gap-2 hover:border-gold-300 transition-all shadow-md group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-xs">Bank Mandiri / BRI</h4>
+                            <span class="text-[10px] text-gold-400">VA Rekening Otomatis</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -343,7 +315,7 @@
                     <span class="text-gold-400 font-extrabold uppercase text-xs tracking-widest flex items-center gap-2">
                         <i class="fa-solid fa-fire text-amber-400"></i> Katalog Produk Roblox
                     </span>
-                    <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">Pilih Robux & Gamepass Favorit</h2>
+                    <h2 class="text-2xl sm:text-4xl font-black text-white mt-1">Pilih Robux & Gamepass Roblox</h2>
                 </div>
                 <div class="text-xs text-gold-400 font-medium">
                     Menampilkan <span id="productCount" class="font-extrabold text-gold-200">0</span> Item
@@ -364,15 +336,95 @@
             <div id="noProducts" class="hidden text-center py-16 bg-gold-900/60 rounded-3xl border border-dashed border-gold-700">
                 <i class="fa-solid fa-gamepad text-5xl text-gold-500 mb-3"></i>
                 <h3 class="text-lg font-bold text-white">Produk Tidak Ditemukan</h3>
-                <p class="text-gold-400 text-xs mt-1">Coba cari dengan kata kunci lain atau pilih kategori lain.</p>
+                <p class="text-gold-400 text-xs mt-1">Coba cari kata kunci lain atau pilih kategori lain.</p>
                 <button id="resetFilterBtn" class="mt-4 px-5 py-2.5 bg-gold-400 text-gold-950 font-black text-xs rounded-xl hover:bg-gold-300 transition-colors">
                     Reset Filter
                 </button>
             </div>
         </section>
 
+        <!-- REAL-TIME QUEUE STATS & TRACKER BOARD -->
+        <section id="queue-stats" class="py-12 bg-gold-900/60 border-t border-b border-gold-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="px-3 py-1 rounded-full bg-gold-400/10 border border-gold-400/30 text-gold-300 font-black uppercase text-xs tracking-widest inline-flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Dynamic Server Processing
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white mt-2">Status Antrian Pemrosesan Realtime</h2>
+                    <p class="text-xs text-gold-300/80 mt-1">Setelah pembayaran berhasil dikonfirmasi, transaksi kamu otomatis masuk ke daftar antrian paling atas.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-700/80 shadow-xl flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-gold-300 text-gold-950 flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gold-400 uppercase tracking-wider">Antrian Aktif</p>
+                            <h3 id="activeQueueCount" class="text-3xl font-black text-white text-glow">4 Pesanan</h3>
+                            <p class="text-[11px] text-emerald-400 mt-1 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-circle-check"></i> System Smooth
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-700/80 shadow-xl flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-gold-300 text-gold-950 flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gold-400 uppercase tracking-wider">Estimasi Waktu</p>
+                            <h3 class="text-3xl font-black text-white text-glow">1 - 3 Menit</h3>
+                            <p class="text-[11px] text-gold-300/80 mt-1 font-semibold">Proses Robot / Admin Fast</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-700/80 shadow-xl flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-500 to-gold-300 text-gold-950 flex items-center justify-center text-2xl font-black shrink-0 shadow-md">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gold-400 uppercase tracking-wider">Sukses Hari Ini</p>
+                            <h3 id="completedTodayCount" class="text-3xl font-black text-white text-glow">519 Transaksi</h3>
+                            <p class="text-[11px] text-emerald-400 mt-1 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-trend-up"></i> Realtime Updated
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DETAILED LIVE QUEUE TABLE -->
+                <div class="bg-gold-950 rounded-3xl border border-gold-700/80 p-6 shadow-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-gold-400"></i> Tabel Antrian Transaksi Realtime
+                        </h3>
+                        <span class="text-[11px] text-gold-400">Live Auto Sync</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead>
+                                <tr class="border-b border-gold-800 text-gold-400 font-extrabold uppercase text-[10px]">
+                                    <th class="pb-3 px-3">No. TRX</th>
+                                    <th class="pb-3 px-3">Username Roblox</th>
+                                    <th class="pb-3 px-3">Produk</th>
+                                    <th class="pb-3 px-3">Total Nominal</th>
+                                    <th class="pb-3 px-3">Waktu</th>
+                                    <th class="pb-3 px-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="liveQueueTableBody" class="divide-y divide-gold-900 text-gold-200 font-medium">
+                                <!-- Dynamic Queue Table Rows injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- DYNAMIC REAL-TIME TESTIMONIALS SECTION -->
-        <section id="testimonials" class="py-16 bg-gold-900/40 border-t border-gold-800">
+        <section id="testimonials" class="py-16 bg-gold-950">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row items-center justify-between mb-10 gap-4 text-center md:text-left">
                     <div>
@@ -381,7 +433,7 @@
                         </span>
                         <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Ulasan & Rating Dari Gamers</h2>
                         <p class="text-xs text-gold-300/80 mt-1">
-                            Rating Toko: <span id="avgRatingDisplay" class="font-extrabold text-amber-300">4.9 / 5.0</span> (<span id="totalReviewsDisplay" class="font-bold text-white">482</span> ulasan)
+                            Rating Toko: <span class="font-extrabold text-amber-300">4.9 / 5.0</span> (<span id="totalReviewsDisplay" class="font-bold text-white">519</span> ulasan)
                         </p>
                     </div>
 
@@ -392,42 +444,7 @@
 
                 <!-- TESTIMONIALS GRID -->
                 <div id="testimonialGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Testimonial cards dynamically injected & prepended here -->
-                </div>
-            </div>
-        </section>
-
-        <!-- PAYMENT METHODS SECTION -->
-        <section id="payment-methods" class="py-16 bg-gold-950 border-t border-gold-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <span class="text-gold-400 font-black uppercase text-xs tracking-widest">Kemudahan Pembayaran</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-white mt-1 mb-8">Metode Pembayaran Lengkap & Otomatis</h2>
-
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                    <div class="p-3.5 bg-gold-900/80 border border-gold-800 rounded-2xl flex flex-col items-center justify-center gap-1.5 hover:border-gold-400 transition-colors">
-                        <i class="fa-solid fa-qrcode text-2xl text-gold-300"></i>
-                        <span class="text-xs font-bold text-white">QRIS All Payment</span>
-                    </div>
-                    <div class="p-3.5 bg-gold-900/80 border border-gold-800 rounded-2xl flex flex-col items-center justify-center gap-1.5 hover:border-gold-400 transition-colors">
-                        <i class="fa-solid fa-wallet text-2xl text-blue-400"></i>
-                        <span class="text-xs font-bold text-white">DANA</span>
-                    </div>
-                    <div class="p-3.5 bg-gold-900/80 border border-gold-800 rounded-2xl flex flex-col items-center justify-center gap-1.5 hover:border-gold-400 transition-colors">
-                        <i class="fa-solid fa-mobile-screen text-2xl text-emerald-400"></i>
-                        <span class="text-xs font-bold text-white">GoPay</span>
-                    </div>
-                    <div class="p-3.5 bg-gold-900/80 border border-gold-800 rounded-2xl flex flex-col items-center justify-center gap-1.5 hover:border-gold-400 transition-colors">
-                        <i class="fa-solid fa-circle-dollar-to-slot text-2xl text-purple-400"></i>
-                        <span class="text-xs font-bold text-white">OVO</span>
-                    </div>
-                    <div class="p-3.5 bg-gold-900/80 border border-gold-800 rounded-2xl flex flex-col items-center justify-center gap-1.5 hover:border-gold-400 transition-colors">
-                        <i class="fa-solid fa-bag-shopping text-2xl text-orange-400"></i>
-                        <span class="text-xs font-bold text-white">ShopeePay</span>
-                    </div>
-                    <div class="p-3.5 bg-gold-900/80 border border-gold-800 rounded-2xl flex flex-col items-center justify-center gap-1.5 hover:border-gold-400 transition-colors">
-                        <i class="fa-solid fa-building-columns text-2xl text-cyan-400"></i>
-                        <span class="text-xs font-bold text-white">Virtual Account</span>
-                    </div>
+                    <!-- Testimonial cards dynamically injected -->
                 </div>
             </div>
         </section>
@@ -443,46 +460,46 @@
                         <span class="font-black text-lg text-white">ZYOU MARKET</span>
                     </div>
                     <p class="text-gold-400 text-[11px] leading-relaxed">
-                        Platform e-commerce penyedia Top Up Robux Murah & Gamepass Roblox resmi terpercaya di Indonesia.
+                        Top Up Robux & Gamepass Roblox Murah, Aman, Legal, dengan sistem invoice pembayaran otomatis terpercaya.
                     </p>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-white mb-3">Gamepass Populer</h4>
+                    <h4 class="font-bold text-white mb-3">Gamepass Favorit</h4>
                     <ul class="space-y-1.5 text-gold-400">
-                        <li><a href="#catalog" class="hover:text-gold-200">Blox Fruits Gamepass</a></li>
+                        <li><a href="#catalog" class="hover:text-gold-200">Blox Fruits Buddha Permanent</a></li>
+                        <li><a href="#catalog" class="hover:text-gold-200">Dark Blade (Yoru)</a></li>
                         <li><a href="#catalog" class="hover:text-gold-200">Pet Simulator 99 VIP</a></li>
-                        <li><a href="#catalog" class="hover:text-gold-200">Adopt Me Fly Ride Pet</a></li>
-                        <li><a href="#catalog" class="hover:text-gold-200">Deepwoken Access Pass</a></li>
+                        <li><a href="#catalog" class="hover:text-gold-200">1000 Robux Package</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-white mb-3">Layanan Customer</h4>
+                    <h4 class="font-bold text-white mb-3">Metode Bayar</h4>
                     <ul class="space-y-1.5 text-gold-400">
-                        <li><a href="#queue-stats" class="hover:text-gold-200">Lacak Status Antrian</a></li>
-                        <li><a href="#testimonials" class="hover:text-gold-200">Testimoni Pembeli</a></li>
-                        <li><a href="#payment-methods" class="hover:text-gold-200">Metode Pembayaran</a></li>
+                        <li><a href="#payment-info" class="hover:text-gold-200">QRIS All Payment</a></li>
+                        <li><a href="#payment-info" class="hover:text-gold-200">E-Wallet DANA / GoPay / OVO</a></li>
+                        <li><a href="#payment-info" class="hover:text-gold-200">Virtual Account BCA / Mandiri / BRI</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-white mb-3">Bantuan & Hubungi Kami</h4>
-                    <p class="text-gold-400 mb-2">Punya pertanyaan seputar pengiriman?</p>
+                    <h4 class="font-bold text-white mb-3">Bantuan CS</h4>
+                    <p class="text-gold-400 mb-2">Punya pertanyaan seputar invoice / pengiriman?</p>
                     <a href="https://wa.me/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500 transition-colors">
-                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp CS Store
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp CS ZYOU MARKET
                     </a>
                 </div>
             </div>
 
             <div class="pt-6 text-center text-gold-500 text-[11px] flex flex-col sm:flex-row items-center justify-between gap-2">
-                <p>&copy; 2026 ZYOU MARKET - Roblox Gamepass & Robux Store. All rights reserved.</p>
+                <p>&copy; 2026 ZYOU MARKET. All rights reserved.</p>
                 <p>Not affiliated with Roblox Corporation.</p>
             </div>
         </div>
     </footer>
 
-    <!-- CART DRAWER / SIDEBAR -->
+    <!-- SHOPPING CART DRAWER -->
     <div id="cartBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden opacity-0 backdrop-fade"></div>
     <aside id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-gold-950 border-l border-gold-800 z-50 shadow-2xl flex flex-col translate-x-full cart-drawer">
         <div class="p-5 bg-gold-900 border-b border-gold-800 flex items-center justify-between">
@@ -511,15 +528,15 @@
                     <span id="cartRobloxUser" class="font-bold text-amber-300">Belum Diisi</span>
                 </div>
                 <div class="flex justify-between text-gold-300">
-                    <span>Subtotal</span>
+                    <span>Subtotal Produk</span>
                     <span id="cartSubtotal" class="font-bold text-white">Rp0</span>
                 </div>
                 <div class="flex justify-between text-gold-300">
-                    <span>Biaya Layanan/Admin</span>
-                    <span class="font-bold text-emerald-400">GRATIS</span>
+                    <span>Kode Unik Admin (Pemeriksa)</span>
+                    <span id="cartUniqueCode" class="font-mono font-bold text-gold-300">+Rp503</span>
                 </div>
                 <div class="flex justify-between text-sm font-black text-white pt-2 border-t border-gold-800">
-                    <span>Total Pembayaran</span>
+                    <span>Total Harus Dibayar</span>
                     <span id="cartTotal" class="text-gold-300 text-lg text-glow">Rp0</span>
                 </div>
             </div>
@@ -527,23 +544,22 @@
             <!-- Select Payment Method inside Cart -->
             <div>
                 <label class="block text-xs font-bold text-gold-300 mb-1.5">Pilih Metode Pembayaran:</label>
-                <select id="cartPaymentMethod" class="w-full px-3 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300">
-                    <option value="QRIS Instant">QRIS All Payment (Instant Auto)</option>
-                    <option value="DANA E-Wallet">E-Wallet DANA</option>
-                    <option value="GoPay E-Wallet">E-Wallet GoPay</option>
-                    <option value="OVO E-Wallet">E-Wallet OVO</option>
-                    <option value="ShopeePay">ShopeePay</option>
-                    <option value="VA BCA">Transfer Virtual Account BCA</option>
+                <select id="cartPaymentMethod" class="w-full px-3 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300 font-medium">
+                    <option value="qris">QRIS Instant (All E-Wallet & Bank)</option>
+                    <option value="dana">DANA (E-Wallet)</option>
+                    <option value="gopay">GoPay / OVO / ShopeePay</option>
+                    <option value="bca">Bank BCA Transfer</option>
+                    <option value="mandiri">Bank Mandiri / BRI VA</option>
                 </select>
             </div>
 
             <button id="checkoutBtn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 hover:brightness-110 text-gold-950 font-black text-sm shadow-xl gold-glow transition-all flex items-center justify-center gap-2">
-                <i class="fa-solid fa-lock text-xs"></i> Bayar & Masuk Antrian
+                <i class="fa-solid fa-receipt text-xs"></i> Lanjut Ke Invoice Pembayaran
             </button>
         </div>
     </aside>
 
-    <!-- ROBLOX USERNAME INPUT MODAL -->
+    <!-- ROBLOX USERNAME MODAL -->
     <div id="usernameModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-gold-900 border border-gold-700 rounded-3xl max-w-md w-full p-6 space-y-5 shadow-2xl relative">
             <button id="closeUserModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gold-800 text-gold-300 flex items-center justify-center hover:bg-gold-700">
@@ -556,7 +572,7 @@
                 </div>
                 <h3 class="text-xl font-black text-white">Masukkan Username Roblox</h3>
                 <p class="text-xs text-gold-300">
-                    Robux atau Gamepass yang kamu pilih akan dikirimkan langsung ke akun ini.
+                    Gamepass atau Robux akan dikirimkan ke Username Roblox ini.
                 </p>
             </div>
 
@@ -564,11 +580,11 @@
                 <div>
                     <label class="block text-xs font-bold text-gold-200 mb-1">Username Roblox Kamu / User ID</label>
                     <div class="relative">
-                        <input type="text" id="robloxUsernameInput" placeholder="Contoh: GamerKeren_123" 
+                        <input type="text" id="robloxUsernameInput" placeholder="Contoh: GamerSultan_99" 
                             class="w-full pl-10 pr-4 py-3 rounded-xl bg-gold-950 border border-gold-700 text-sm text-white placeholder-gold-600 focus:outline-none focus:ring-2 focus:ring-gold-400">
                         <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-gold-500"></i>
                     </div>
-                    <span class="text-[10px] text-amber-400 mt-1 block">*Pastikan penulisan huruf besar dan kecil sudah benar</span>
+                    <span class="text-[10px] text-amber-400 mt-1 block">*Perhatikan huruf besar & kecil username kamu</span>
                 </div>
 
                 <div id="selectedProductPreview" class="p-3 bg-gold-950 rounded-xl border border-gold-800 flex items-center gap-3">
@@ -577,12 +593,78 @@
             </div>
 
             <button id="confirmAddToCartBtn" class="w-full py-3.5 bg-gradient-to-r from-gold-300 to-gold-500 text-gold-950 font-black text-sm rounded-xl hover:brightness-110 shadow-lg gold-glow transition-all">
-                Konfirmasi & Tambah Ke Keranjang
+                Konfirmasi & Tambahkan Ke Keranjang
             </button>
         </div>
     </div>
 
-    <!-- ADD TESTIMONIAL MODAL -->
+    <!-- FULL INVOICE PAYMENT MODAL (FITUR PEMBAYARAN UTAMA) -->
+    <div id="paymentModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-gold-900 border border-gold-700 rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl relative my-8">
+            <button id="closePaymentModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gold-800 text-gold-300 flex items-center justify-center hover:bg-gold-700">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="text-center border-b border-gold-800 pb-4 space-y-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 text-[11px] font-bold border border-amber-500/20">
+                    <i class="fa-solid fa-clock animate-pulse"></i> Menunggu Pembayaran
+                </div>
+                <h3 class="text-xl font-black text-white">Invoice Pembayaran ZYOU MARKET</h3>
+                <p class="text-xs text-gold-300">No. TRX: <span id="payTrxId" class="font-mono font-bold text-gold-200">#ZY-88391</span></p>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="p-3 rounded-2xl bg-gold-950 border border-gold-800 flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs text-gold-300">
+                    <i class="fa-solid fa-hourglass-half text-amber-400 text-sm"></i>
+                    <span>Selesaikan dalam:</span>
+                </div>
+                <span id="countdownTimer" class="font-mono font-black text-amber-300 text-base">14:59</span>
+            </div>
+
+            <!-- Detailed Billing Summary -->
+            <div class="p-4 rounded-2xl bg-gold-950 border border-gold-800 space-y-2 text-xs">
+                <div class="flex justify-between">
+                    <span class="text-gold-400">Target Roblox Username:</span>
+                    <span id="payTargetUser" class="font-bold text-white">Gamer_123</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gold-400">Metode Pembayaran:</span>
+                    <span id="payMethodName" class="font-bold text-amber-300">QRIS All Payment</span>
+                </div>
+                <div class="flex justify-between pt-2 border-t border-gold-800">
+                    <span class="text-gold-400">Total Nominal Pembayaran:</span>
+                    <div class="text-right">
+                        <span id="payTotalExact" class="font-black text-gold-200 text-base text-glow">Rp 50.503</span>
+                        <span class="block text-[10px] text-amber-400">*Transfer harus sesuai digit tepat</span>
+                    </div>
+                </div>
+                <div class="text-right pt-1">
+                    <button onclick="copyToClipboard('payTotalExact', 'Nominal Pembayaran')" class="text-[11px] font-bold text-gold-300 hover:text-white inline-flex items-center gap-1">
+                        <i class="fa-solid fa-copy"></i> Salin Nominal Exakt
+                    </button>
+                </div>
+            </div>
+
+            <!-- DYNAMIC PAYMENT DISPLAY (QRIS / BANK / REKENING) -->
+            <div id="paymentInstructionsContainer" class="p-5 rounded-2xl bg-gold-950 border border-gold-700/80 text-center space-y-4">
+                <!-- Injected via JS based on payment method chosen -->
+            </div>
+
+            <!-- Action Confirm & Upload Payment -->
+            <div class="space-y-3 pt-2">
+                <button id="confirmPaymentBtn" class="w-full py-4 rounded-2xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 hover:brightness-110 text-gold-950 font-black text-sm shadow-xl gold-glow transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i> Saya Sudah Transfer / Bayar
+                </button>
+                <button id="simulateUploadProofBtn" class="w-full py-2.5 rounded-xl bg-gold-900 border border-gold-700 hover:bg-gold-800 text-gold-200 font-bold text-xs transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-upload text-gold-400"></i> Upload Bukti Transfer (Simulasi)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIAL MODAL -->
     <div id="reviewModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-gold-900 border border-gold-700 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl relative">
             <button id="closeReviewModal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gold-800 text-gold-300 flex items-center justify-center hover:bg-gold-700">
@@ -600,7 +682,7 @@
             <form id="reviewForm" class="space-y-3">
                 <div>
                     <label class="block text-xs font-bold text-gold-200 mb-1">Username Roblox Kamu</label>
-                    <input type="text" id="reviewUsername" required placeholder="Contoh: ProPlayer99" class="w-full px-3.5 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300">
+                    <input type="text" id="reviewUsername" required placeholder="Contoh: ProPlayer_99" class="w-full px-3.5 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300">
                 </div>
 
                 <div>
@@ -608,10 +690,9 @@
                     <select id="reviewProduct" class="w-full px-3.5 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300">
                         <option value="1000 Robux Package">1000 Robux Package</option>
                         <option value="Blox Fruits Permanent Buddha">Blox Fruits Permanent Buddha</option>
-                        <option value="Darkblade (Yoru)">Darkblade (Yoru)</option>
-                        <option value="Adopt Me Fly Ride Frost Dragon">Adopt Me Fly Ride Frost Dragon</option>
+                        <option value="Dark Blade (Yoru)">Dark Blade (Yoru)</option>
                         <option value="Pet Simulator 99 VIP">Pet Simulator 99 VIP</option>
-                        <option value="Deepwoken Access Pass">Deepwoken Access Pass</option>
+                        <option value="Fruit Notifier">Fruit Notifier</option>
                     </select>
                 </div>
 
@@ -628,63 +709,26 @@
 
                 <div>
                     <label class="block text-xs font-bold text-gold-200 mb-1">Komentar Ulasan</label>
-                    <textarea id="reviewComment" rows="3" required placeholder="Prosesnya cepet banget cuma 1 menit langsung masuk..." class="w-full px-3.5 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300"></textarea>
+                    <textarea id="reviewComment" rows="3" required placeholder="Prosesnya super cepat, tinggal bayar via QRIS 1 menit Robux langsung mendarat..." class="w-full px-3.5 py-2.5 rounded-xl bg-gold-950 border border-gold-700 text-xs text-white focus:outline-none focus:border-gold-300"></textarea>
                 </div>
 
                 <button type="submit" class="w-full py-3 bg-gradient-to-r from-gold-300 to-gold-500 text-gold-950 font-black text-xs rounded-xl hover:brightness-110 shadow-lg gold-glow transition-all">
-                    Kirim Ulasan
+                    Kirim Ulasan Testimoni
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- CHECKOUT SUCCESS MODAL -->
-    <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-gold-900 border border-gold-700 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
-            <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 mx-auto flex items-center justify-center text-3xl">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <h3 class="text-2xl font-black text-white">Pesanan Masuk Antrian!</h3>
-            <p class="text-gold-200 text-xs leading-relaxed">
-                Terima kasih telah membeli di <strong class="text-gold-300">ZYOU MARKET</strong>. Transaksi kamu telah masuk dalam <span class="text-amber-300 font-bold">Antrian Live Processing</span>.
-            </p>
-            
-            <div class="p-4 rounded-xl bg-gold-950 text-left text-xs space-y-1.5 border border-gold-800">
-                <div class="flex justify-between">
-                    <span class="text-gold-400">No. Order TRX:</span>
-                    <span id="trxId" class="font-mono font-bold text-gold-300">#ZY-99211</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gold-400">Target Username:</span>
-                    <span id="trxUsername" class="font-bold text-white">Gamer_123</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gold-400">Metode Bayar:</span>
-                    <span id="trxPayment" class="font-bold text-emerald-400">QRIS Instant</span>
-                </div>
-                <div class="flex justify-between pt-1 border-t border-gold-800">
-                    <span class="text-gold-400">Posisi Antrian:</span>
-                    <span class="font-bold text-amber-300">Antrian #1 (Sedang Diproses)</span>
-                </div>
-            </div>
-
-            <button id="closeCheckoutSuccess" class="w-full py-3 bg-gold-400 text-gold-950 font-black rounded-xl text-xs hover:bg-gold-300 transition-colors">
-                Selesai & Lihat Status Antrian
-            </button>
-        </div>
-    </div>
-
     <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-gold-900 border border-gold-500/50 text-white px-5 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-3 translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div id="toast" class="fixed bottom-6 right-6 bg-gold-900 border border-gold-400/50 text-white px-5 py-3 rounded-2xl shadow-2xl z-50 flex items-center gap-3 translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
         <i class="fa-solid fa-circle-check text-gold-300 text-base" id="toastIcon"></i>
         <span id="toastMsg" class="text-xs font-bold">Notifikasi</span>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT APP LOGIC -->
     <script>
-        // Roblox Product Database
+        // Roblox Products Database
         const products = [
-            // ROBUX PACKAGES
             {
                 id: 1,
                 name: "100 Robux (Instant)",
@@ -693,7 +737,7 @@
                 rating: 4.9,
                 stock: "Ready",
                 image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80",
-                description: "Paket 100 Robux via Group Funds / Gift Fast Process. Aman 100% tanpa login password."
+                description: "Paket 100 Robux via Group Funds / Gift Fast Process. Aman 100%."
             },
             {
                 id: 2,
@@ -703,7 +747,7 @@
                 rating: 5.0,
                 stock: "Ready",
                 image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80",
-                description: "Paket 500 Robux instant pengiriman kilat. Cukup isi Username Roblox kamu."
+                description: "Paket 500 Robux instant pengiriman kilat. Cukup cantumkan Username Roblox."
             },
             {
                 id: 3,
@@ -723,19 +767,19 @@
                 rating: 5.0,
                 stock: "Limited",
                 image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=600&q=80",
-                description: "Paket 5000 Robux untuk para Sultan. Dapatkan bonus point promo ZYOU."
+                description: "Paket 5000 Robux untuk para Sultan. Dapatkan bonus poin promo ZYOU."
             },
 
             // BLOX FRUITS GAMEPASS
             {
                 id: 5,
-                name: "Darkblade (Yoru)",
+                name: "Dark Blade (Yoru)",
                 category: "Blox Fruits",
                 price: 285000,
                 rating: 5.0,
                 stock: "Ready",
                 image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=600&q=80",
-                description: "Gamepass Pedang Pedang Kegelapan Yoru Blox Fruits. Dikirimkan via in-game gift."
+                description: "Gamepass Pedang Kegelapan Yoru Blox Fruits. Dikirimkan via in-game gift."
             },
             {
                 id: 6,
@@ -768,32 +812,10 @@
                 description: "Deteksi lokasi spawn Buah Iblis secara tepat di server manapun secara otomatis."
             },
 
-            // ADOPT ME
+            // PET SIMULATOR 99 & OTHERS
             {
                 id: 9,
-                name: "Fly Ride Frost Dragon",
-                category: "Adopt Me",
-                price: 210000,
-                rating: 4.9,
-                stock: "Ready",
-                image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
-                description: "Pet legendary Frost Dragon (Fly Ride) siap trade langsung di game Adopt Me."
-            },
-            {
-                id: 10,
-                name: "VIP Building Pass Adopt Me",
-                category: "Adopt Me",
-                price: 55000,
-                rating: 4.8,
-                stock: "Ready",
-                image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
-                description: "Akses area VIP eksklusif, kendaraan limosin, dan perabotan istimewa."
-            },
-
-            // PET SIMULATOR 99
-            {
-                id: 11,
-                name: "Super Lucky Gamepass",
+                name: "Super Lucky Gamepass PS99",
                 category: "Pet Simulator 99",
                 price: 85000,
                 rating: 4.8,
@@ -802,7 +824,7 @@
                 description: "Tingkatkan persentase menetaskan Pet Huge & Titanic impianmu."
             },
             {
-                id: 12,
+                id: 10,
                 name: "VIP Pass PS99",
                 category: "Pet Simulator 99",
                 price: 90000,
@@ -811,20 +833,8 @@
                 image: "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=600&q=80",
                 description: "Akses area VIP khusus, diamond mingguan, dan tag nama eksklusif."
             },
-
-            // DEEPWOKEN & KING LEGACY
             {
-                id: 13,
-                name: "Deepwoken Access Pass",
-                category: "Deepwoken",
-                price: 70000,
-                rating: 4.9,
-                stock: "Ready",
-                image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80",
-                description: "Access Pass resmi untuk memainkan game Hardcore RPG Deepwoken."
-            },
-            {
-                id: 14,
+                id: 11,
                 name: "King Legacy Fruit Position",
                 category: "King Legacy",
                 price: 110000,
@@ -835,13 +845,12 @@
             }
         ];
 
-        // Seed Queue Data
+        // Seed Live Queue Data
         let liveQueue = [
-            { id: "ZY-1092", user: "AlexGamer99", item: "Blox Fruits Kitsune", status: "Processing", time: "Baru saja" },
-            { id: "ZY-1091", user: "Rian_Blox", item: "1000 Robux Package", status: "Done", time: "1 mnt lalu" },
-            { id: "ZY-1090", user: "SitiPetSim", item: "Pet Sim 99 VIP", status: "Done", time: "2 mnt lalu" },
-            { id: "ZY-1089", user: "FrostKing21", item: "Darkblade (Yoru)", status: "Done", time: "4 mnt lalu" },
-            { id: "ZY-1088", user: "BobiRoblox", item: "500 Robux", status: "Done", time: "5 mnt lalu" }
+            { id: "ZY-9102", user: "GamerKeren99", item: "Blox Fruits Permanent Buddha", price: 340503, status: "Sukses", time: "Baru saja" },
+            { id: "ZY-9101", user: "Rian_Roblox", item: "1000 Robux Package", price: 139503, status: "Sukses", time: "2 mnt lalu" },
+            { id: "ZY-9100", user: "SitiPetSim", item: "VIP Pass PS99", price: 90503, status: "Sukses", time: "4 mnt lalu" },
+            { id: "ZY-9099", user: "FrostKing21", item: "Dark Blade (Yoru)", price: 285503, status: "Sukses", time: "6 mnt lalu" }
         ];
 
         // Seed Testimonial Data
@@ -849,11 +858,11 @@
             {
                 id: 1,
                 username: "Rian_BloxFruits",
-                badge: "Top Buyer",
-                item: "Darkblade (Yoru)",
+                badge: "Verified Buyer",
+                item: "Dark Blade (Yoru)",
                 rating: 5,
-                comment: "Beli Darkblade di ZYOU MARKET cuma nunggu 2 menit langsung masuk gift-nya! CS ramah & fast respon bgt.",
-                time: "2 menit yang lalu"
+                comment: "Bayar paka QRIS langsung dapet invoice, 1 menit kodenya langsung terverifikasi admin. Mantap!",
+                time: "3 menit yang lalu"
             },
             {
                 id: 2,
@@ -861,29 +870,22 @@
                 badge: "Verified Buyer",
                 item: "1000 Robux Package",
                 rating: 5,
-                comment: "Top up 1000 Robux murce habis dibanding tempat lain. Masuk instant via Group funds. Mantap ZYOU MARKET!",
-                time: "5 menit yang lalu"
-            },
-            {
-                id: 3,
-                username: "Amanda_AdoptMe",
-                badge: "Verified Buyer",
-                item: "Fly Ride Frost Dragon",
-                rating: 5,
-                comment: "Pet Frost Dragon langsung ditrade via private server. Adminnya amanah & terpercaya!",
-                time: "12 menit yang lalu"
+                comment: "Transfer BCA VA simpel bgt, Robux langsung landing di account tanpa nunggu lama.",
+                time: "8 menit yang lalu"
             }
         ];
 
-        // Application State
+        // State Variables
         let cart = [];
         let selectedCategory = "All";
         let searchQuery = "";
         let pendingProductForModal = null;
         let globalRobloxUsername = "";
+        let currentActiveInvoice = null;
+        let countdownInterval = null;
         let selectedReviewRating = 5;
 
-        // Helper: Format IDR Currency
+        // Format Currency Helper
         function formatIDR(amount) {
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
         }
@@ -897,9 +899,9 @@
             setupEventListeners();
         });
 
-        // Render Category Filters
+        // Category Filters
         function renderCategoryFilters() {
-            const categories = ["All", "Robux", "Blox Fruits", "Pet Simulator 99", "Adopt Me", "Deepwoken", "King Legacy"];
+            const categories = ["All", "Robux", "Blox Fruits", "Pet Simulator 99", "King Legacy"];
             const container = document.getElementById('categoryFilters');
             
             container.innerHTML = categories.map(cat => {
@@ -921,8 +923,6 @@
                 case "Robux": return "fa-coins";
                 case "Blox Fruits": return "fa-dragon";
                 case "Pet Simulator 99": return "fa-cat";
-                case "Adopt Me": return "fa-paw";
-                case "Deepwoken": return "fa-shield-cat";
                 case "King Legacy": return "fa-crown";
                 default: return "fa-border-all";
             }
@@ -934,7 +934,7 @@
             renderProducts();
         }
 
-        // Render Product Cards
+        // Product Cards Render
         function renderProducts() {
             const grid = document.getElementById('productGrid');
             const noProducts = document.getElementById('noProducts');
@@ -972,7 +972,7 @@
                         <div>
                             <div class="flex items-center justify-between text-xs text-amber-400 font-bold mb-1">
                                 <span><i class="fa-solid fa-star text-gold-300"></i> ${product.rating}</span>
-                                <span class="text-gold-400/80 text-[11px]"><i class="fa-solid fa-bolt text-gold-300"></i> Auto Gift</span>
+                                <span class="text-gold-400/80 text-[11px]"><i class="fa-solid fa-bolt text-gold-300"></i> Auto Instant</span>
                             </div>
                             <h3 class="font-extrabold text-white text-base group-hover:text-gold-300 transition-colors line-clamp-1">${product.name}</h3>
                             <p class="text-gold-300/70 text-xs mt-1 line-clamp-2 leading-relaxed">${product.description}</p>
@@ -984,7 +984,7 @@
                                 <span class="text-base font-black text-white text-glow">${formatIDR(product.price)}</span>
                             </div>
                             <button onclick="openUsernameModal(${product.id})" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 text-gold-950 font-black text-xs hover:brightness-110 transition-all shadow-md flex items-center gap-1.5">
-                                <i class="fa-solid fa-plus text-xs"></i> Beli
+                                <i class="fa-solid fa-cart-plus text-xs"></i> Beli
                             </button>
                         </div>
                     </div>
@@ -992,54 +992,56 @@
             `).join('');
         }
 
-        // Render Live Queue Status
+        // Live Queue Render
         function renderLiveQueue() {
             const ticker = document.getElementById('liveQueueTicker');
             const tableBody = document.getElementById('liveQueueTableBody');
 
-            // Render continuous ticker
             ticker.innerHTML = liveQueue.map(q => `
-                <div class="inline-flex items-center gap-3 bg-gold-950/70 px-4 py-1 rounded-full border border-gold-800/80 mr-4 shrink-0">
+                <div class="inline-flex items-center gap-3 bg-gold-950/80 px-4 py-1 rounded-full border border-gold-800/80 mr-4 shrink-0">
                     <span class="font-mono text-gold-400 font-bold text-[11px]">${q.id}</span>
                     <span class="text-white font-bold">${q.user}</span>
                     <span class="text-gold-300 font-medium">(${q.item})</span>
-                    <span class="px-2 py-0.5 rounded text-[10px] font-black ${q.status === 'Processing' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'}">
-                        ${q.status === 'Processing' ? '<i class="fa-solid fa-spinner animate-spin text-[9px] mr-1"></i> Diproses' : '<i class="fa-solid fa-check text-[9px] mr-1"></i> Selesai'}
+                    <span class="px-2 py-0.5 rounded text-[10px] font-black ${
+                        q.status === 'Mengecek Pembayaran' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 
+                        q.status === 'Diproses Robot' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' :
+                        'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                    }">
+                        ${q.status}
                     </span>
                 </div>
             `).join('');
 
-            // Render table view
             tableBody.innerHTML = liveQueue.map(q => `
                 <tr class="hover:bg-gold-900/50 transition-colors">
                     <td class="py-3 px-3 font-mono text-gold-300 font-bold">${q.id}</td>
                     <td class="py-3 px-3 font-bold text-white">${q.user}</td>
                     <td class="py-3 px-3 text-gold-200">${q.item}</td>
+                    <td class="py-3 px-3 font-bold text-amber-300">${formatIDR(q.price)}</td>
                     <td class="py-3 px-3 text-gold-400">${q.time}</td>
                     <td class="py-3 px-3">
                         <span class="px-2.5 py-1 rounded-full text-[10px] font-black inline-flex items-center gap-1 ${
-                            q.status === 'Processing' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                            q.status === 'Mengecek Pembayaran' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 
+                            q.status === 'Diproses Robot' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40' :
+                            'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                         }">
-                            ${q.status === 'Processing' ? '<i class="fa-solid fa-arrows-rotate animate-spin"></i> Diproses' : '<i class="fa-solid fa-check"></i> Sukses'}
+                            <i class="fa-solid fa-circle-check"></i> ${q.status}
                         </span>
                     </td>
                 </tr>
             `).join('');
         }
 
-        // Render Testimonials
+        // Testimonials Render
         function renderTestimonials() {
             const grid = document.getElementById('testimonialGrid');
-            const totalReviews = testimonials.length + 479; // Simulating base total reviews
-            document.getElementById('totalReviewsDisplay').textContent = totalReviews;
-
             grid.innerHTML = testimonials.map(t => {
                 const stars = Array(5).fill(0).map((_, i) => `
                     <i class="fa-solid fa-star ${i < t.rating ? 'text-amber-400' : 'text-gold-800'}"></i>
                 `).join('');
 
                 return `
-                    <div class="p-6 rounded-3xl bg-gold-950 border border-gold-800/80 shadow-xl flex flex-col justify-between space-y-4 hover:border-gold-500/50 transition-all">
+                    <div class="p-6 rounded-3xl bg-gold-900/90 border border-gold-800/80 shadow-xl flex flex-col justify-between space-y-4 hover:border-gold-500/50 transition-all">
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-2.5">
@@ -1057,7 +1059,7 @@
                             </div>
 
                             <div class="flex items-center justify-between text-xs pt-1">
-                                <span class="px-2.5 py-0.5 rounded-lg bg-gold-900 text-gold-300 border border-gold-800 text-[10px] font-bold">
+                                <span class="px-2.5 py-0.5 rounded-lg bg-gold-950 text-gold-300 border border-gold-800 text-[10px] font-bold">
                                     <i class="fa-solid fa-bag-shopping text-[9px] mr-1"></i> ${t.item}
                                 </span>
                                 <div class="flex text-xs">${stars}</div>
@@ -1072,7 +1074,7 @@
             }).join('');
         }
 
-        // Roblox Username Modal Handling
+        // Roblox Username Input Modal Handling
         function openUsernameModal(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
@@ -1117,7 +1119,7 @@
             openCartDrawer();
         }
 
-        // Cart Logic
+        // Cart State Logic
         function addToCart(product) {
             const existing = cart.find(item => item.id === product.id);
             if (existing) {
@@ -1126,7 +1128,7 @@
                 cart.push({ ...product, qty: 1 });
             }
             updateCartUI();
-            showToast(`${product.name} berhasil ditambahkan!`);
+            showToast(`${product.name} ditambahkan ke keranjang!`);
         }
 
         function updateCartQty(productId, delta) {
@@ -1149,6 +1151,7 @@
 
             const totalItems = cart.reduce((acc, i) => acc + i.qty, 0);
             const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+            const totalExact = subtotal + 503; // Admin Unique Fee
 
             countBadge.textContent = totalItems;
             drawerCount.textContent = `${totalItems} Item`;
@@ -1178,10 +1181,10 @@
             }
 
             subtotalEl.textContent = formatIDR(subtotal);
-            totalEl.textContent = formatIDR(subtotal);
+            totalEl.textContent = formatIDR(totalExact);
         }
 
-        // Cart Drawer Mechanics
+        // Cart Drawer
         function openCartDrawer() {
             const backdrop = document.getElementById('cartBackdrop');
             const drawer = document.getElementById('cartDrawer');
@@ -1200,8 +1203,8 @@
             setTimeout(() => backdrop.classList.add('hidden'), 300);
         }
 
-        // Checkout Process
-        function handleCheckout() {
+        // PAYMENT / INVOICE GENERATOR (UTAMA)
+        function proceedToPaymentInvoice() {
             if (cart.length === 0) {
                 showToast("Keranjang kamu masih kosong!", "error");
                 return;
@@ -1213,37 +1216,199 @@
                 return;
             }
 
-            const method = document.getElementById('cartPaymentMethod').value;
+            const methodKey = document.getElementById('cartPaymentMethod').value;
+            const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+            const exactTotal = subtotal + 503;
             const randomTrx = "ZY-" + Math.floor(10000 + Math.random() * 90000);
-            const mainItem = cart[0].name;
+            const mainProduct = cart[0].name;
 
-            // Prepend new order into Real-time Live Queue
+            currentActiveInvoice = {
+                trxId: randomTrx,
+                username: globalRobloxUsername,
+                methodKey: methodKey,
+                productName: mainProduct,
+                exactTotal: exactTotal
+            };
+
+            // Populate Modal Header & Billing
+            document.getElementById('payTrxId').textContent = `#${randomTrx}`;
+            document.getElementById('payTargetUser').textContent = globalRobloxUsername;
+            document.getElementById('payTotalExact').textContent = formatIDR(exactTotal);
+
+            // Populate Instructions Container based on Method Selected
+            renderPaymentInstructions(methodKey, exactTotal);
+
+            // Close Cart Drawer and Open Payment Invoice Modal
+            closeCartDrawer();
+            document.getElementById('paymentModal').classList.remove('hidden');
+
+            // Start 15-minute countdown
+            startCountdownTimer(15 * 60);
+        }
+
+        // Render Method Specific UI inside Payment Modal
+        function renderPaymentInstructions(methodKey, amount) {
+            const container = document.getElementById('paymentInstructionsContainer');
+            let methodLabel = "";
+
+            if (methodKey === 'qris') {
+                methodLabel = "QRIS Instant (All E-Wallet & Bank)";
+                // Simulated QRIS Image SVG
+                container.innerHTML = `
+                    <span class="text-xs font-black text-amber-300 block uppercase tracking-wide">Scan QRIS Di Bawah Ini</span>
+                    <div class="p-3 bg-white rounded-2xl inline-block border-4 border-gold-400 shadow-xl my-1">
+                        <!-- SVG QR Code Mockup -->
+                        <svg class="w-44 h-44 mx-auto" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" fill="white"/>
+                            <path d="M10 10H40V40H10V10ZM20 20V30H30V20H20Z" fill="#000"/>
+                            <path d="M60 10H90V40H60V10ZM70 20V30H80V20H70Z" fill="#000"/>
+                            <path d="M10 60H40V90H10V60ZM20 70V80H30V70H20Z" fill="#000"/>
+                            <path d="M50 10H55V25H50V10ZM55 25H60V40H55V25ZM10 45H25V50H10V45ZM35 45H50V55H35V45Z" fill="#000"/>
+                            <path d="M60 50H75V60H60V50ZM75 60H90V75H75V60ZM50 65H60V90H50V65Z" fill="#000"/>
+                            <path d="M65 80H90V90H65V80Z" fill="#000"/>
+                            <circle cx="50" cy="50" r="8" fill="#d97706"/>
+                            <text x="50" y="53" font-size="8" font-weight="bold" fill="white" text-anchor="middle">ZYOU</text>
+                        </svg>
+                    </div>
+                    <p class="text-[11px] text-gold-300">
+                        Buka aplikasi DANA, GoPay, OVO, ShopeePay, BCA Mobile, Livin, atau Mobile Banking lainnya lalu scan QRIS di atas.
+                    </p>
+                `;
+            } else if (methodKey === 'dana') {
+                methodLabel = "DANA E-Wallet Transfer";
+                container.innerHTML = `
+                    <span class="text-xs font-black text-blue-400 block uppercase tracking-wide"><i class="fa-solid fa-wallet"></i> Nomor Akun DANA Store</span>
+                    <div class="p-4 bg-gold-900 border border-gold-700 rounded-xl space-y-2 my-2">
+                        <span class="text-xs text-gold-400 block">Nomor HP DANA ZYOU MARKET:</span>
+                        <div class="flex items-center justify-center gap-3">
+                            <span id="danaAccNum" class="font-mono text-xl font-black text-white">0895-1234-5678</span>
+                            <button onclick="copyToClipboard('danaAccNum', 'Nomor DANA')" class="px-3 py-1.5 bg-gold-400 text-gold-950 rounded-lg text-xs font-bold hover:bg-gold-300">
+                                <i class="fa-solid fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <span class="text-[11px] text-gold-300 block font-semibold">a.n ZYOU MARKET ROBLOX STORE</span>
+                    </div>
+                `;
+            } else if (methodKey === 'gopay') {
+                methodLabel = "GoPay / OVO / ShopeePay";
+                container.innerHTML = `
+                    <span class="text-xs font-black text-emerald-400 block uppercase tracking-wide"><i class="fa-solid fa-mobile-screen"></i> Nomor E-Wallet GoPay / OVO</span>
+                    <div class="p-4 bg-gold-900 border border-gold-700 rounded-xl space-y-2 my-2">
+                        <span class="text-xs text-gold-400 block">Nomor E-Wallet:</span>
+                        <div class="flex items-center justify-center gap-3">
+                            <span id="ewalletNum" class="font-mono text-xl font-black text-white">0895-1234-5678</span>
+                            <button onclick="copyToClipboard('ewalletNum', 'Nomor E-Wallet')" class="px-3 py-1.5 bg-gold-400 text-gold-950 rounded-lg text-xs font-bold hover:bg-gold-300">
+                                <i class="fa-solid fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <span class="text-[11px] text-gold-300 block font-semibold">a.n ZYOU MARKET OFFICIAL</span>
+                    </div>
+                `;
+            } else if (methodKey === 'bca') {
+                methodLabel = "Bank BCA Direct Transfer";
+                container.innerHTML = `
+                    <span class="text-xs font-black text-cyan-400 block uppercase tracking-wide"><i class="fa-solid fa-building-columns"></i> Rekening Bank BCA</span>
+                    <div class="p-4 bg-gold-900 border border-gold-700 rounded-xl space-y-2 my-2">
+                        <span class="text-xs text-gold-400 block">No. Rekening BCA:</span>
+                        <div class="flex items-center justify-center gap-3">
+                            <span id="bcaNum" class="font-mono text-xl font-black text-white">8290-1122-33</span>
+                            <button onclick="copyToClipboard('bcaNum', 'No. Rekening BCA')" class="px-3 py-1.5 bg-gold-400 text-gold-950 rounded-lg text-xs font-bold hover:bg-gold-300">
+                                <i class="fa-solid fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <span class="text-[11px] text-gold-300 block font-semibold">a.n PT ZYOU MARKET INDONESIA</span>
+                    </div>
+                `;
+            } else {
+                methodLabel = "Virtual Account Mandiri / BRI";
+                container.innerHTML = `
+                    <span class="text-xs font-black text-purple-400 block uppercase tracking-wide"><i class="fa-solid fa-money-bill-transfer"></i> Nomor Virtual Account (VA)</span>
+                    <div class="p-4 bg-gold-900 border border-gold-700 rounded-xl space-y-2 my-2">
+                        <span class="text-xs text-gold-400 block">Nomor VA Mandiri/BRI:</span>
+                        <div class="flex items-center justify-center gap-3">
+                            <span id="vaNum" class="font-mono text-xl font-black text-white">8801-9923-1102</span>
+                            <button onclick="copyToClipboard('vaNum', 'Nomor Virtual Account')" class="px-3 py-1.5 bg-gold-400 text-gold-950 rounded-lg text-xs font-bold hover:bg-gold-300">
+                                <i class="fa-solid fa-copy"></i> Salin
+                            </button>
+                        </div>
+                        <span class="text-[11px] text-gold-300 block font-semibold">Metode Verifikasi Otomatis System</span>
+                    </div>
+                `;
+            }
+
+            document.getElementById('payMethodName').textContent = methodLabel;
+        }
+
+        // Countdown Timer Function
+        function startCountdownTimer(seconds) {
+            if (countdownInterval) clearInterval(countdownInterval);
+            let timer = seconds;
+            const timerEl = document.getElementById('countdownTimer');
+
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(timer / 60);
+                const secs = timer % 60;
+                timerEl.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+
+                if (--timer < 0) {
+                    clearInterval(countdownInterval);
+                    timerEl.textContent = "00:00 (Kadaluarsa)";
+                }
+            }, 1000);
+        }
+
+        // Confirm Payment Execution
+        function confirmPaymentDone() {
+            if (!currentActiveInvoice) return;
+
+            // Prepend new transaction into Live Processing Queue with status 'Mengecek Pembayaran'
             liveQueue.unshift({
-                id: randomTrx,
-                user: globalRobloxUsername,
-                item: mainItem,
-                status: "Processing",
+                id: currentActiveInvoice.trxId,
+                user: currentActiveInvoice.username,
+                item: currentActiveInvoice.productName,
+                price: currentActiveInvoice.exactTotal,
+                status: "Mengecek Pembayaran",
                 time: "Baru saja"
             });
 
-            // Re-render updated Live Queue Table & Ticker
             renderLiveQueue();
 
-            // Populate checkout modal
-            document.getElementById('trxId').textContent = `#${randomTrx}`;
-            document.getElementById('trxUsername').textContent = globalRobloxUsername;
-            document.getElementById('trxPayment').textContent = method;
+            // Simulate automatic verification transition after 3 seconds
+            setTimeout(() => {
+                if (liveQueue[0] && liveQueue[0].id === currentActiveInvoice.trxId) {
+                    liveQueue[0].status = "Diproses Robot";
+                    renderLiveQueue();
+                }
+            }, 3000);
 
-            // Reset cart & close drawer
+            // Reset cart
             cart = [];
             updateCartUI();
-            closeCartDrawer();
 
-            // Show success modal
-            document.getElementById('checkoutModal').classList.remove('hidden');
+            // Close Payment Modal & Show Toast
+            document.getElementById('paymentModal').classList.add('hidden');
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            showToast(`Pesanan #${currentActiveInvoice.trxId} berhasil masuk antrian! Status: Mengecek Pembayaran.`);
         }
 
-        // Review Modal Handling
+        // Copy Helper
+        function copyToClipboard(elementId, label) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            const textToCopy = element.innerText || element.textContent;
+
+            const tempInput = document.createElement("input");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(`${label} berhasil disalin: ${textToCopy}`);
+        }
+
+        // Review Form Submit Handling
         function setupReviewRatingStars() {
             const stars = document.querySelectorAll('.star-btn');
             stars.forEach(star => {
@@ -1270,7 +1435,6 @@
 
             if (!username || !comment) return;
 
-            // Prepend new review
             testimonials.unshift({
                 id: Date.now(),
                 username: username,
@@ -1284,7 +1448,7 @@
             renderTestimonials();
             document.getElementById('reviewForm').reset();
             document.getElementById('reviewModal').classList.add('hidden');
-            showToast("Terima kasih! Ulasan kamu telah ditambahkan.");
+            showToast("Terima kasih! Ulasan testimoni kamu berhasil ditambahkan.");
         }
 
         // Toast Helper
@@ -1303,12 +1467,12 @@
             toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
             setTimeout(() => {
                 toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
-            }, 3000);
+            }, 3200);
         }
 
         // Event Listeners Binding
         function setupEventListeners() {
-            // Header Search inputs
+            // Header Search
             const searchInput = document.getElementById('searchInput');
             const searchInputMobile = document.getElementById('searchInputMobile');
             const clearSearch = document.getElementById('clearSearch');
@@ -1328,12 +1492,12 @@
                 handleSearch("");
             });
 
-            // Mobile Navigation Toggle
+            // Mobile Nav
             document.getElementById('mobileMenuBtn').addEventListener('click', () => {
                 document.getElementById('mobileMenu').classList.toggle('hidden');
             });
 
-            // Reset Filter Button
+            // Reset Filter
             document.getElementById('resetFilterBtn').addEventListener('click', () => {
                 searchQuery = "";
                 selectedCategory = "All";
@@ -1343,22 +1507,30 @@
                 renderProducts();
             });
 
-            // Cart Drawer events
+            // Cart Drawer
             document.getElementById('cartBtn').addEventListener('click', openCartDrawer);
             document.getElementById('closeCartBtn').addEventListener('click', closeCartDrawer);
             document.getElementById('cartBackdrop').addEventListener('click', closeCartDrawer);
 
-            // Username Modal events
+            // Username Modal
             document.getElementById('closeUserModal').addEventListener('click', closeUsernameModal);
             document.getElementById('confirmAddToCartBtn').addEventListener('click', confirmAddToCart);
 
-            // Checkout button
-            document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
-            document.getElementById('closeCheckoutSuccess').addEventListener('click', () => {
-                document.getElementById('checkoutModal').classList.add('hidden');
+            // Checkout / Invoice Button
+            document.getElementById('checkoutBtn').addEventListener('click', proceedToPaymentInvoice);
+
+            // Payment Modal Events
+            document.getElementById('closePaymentModal').addEventListener('click', () => {
+                document.getElementById('paymentModal').classList.add('hidden');
+                if (countdownInterval) clearInterval(countdownInterval);
+            });
+            document.getElementById('confirmPaymentBtn').addEventListener('click', confirmPaymentDone);
+            document.getElementById('simulateUploadProofBtn').addEventListener('click', () => {
+                showToast("Bukti transfer berhasil diunggah! Sistem sedang memverifikasi.");
+                confirmPaymentDone();
             });
 
-            // Review Modal events
+            // Testimonial Modal Events
             document.getElementById('openReviewModalBtn').addEventListener('click', () => {
                 document.getElementById('reviewModal').classList.remove('hidden');
             });
