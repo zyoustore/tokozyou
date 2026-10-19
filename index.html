@@ -18,12 +18,12 @@
               200: '#fde68a',
               300: '#fcd34d',
               400: '#fbbf24',
-              500: '#facc15', // Kuning ke-coklatan
-              600: '#d97706', // Amber Brown
+              500: '#facc15',
+              600: '#d97706',
               700: '#b45309',
               800: '#92400e',
               900: '#78350f',
-              dark: '#0d0804',
+              dark: '#0c0703',
               card: '#1a1008',
               border: '#2f1c0c'
             }
@@ -37,18 +37,32 @@
     .custom-scrollbar::-webkit-scrollbar { width: 6px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: #1a1008; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #78350f; border-radius: 4px; }
+    
+    /* Running Testimonial Animation */
+    @keyframes scrollTesti {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-scroll {
+      display: flex;
+      width: max-content;
+      animation: scrollTesti 25s linear infinite;
+    }
+    .animate-scroll:hover {
+      animation-play-state: paused;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between custom-scrollbar">
 
-  <!-- TOP RUNNING TICKER -->
+  <!-- TOP TICKER -->
   <div class="bg-gradient-to-r from-amber-950 via-yellow-900 to-amber-950 border-b border-amber-800/40 py-1.5 px-4 text-[11px] text-amber-200 flex items-center justify-between overflow-hidden">
     <div class="flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
       <span class="font-bold text-yellow-400 uppercase tracking-wider">Antrian Server:</span>
-      <span id="tickerText">12 Pesanan Sedang Diproses Robot Instant</span>
+      <span>Sistem Otomatis Aktivasi Instant & Online 24 Jam</span>
     </div>
-    <div class="hidden sm:block text-amber-300/80">
+    <div class="hidden sm:block text-amber-300/80 font-medium">
       ⚡ Garansi 100% Legal & Safe Roblox Store
     </div>
   </div>
@@ -62,7 +76,7 @@
         </div>
         <div>
           <h1 class="font-extrabold text-lg text-amber-400 tracking-wider">ZYOU MARKET</h1>
-          <p class="text-[10px] text-amber-200/60 uppercase tracking-widest">Robux & Gamepass Roblox</p>
+          <p class="text-[10px] text-amber-200/60 uppercase tracking-widest">Robux & Gamepass Store</p>
         </div>
       </div>
 
@@ -72,9 +86,9 @@
           <span id="cartBadge" class="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
         </button>
 
-        <button onclick="openAdminAuth()" class="px-3.5 py-2 bg-gradient-to-r from-amber-700 to-yellow-600 hover:from-amber-600 hover:to-yellow-500 text-black font-bold text-xs rounded-xl shadow-md flex items-center gap-2 transition">
-          <i class="fa-solid fa-user-shield"></i>
-          <span>Panel Admin</span>
+        <button onclick="openCSModal()" class="px-3.5 py-2 bg-zinc-900 border border-amber-900/50 text-amber-300 hover:border-amber-500 font-bold text-xs rounded-xl flex items-center gap-2 transition">
+          <i class="fa-solid fa-headset text-yellow-400"></i>
+          <span>Bantuan CS</span>
         </button>
       </div>
     </div>
@@ -87,16 +101,31 @@
     <div class="relative rounded-2xl bg-gradient-to-r from-amber-950 via-zinc-900 to-amber-900 border border-amber-600/30 p-6 md:p-8 overflow-hidden shadow-2xl">
       <div class="relative z-10 max-w-2xl">
         <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold rounded-full mb-3">
-          🔥 Top Up Robux Fast & Item Gamepass Murah
+          🔥 Top Up Robux Fast & Item Gamepass Roblox
         </span>
         <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-2 leading-tight">
-          Pusat <span class="text-amber-400">Robux</span> & <span class="text-yellow-400">Gamepass Roblox</span> Terpercaya
+          Pusat <span class="text-amber-400">Robux</span> & <span class="text-yellow-400">Gamepass Roblox</span>
         </h2>
         <p class="text-xs md:text-sm text-zinc-300">
-          Proses otomatis dan cepat. Mendukung pembayaran QRIS All Payment, E-Wallet (DANA/GoPay/OVO), serta Transfer Bank.
+          Proses cepat, garansi aman legal. Dilengkapi sistem live chat dengan owner dan pemantauan antrian realtime.
         </p>
       </div>
     </div>
+
+    <!-- AUTO-RUNNING TESTIMONIALS CAROUSEL -->
+    <section class="bg-zinc-900/80 border border-amber-900/30 rounded-2xl p-4 overflow-hidden">
+      <div class="flex items-center justify-between mb-3 px-2">
+        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-star text-yellow-400"></i> Testimoni Pembeli (Auto Scroll)
+        </h3>
+        <button onclick="openReviewModal()" class="text-[11px] text-amber-300 hover:underline font-semibold">+ Tulis Ulasan</button>
+      </div>
+      <div class="overflow-hidden relative w-full">
+        <div id="testiTrack" class="animate-scroll gap-4 py-1">
+          <!-- JS Rendered Moving Testimonials -->
+        </div>
+      </div>
+    </section>
 
     <!-- CATALOG & SEARCH -->
     <section>
@@ -106,7 +135,7 @@
         </h3>
         
         <div class="relative w-full md:w-72">
-          <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Cari item gamepass / robux..." class="w-full bg-zinc-900/90 border border-amber-900/50 rounded-xl px-4 py-2 pl-10 text-xs text-white focus:outline-none focus:border-amber-400" />
+          <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Cari gamepass / robux..." class="w-full bg-zinc-900/90 border border-amber-900/50 rounded-xl px-4 py-2 pl-10 text-xs text-white focus:outline-none focus:border-amber-400" />
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-zinc-500 text-xs"></i>
         </div>
       </div>
@@ -131,7 +160,7 @@
         <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
           <i class="fa-solid fa-list-check"></i> Antrian Transaksi Realtime
         </h3>
-        <span class="text-[10px] text-amber-300/80 bg-amber-950/60 border border-amber-800/40 px-2 py-1 rounded-full animate-pulse">● Live Updating</span>
+        <span class="text-[10px] text-amber-300/80 bg-amber-950/60 border border-amber-800/40 px-2.5 py-1 rounded-full animate-pulse">● Live Updating</span>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs">
@@ -141,7 +170,8 @@
               <th class="p-3">Roblox User</th>
               <th class="p-3">Item Dipesan</th>
               <th class="p-3">Waktu</th>
-              <th class="p-3 text-right">Status</th>
+              <th class="p-3">Status</th>
+              <th class="p-3 text-right">Aksi Pembeli</th>
             </tr>
           </thead>
           <tbody id="queueTableBody" class="divide-y divide-zinc-800/50 text-zinc-300">
@@ -151,38 +181,19 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION -->
-    <section class="bg-zinc-900/60 border border-amber-900/30 rounded-2xl p-5 shadow-lg">
-      <div class="flex items-center justify-between mb-6">
-        <div>
-          <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
-            <i class="fa-solid fa-comments"></i> Testimoni Pembeli
-          </h3>
-          <p class="text-xs text-zinc-400 mt-0.5">Rating Toko: <span class="text-yellow-400 font-bold">★ 4.9 / 5.0</span> dari 1,200+ Pembeli</p>
-        </div>
-        <button onclick="openReviewModal()" class="px-3 py-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-semibold hover:bg-amber-500/30">
-          + Tulis Ulasan
-        </button>
-      </div>
-
-      <div id="testiGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- JS Rendered Testimonials -->
-      </div>
-    </section>
-
   </div>
 
-  <!-- ADMIN DASHBOARD VIEW -->
+  <!-- HIDDEN OWNER DASHBOARD VIEW -->
   <div id="adminView" class="max-w-7xl mx-auto px-4 py-6 w-full space-y-6 hidden">
     <div class="flex items-center justify-between bg-amber-950/60 border border-amber-600/40 p-4 rounded-2xl">
       <div>
         <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
           <i class="fa-solid fa-user-shield"></i> Panel Owner ZYOU MARKET
         </h2>
-        <p class="text-xs text-zinc-400">Kelola dan verifikasi bukti pembayaran pembeli secara realtime.</p>
+        <p class="text-xs text-zinc-400">Verifikasi transfer, kelola status, dan kirim bukti pesanan via Live Chat.</p>
       </div>
       <div class="flex items-center gap-2">
-        <button onclick="changeAdminPin()" class="px-3 py-1.5 bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 text-zinc-200 rounded-xl text-xs font-medium">Ubah PIN</button>
+        <button onclick="showStorefront()" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-xl text-xs font-medium">Ke Toko</button>
         <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-900/50 border border-red-700 hover:bg-red-800/50 text-red-200 rounded-xl text-xs font-medium">Logout</button>
       </div>
     </div>
@@ -207,10 +218,10 @@
       </div>
     </div>
 
-    <!-- Orders Pending Verification List -->
+    <!-- Owner Order Management Table -->
     <section class="bg-zinc-900 border border-amber-900/40 rounded-2xl p-5">
       <h3 class="text-base font-bold text-amber-400 mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-clock-rotate-left"></i> Daftar Pesanan Masuk (Perlu Verifikasi Transfer)
+        <i class="fa-solid fa-list-check"></i> Kelola Transaksi Masuk
       </h3>
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs">
@@ -218,9 +229,10 @@
             <tr>
               <th class="p-3">No. TRX</th>
               <th class="p-3">Roblox User</th>
-              <th class="p-3">Item & Total Tagihan</th>
-              <th class="p-3">Bukti TF</th>
-              <th class="p-3 text-center">Aksi Verifikasi Owner</th>
+              <th class="p-3">Item & Total</th>
+              <th class="p-3">Bukti TF Pembeli</th>
+              <th class="p-3 text-center">Aksi Status</th>
+              <th class="p-3 text-right">Ruang Chat</th>
             </tr>
           </thead>
           <tbody id="adminOrderTable" class="divide-y divide-zinc-800 text-zinc-300">
@@ -229,6 +241,78 @@
         </table>
       </div>
     </section>
+  </div>
+
+  <!-- LIVE CHAT MODAL (OWNER ↔ BUYER) -->
+  <div id="chatModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl flex flex-col h-[600px] shadow-2xl relative overflow-hidden">
+      <!-- Chat Header -->
+      <div class="bg-zinc-900 border-b border-amber-900/40 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-white flex items-center gap-2">
+              Ruang Chat Transaksi <span id="chatTrxCode" class="text-amber-400 font-mono">#ZY-000</span>
+            </h4>
+            <p class="text-[10px] text-zinc-400">Owner Store ↔ Pembeli (<span id="chatUserTarget" class="text-yellow-400">User</span>)</p>
+          </div>
+        </div>
+        <button onclick="closeChat()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <!-- Messages Body -->
+      <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar bg-zinc-950/60">
+        <!-- JS Rendered Messages -->
+      </div>
+
+      <!-- Chat Input Controls -->
+      <div class="bg-zinc-900 border-t border-amber-900/40 p-3 space-y-2">
+        <!-- Image Attachment Preview if selected -->
+        <div id="chatImgPreviewContainer" class="hidden flex items-center gap-2 bg-zinc-950 p-2 rounded-xl border border-amber-800">
+          <img id="chatImgPreview" src="" alt="Proof Preview" class="w-12 h-12 object-cover rounded-lg border border-amber-500" />
+          <span class="text-[10px] text-amber-300 flex-1">Gambar/Bukti Pengiriman Terlampir</span>
+          <button onclick="cancelChatImage()" class="text-red-400 text-xs px-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <label class="p-2.5 bg-zinc-800 hover:bg-zinc-700 text-amber-400 rounded-xl cursor-pointer border border-amber-900/40 text-xs" title="Lampirkan Gambar/Bukti Pengiriman">
+            <i class="fa-solid fa-paperclip"></i>
+            <input type="file" id="chatFileInput" accept="image/*" class="hidden" onchange="handleChatImageSelect(event)" />
+          </label>
+          
+          <input type="text" id="chatInputText" placeholder="Ketik pesan..." class="flex-1 bg-zinc-950 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" onkeypress="if(event.key==='Enter') sendChatMessage()" />
+          
+          <button onclick="sendChatMessage()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-xl text-xs flex items-center gap-1">
+            <span>Kirim</span>
+            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING CS BUTTON & MODAL -->
+  <div class="fixed bottom-5 right-5 z-40">
+    <button onclick="openCSModal()" class="px-4 py-3 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-extrabold text-xs rounded-full shadow-2xl border border-emerald-400/50 flex items-center gap-2 hover:scale-105 transition">
+      <i class="fa-solid fa-headset text-base"></i>
+      <span>CS WhatsApp</span>
+    </button>
+  </div>
+
+  <div id="csModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 text-center">
+      <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h3 class="text-base font-bold text-white mb-1">Customer Service ZYOU MARKET</h3>
+      <p class="text-xs text-zinc-400 mb-4">Butuh bantuan transaksi atau pertanyaan? Tim CS kami siap membantu!</p>
+      <a href="https://wa.me/6281234567890" target="_blank" class="block w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl mb-2">
+        Hubungi WhatsApp CS (0812-3456-7890)
+      </a>
+      <button onclick="closeCSModal()" class="w-full py-2 bg-zinc-800 text-zinc-300 text-xs rounded-xl">Tutup</button>
+    </div>
   </div>
 
   <!-- CART & CHECKOUT MODAL -->
@@ -242,17 +326,12 @@
           <button onclick="closeCart()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
 
-        <!-- Roblox Username Input -->
         <div class="bg-amber-950/30 border border-amber-800/40 p-4 rounded-xl mb-4">
           <label class="block text-xs font-bold text-amber-300 mb-1">Username Roblox Target *</label>
           <input type="text" id="robloxUsername" placeholder="Contoh: RobloxGamer123" class="w-full bg-zinc-900 border border-amber-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" />
-          <p class="text-[10px] text-zinc-400 mt-1">*Pastikan username benar. Tidak perlu password!</p>
         </div>
 
-        <!-- Selected Items List -->
-        <div id="cartItemsList" class="space-y-3 mb-4">
-          <!-- JS Rendered -->
-        </div>
+        <div id="cartItemsList" class="space-y-3 mb-4"></div>
       </div>
 
       <div class="border-t border-amber-900/40 pt-4">
@@ -260,8 +339,8 @@
           <span class="text-zinc-400">Total Pembayaran:</span>
           <span id="cartTotalPrice" class="font-extrabold text-amber-400 text-base">Rp 0</span>
         </div>
-        <button onclick="proceedToInvoice()" class="w-full py-3 bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-black font-extrabold text-sm rounded-xl shadow-lg transition">
-          Lanjut Ke Invoice Pembayaran <i class="fa-solid fa-arrow-right ml-1"></i>
+        <button onclick="proceedToInvoice()" class="w-full py-3 bg-gradient-to-r from-amber-600 to-yellow-500 text-black font-extrabold text-sm rounded-xl shadow-lg transition">
+          Lanjut Ke Payment <i class="fa-solid fa-arrow-right ml-1"></i>
         </button>
       </div>
     </div>
@@ -272,72 +351,58 @@
     <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
       <button onclick="closeInvoice()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       
-      <div class="text-center mb-6">
+      <div class="text-center mb-4">
         <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold rounded-full uppercase">Invoice Pembayaran</span>
         <h3 class="text-xl font-extrabold text-white mt-2">Selesaikan Pembayaran</h3>
         <p class="text-xs text-amber-300/80 mt-1">No. TRX: <span id="invTrxCode" class="font-mono font-bold text-yellow-400">#ZY-000</span></p>
       </div>
 
-      <!-- Payment Method Selection -->
-      <div class="mb-4">
-        <label class="block text-xs font-bold text-amber-300 mb-2">Pilih Metode Pembayaran:</label>
-        <div class="grid grid-cols-3 gap-2">
-          <button onclick="selectPayment('qris')" id="payBtn-qris" class="pay-option bg-amber-500 text-black border border-amber-400 p-2 rounded-xl text-xs font-bold flex flex-col items-center gap-1">
-            <i class="fa-solid fa-qrcode text-base"></i> QRIS ALL
-          </button>
-          <button onclick="selectPayment('ewallet')" id="payBtn-ewallet" class="pay-option bg-zinc-900 text-zinc-300 border border-zinc-800 p-2 rounded-xl text-xs font-bold flex flex-col items-center gap-1 hover:border-amber-500">
-            <i class="fa-solid fa-wallet text-base"></i> E-Wallet
-          </button>
-          <button onclick="selectPayment('bank')" id="payBtn-bank" class="pay-option bg-zinc-900 text-zinc-300 border border-zinc-800 p-2 rounded-xl text-xs font-bold flex flex-col items-center gap-1 hover:border-amber-500">
-            <i class="fa-solid fa-building-columns text-base"></i> Bank TF
-          </button>
+      <div id="paymentDetailsBox" class="bg-zinc-900 border border-amber-900/40 p-4 rounded-xl mb-4 text-xs">
+        <div class="text-center space-y-2">
+          <p class="text-amber-300 font-medium">Scan QRIS All Payment (DANA, GoPay, OVO, BCA)</p>
+          <div class="bg-white p-3 rounded-xl w-44 h-44 mx-auto border border-amber-500/50">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ZYOU_MARKET_PAYMENT" alt="QRIS ZYOU" class="w-full h-full object-contain" />
+          </div>
+          <p class="text-[11px] text-zinc-400">An. <strong class="text-white">ZYOU MARKET STORE</strong></p>
         </div>
       </div>
 
-      <!-- Payment Method Content Display -->
-      <div id="paymentDetailsBox" class="bg-zinc-900 border border-amber-900/40 p-4 rounded-xl mb-6 text-xs">
-        <!-- JS Rendered Payment Box -->
-      </div>
-
-      <!-- File Upload Bukti TF -->
       <div class="bg-amber-950/30 border border-amber-800/40 p-4 rounded-xl mb-6">
-        <label class="block text-xs font-bold text-amber-300 mb-1">Unggah Bukti Transfer / Struk *</label>
-        <input type="file" id="proofFileInput" accept="image/*" onchange="previewProofImage(event)" class="w-full text-xs text-zinc-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black hover:file:bg-amber-400" />
+        <label class="block text-xs font-bold text-amber-300 mb-1">Unggah Bukti Transfer *</label>
+        <input type="file" id="proofFileInput" accept="image/*" onchange="previewProofImage(event)" class="w-full text-xs text-zinc-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black" />
         <div id="proofPreviewContainer" class="mt-3 hidden text-center">
           <img id="proofPreviewImg" src="" alt="Bukti TF" class="w-32 h-32 object-cover mx-auto rounded-lg border border-amber-500/40" />
-          <p class="text-[10px] text-emerald-400 mt-1">✔ Gambar Siap Diunggah</p>
         </div>
       </div>
 
-      <button onclick="submitCustomerOrder()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-extrabold text-sm rounded-xl shadow-lg transition">
+      <button onclick="submitCustomerOrder()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-extrabold text-sm rounded-xl shadow-lg">
         Konfirmasi Saya Sudah Transfer
       </button>
     </div>
   </div>
 
-  <!-- PROOF IMAGE LIGHTBOX MODAL (ADMIN) -->
+  <!-- LIGHTBOX IMAGE MODAL -->
   <div id="imageLightboxModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
     <div class="relative max-w-2xl w-full text-center" onclick="event.stopPropagation()">
       <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
-      <img id="lightboxImg" src="" alt="Bukti Transfer" class="max-h-[80vh] mx-auto rounded-xl border border-amber-500/50 shadow-2xl object-contain" />
-      <p class="text-xs text-zinc-300 mt-2">Pratinjau Bukti Transfer Pembeli</p>
+      <img id="lightboxImg" src="" alt="Bukti Transfer" class="max-h-[80vh] mx-auto rounded-xl border border-amber-500/50 object-contain" />
     </div>
   </div>
 
-  <!-- ADMIN AUTH MODAL -->
+  <!-- OWNER HIDDEN AUTH MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 text-center">
       <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
-        <i class="fa-solid fa-lock"></i>
+        <i class="fa-solid fa-user-gear"></i>
       </div>
-      <h3 class="text-lg font-bold text-white mb-1">Otentikasi Owner</h3>
-      <p class="text-xs text-zinc-400 mb-4">Masukkan PIN Akses Admin ZYOU MARKET</p>
+      <h3 class="text-lg font-bold text-white mb-1">Akses Khusus Owner</h3>
+      <p class="text-xs text-zinc-400 mb-4">Masukkan PIN Keamanan Owner Store</p>
       
-      <input type="password" id="adminPinInput" placeholder="Masukkan PIN Owner" class="w-full bg-zinc-900 border border-amber-900 rounded-xl px-4 py-2.5 text-center text-sm text-white focus:outline-none focus:border-amber-400 mb-4 tracking-widest" />
+      <input type="password" id="adminPinInput" placeholder="Masukkan PIN" class="w-full bg-zinc-900 border border-amber-900 rounded-xl px-4 py-2.5 text-center text-sm text-white focus:outline-none focus:border-amber-400 mb-4 tracking-widest" />
       
       <div class="flex gap-2">
-        <button onclick="closeAdminAuth()" class="w-1/2 py-2.5 bg-zinc-800 text-zinc-300 font-bold text-xs rounded-xl hover:bg-zinc-700">Batal</button>
-        <button onclick="verifyAdminPin()" class="w-1/2 py-2.5 bg-amber-500 text-black font-bold text-xs rounded-xl hover:bg-amber-400">Masuk</button>
+        <button onclick="closeAdminAuth()" class="w-1/2 py-2.5 bg-zinc-800 text-zinc-300 font-bold text-xs rounded-xl">Batal</button>
+        <button onclick="verifyAdminPin()" class="w-1/2 py-2.5 bg-amber-500 text-black font-bold text-xs rounded-xl">Masuk</button>
       </div>
     </div>
   </div>
@@ -356,35 +421,31 @@
           <input type="text" id="revItem" placeholder="Misal: 500 Robux Fast" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white" />
         </div>
         <div>
-          <label class="block text-xs font-bold text-zinc-300 mb-1">Rating</label>
-          <select id="revRating" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-amber-400">
-            <option value="5">★★★★★ (5.0 - Sangat Puas)</option>
-            <option value="4">★★★★☆ (4.0 - Bagus)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-zinc-300 mb-1">Ulasan Ulasan</label>
-          <textarea id="revComment" rows="3" placeholder="Proses cepat banget, admin ramah!" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white"></textarea>
+          <label class="block text-xs font-bold text-zinc-300 mb-1">Ulasan</label>
+          <textarea id="revComment" rows="3" placeholder="Proses cepat dan lancar!" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white"></textarea>
         </div>
       </div>
       <div class="flex gap-2 mt-4">
         <button onclick="closeReviewModal()" class="w-1/2 py-2 bg-zinc-800 text-zinc-300 rounded-xl text-xs font-bold">Batal</button>
-        <button onclick="submitReview()" class="w-1/2 py-2 bg-amber-500 text-black rounded-xl text-xs font-bold hover:bg-amber-400">Kirim Ulasan</button>
+        <button onclick="submitReview()" class="w-1/2 py-2 bg-amber-500 text-black rounded-xl text-xs font-bold">Kirim Ulasan</button>
       </div>
     </div>
   </div>
 
+  <!-- FOOTER -->
   <footer class="border-t border-amber-900/30 bg-zinc-950 py-6 text-center text-xs text-zinc-500">
     <p>© 2026 <span class="text-amber-400 font-bold">ZYOU MARKET</span>. All Rights Reserved.</p>
+    <button onclick="openAdminAuth()" class="mt-3 text-[10px] text-zinc-700 hover:text-amber-500/80 transition">
+      [ Access Owner Store ]
+    </button>
   </footer>
 
   <!-- SCRIPT UTAMA -->
   <script>
-    // --- APP STATE DATA ---
     const products = [
-      { id: 1, name: "100 Robux Fast", category: "robux", price: 15000, desc: "Proses Gamepass / Group 1-5 Menit" },
+      { id: 1, name: "100 Robux Fast", category: "robux", price: 15000, desc: "Proses Gamepass 1-5 Menit" },
       { id: 2, name: "500 Robux Fast", category: "robux", price: 72000, desc: "Proses Cepat Legal & Safe" },
-      { id: 3, name: "1,000 Robux Fast", category: "robux", price: 140000, desc: "Package Terlaris ZYOU MARKET" },
+      { id: 3, name: "1,000 Robux Fast", category: "robux", price: 140000, desc: "Best Seller Package" },
       { id: 4, name: "Perm Buddha - Blox Fruits", category: "bloxfruits", price: 165000, desc: "Permanent Fruit Gift" },
       { id: 5, name: "2x Money - Blox Fruits", category: "bloxfruits", price: 45000, desc: "Gamepass Fast Delivery" },
       { id: 6, name: "Super VIP - Pet Sim 99", category: "ps99", price: 85000, desc: "Instant Trade / Gift" }
@@ -394,23 +455,47 @@
     let isAdminLoggedIn = false;
     let cart = [];
     let activeCat = 'all';
-    let selectedPayMethod = 'qris';
     let uploadedProofBase64 = null;
     let currentTrxCode = "";
+    let activeChatTrx = null;
+    let chatImageAttachment = null;
 
-    // Live Queue Database
+    // Database Orders & Chat Messages
     let queueOrders = [
-      { id: "#ZY-9912", user: "ProRobloxer99", item: "500 Robux Fast", time: "2 Menit lalu", status: "Lunas", proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+ProRobloxer99", price: 72000 },
-      { id: "#ZY-9911", user: "GamerIndo_01", item: "Perm Buddha - Blox Fruits", time: "5 Menit lalu", status: "Mengecek Pembayaran", proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+GamerIndo_01", price: 165000 }
+      {
+        id: "#ZY-8912",
+        user: "GamerPro99",
+        item: "500 Robux Fast",
+        time: "3 Menit lalu",
+        status: "Diproses",
+        proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+GamerPro99",
+        price: 72000,
+        messages: [
+          { sender: "owner", text: "Halo GamerPro99! Pesanan kamu sedang diproses tim kami ya.", time: "12:01", img: null }
+        ]
+      },
+      {
+        id: "#ZY-8911",
+        user: "RobloxIndo_1",
+        item: "Perm Buddha - Blox Fruits",
+        time: "10 Menit lalu",
+        status: "Lunas",
+        proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+RobloxIndo",
+        price: 165000,
+        messages: [
+          { sender: "owner", text: "Berikut bukti gift Perm Buddha sudah terkirim ke account kamu!", time: "11:55", img: "https://placehold.co/600x400/0d0703/facc15?text=Bukti+Pengiriman+Gamepass+Selesai" },
+          { sender: "buyer", text: "Terima kasih banyak min! Sudah masuk.", time: "11:56", img: null }
+        ]
+      }
     ];
 
-    // Testimonials Database
     let testimonials = [
-      { user: "Rian_Roblox", item: "1,000 Robux Fast", comment: "Cuma butuh 2 menit Robux langsung masuk account! Mantap banget ZYOU MARKET.", rating: 5, date: "10 Min lalu" },
-      { user: "BintangGames", item: "Perm Buddha Blox Fruits", comment: "Pelayanan super cepat dan terpercaya. Recomended store!", rating: 5, date: "1 Jam lalu" }
+      { user: "Rian_Roblox", item: "1,000 Robux", comment: "Robux langsung masuk! Mantap ZYOU MARKET.", rating: 5 },
+      { user: "BintangGames", item: "Perm Buddha Blox Fruits", comment: "Fast response banget obrolan chatnya!", rating: 5 },
+      { user: "Dandi_Gamer", item: "500 Robux Fast", comment: "Recomended store roblox terpercaya.", rating: 5 }
     ];
 
-    // --- STORE RENDER FUNCTIONS ---
+    // RENDER PRODUCTS
     function renderProducts() {
       const grid = document.getElementById('productGrid');
       const search = document.getElementById('searchInput').value.toLowerCase();
@@ -438,17 +523,15 @@
       `).join('');
     }
 
+    // RENDER QUEUE TABLE
     function renderQueue() {
       const tbody = document.getElementById('queueTableBody');
       tbody.innerHTML = queueOrders.map(q => {
-        let statusBadge = '';
-        if(q.status === 'Lunas') {
-          statusBadge = `<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✔ Selesai (Lunas)</span>`;
-        } else if(q.status === 'Mengecek Pembayaran') {
-          statusBadge = `<span class="bg-yellow-950/80 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full text-[10px] font-bold animate-pulse">⏳ Mengecek TF</span>`;
-        } else {
-          statusBadge = `<span class="bg-red-950/80 text-red-400 border border-red-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✖ Ditolak</span>`;
-        }
+        let badge = '';
+        if(q.status === 'Lunas') badge = `<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✔ Selesai (Lunas)</span>`;
+        else if(q.status === 'Diproses') badge = `<span class="bg-amber-950/80 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full text-[10px] font-bold animate-pulse">⏳ Sedang Diproses</span>`;
+        else if(q.status === 'Mengecek Pembayaran') badge = `<span class="bg-yellow-950/80 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full text-[10px] font-bold">🔍 Pengecekan TF</span>`;
+        else badge = `<span class="bg-red-950/80 text-red-400 border border-red-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✖ Ditolak</span>`;
 
         return `
           <tr class="hover:bg-amber-950/20">
@@ -456,30 +539,117 @@
             <td class="p-3 font-bold">${q.user}</td>
             <td class="p-3">${q.item}</td>
             <td class="p-3 text-zinc-400 text-[11px]">${q.time}</td>
-            <td class="p-3 text-right">${statusBadge}</td>
+            <td class="p-3">${badge}</td>
+            <td class="p-3 text-right">
+              <button onclick="openChatModal('${q.id}', 'buyer')" class="px-2.5 py-1 bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500 hover:text-black rounded-lg text-[10px] font-bold transition">
+                <i class="fa-solid fa-comments"></i> Buka Chat
+              </button>
+            </td>
           </tr>
         `;
       }).join('');
     }
 
+    // RENDER TESTIMONIALS CAROUSEL
     function renderTestimonials() {
-      const grid = document.getElementById('testiGrid');
-      grid.innerHTML = testimonials.map(t => `
-        <div class="bg-zinc-950 border border-amber-900/40 p-4 rounded-xl">
-          <div class="flex items-center justify-between mb-2">
+      const track = document.getElementById('testiTrack');
+      // Duplicate testimonials to create smooth infinite loop
+      const list = [...testimonials, ...testimonials];
+      track.innerHTML = list.map(t => `
+        <div class="bg-zinc-950 border border-amber-900/40 p-3 rounded-xl w-64 shrink-0">
+          <div class="flex items-center justify-between mb-1">
             <span class="font-bold text-xs text-amber-300">${t.user}</span>
-            <span class="text-yellow-400 text-xs">${'★'.repeat(t.rating)}</span>
+            <span class="text-yellow-400 text-[10px]">★★★★★</span>
           </div>
-          <p class="text-xs text-zinc-300 italic mb-2">"${t.comment}"</p>
-          <div class="flex items-center justify-between text-[10px] text-zinc-500">
-            <span>Item: ${t.item}</span>
-            <span>${t.date}</span>
-          </div>
+          <p class="text-[11px] text-zinc-300 italic mb-1 truncate">"${t.comment}"</p>
+          <span class="text-[9px] text-zinc-500">${t.item}</span>
         </div>
       `).join('');
     }
 
-    // --- CART & CHECKOUT FLOW ---
+    // LIVE CHAT SYSTEM
+    function openChatModal(trxCode, role) {
+      const order = queueOrders.find(q => q.id === trxCode);
+      if(!order) return;
+
+      activeChatTrx = order;
+      document.getElementById('chatTrxCode').innerText = order.id;
+      document.getElementById('chatUserTarget').innerText = order.user;
+      renderChatMessages();
+
+      document.getElementById('chatModal').classList.remove('hidden');
+    }
+
+    function closeChat() {
+      document.getElementById('chatModal').classList.add('hidden');
+      activeChatTrx = null;
+    }
+
+    function renderChatMessages() {
+      if(!activeChatTrx) return;
+      const box = document.getElementById('chatMessagesBox');
+      
+      box.innerHTML = activeChatTrx.messages.map(m => {
+        const isOwner = m.sender === 'owner';
+        return `
+          <div class="flex flex-col ${isOwner ? 'items-end' : 'items-start'}">
+            <div class="max-w-[80%] ${isOwner ? 'bg-amber-600/30 border border-amber-500/40 text-amber-100' : 'bg-zinc-900 border border-zinc-800 text-zinc-200'} p-3 rounded-2xl text-xs space-y-2">
+              <span class="text-[9px] font-bold uppercase tracking-wider block ${isOwner ? 'text-amber-400' : 'text-yellow-400'}">
+                ${isOwner ? '👑 Owner Store' : '👤 Pembeli (' + activeChatTrx.user + ')'}
+              </span>
+              ${m.text ? `<p>${m.text}</p>` : ''}
+              ${m.img ? `<img src="${m.img}" onclick="openLightbox('${m.img}')" alt="Attachment" class="w-full max-h-48 object-cover rounded-xl border border-amber-500/40 cursor-pointer" />` : ''}
+              <span class="text-[9px] text-zinc-400 block text-right">${m.time}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function handleChatImageSelect(e) {
+      const file = e.target.files[0];
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          chatImageAttachment = evt.target.result;
+          document.getElementById('chatImgPreview').src = chatImageAttachment;
+          document.getElementById('chatImgPreviewContainer').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function cancelChatImage() {
+      chatImageAttachment = null;
+      document.getElementById('chatFileInput').value = "";
+      document.getElementById('chatImgPreviewContainer').classList.add('hidden');
+    }
+
+    function sendChatMessage() {
+      if(!activeChatTrx) return;
+      const textInput = document.getElementById('chatInputText');
+      const text = textInput.value.trim();
+
+      if(!text && !chatImageAttachment) return;
+
+      const senderRole = isAdminLoggedIn ? 'owner' : 'buyer';
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+      activeChatTrx.messages.push({
+        sender: senderRole,
+        text: text,
+        img: chatImageAttachment,
+        time: timeStr
+      });
+
+      textInput.value = "";
+      cancelChatImage();
+      renderChatMessages();
+    }
+
+    // CART & CHECKOUT
     function addToCart(id) {
       const item = products.find(p => p.id === id);
       cart.push(item);
@@ -496,7 +666,7 @@
 
     function openCart() {
       if(cart.length === 0) {
-        alert("Keranjang belanja kamu masih kosong!");
+        alert("Keranjang kamu masih kosong!");
         return;
       }
       renderCartModal();
@@ -518,7 +688,7 @@
               <h5 class="font-bold text-xs text-white">${item.name}</h5>
               <span class="text-xs text-amber-400 font-bold">Rp ${item.price.toLocaleString('id-ID')}</span>
             </div>
-            <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-xs p-1"><i class="fa-solid fa-trash"></i></button>
+            <button onclick="removeFromCart(${index})" class="text-red-400 text-xs p-1"><i class="fa-solid fa-trash"></i></button>
           </div>
         `;
       }).join('');
@@ -543,67 +713,11 @@
       document.getElementById('invTrxCode').innerText = currentTrxCode;
 
       closeCart();
-      selectPayment('qris');
       document.getElementById('invoiceModal').classList.remove('hidden');
     }
 
     function closeInvoice() {
       document.getElementById('invoiceModal').classList.add('hidden');
-    }
-
-    // --- PAYMENT METHOD DISPLAYER ---
-    function selectPayment(method) {
-      selectedPayMethod = method;
-      document.querySelectorAll('.pay-option').forEach(b => {
-        b.classList.remove('bg-amber-500', 'text-black', 'border-amber-400');
-        b.classList.add('bg-zinc-900', 'text-zinc-300', 'border-zinc-800');
-      });
-
-      const btn = document.getElementById(`payBtn-${method}`);
-      btn.classList.remove('bg-zinc-900', 'text-zinc-300', 'border-zinc-800');
-      btn.classList.add('bg-amber-500', 'text-black', 'border-amber-400');
-
-      const box = document.getElementById('paymentDetailsBox');
-      if(method === 'qris') {
-        box.innerHTML = `
-          <div class="text-center space-y-2">
-            <p class="text-amber-300 font-medium">Scan QRIS All Payment (DANA, GoPay, OVO, BCA, ShopeePay)</p>
-            <div class="bg-white p-3 rounded-xl w-48 h-48 mx-auto flex items-center justify-center border border-amber-500/50">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ZYOU_MARKET_STORE_PAYMENT" alt="QRIS ZYOU MARKET" class="w-full h-full object-contain" />
-            </div>
-            <p class="text-[11px] text-zinc-400">Atas Nama: <strong class="text-white">ZYOU MARKET STORE</strong></p>
-          </div>
-        `;
-      } else if(method === 'ewallet') {
-        box.innerHTML = `
-          <div class="space-y-2">
-            <div class="flex items-center justify-between bg-zinc-950 p-2.5 rounded-lg border border-amber-900/40">
-              <div>
-                <span class="font-bold text-sky-400">DANA / GOPAY / OVO</span>
-                <p class="text-zinc-300 font-mono text-xs">0812-3456-7890</p>
-              </div>
-              <button onclick="copyText('081234567890')" class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded text-[10px] font-bold">Salin</button>
-            </div>
-          </div>
-        `;
-      } else {
-        box.innerHTML = `
-          <div class="space-y-2">
-            <div class="flex items-center justify-between bg-zinc-950 p-2.5 rounded-lg border border-amber-900/40">
-              <div>
-                <span class="font-bold text-blue-400">BANK BCA</span>
-                <p class="text-zinc-300 font-mono text-xs">8820-1928-33</p>
-              </div>
-              <button onclick="copyText('8820192833')" class="px-2 py-1 bg-amber-500/20 text-amber-300 rounded text-[10px] font-bold">Salin</button>
-            </div>
-          </div>
-        `;
-      }
-    }
-
-    function copyText(val) {
-      navigator.clipboard.writeText(val);
-      alert("Nomor rekening/e-wallet berhasil disalin!");
     }
 
     function previewProofImage(e) {
@@ -629,7 +743,6 @@
       const itemNames = cart.map(c => c.name).join(', ');
       const totalPrice = cart.reduce((sum, c) => sum + c.price, 0);
 
-      // Add order to Queue
       const newOrder = {
         id: currentTrxCode,
         user: username,
@@ -637,14 +750,16 @@
         time: "Baru saja",
         status: "Mengecek Pembayaran",
         proof: uploadedProofBase64,
-        price: totalPrice
+        price: totalPrice,
+        messages: [
+          { sender: "owner", text: `Halo ${username}! Pesanan ${itemNames} kamu sudah terdaftar. Tunggu verifikasi transfer ya.`, time: "Baru saja", img: null }
+        ]
       };
 
       queueOrders.unshift(newOrder);
       renderQueue();
       if(isAdminLoggedIn) renderAdminOrders();
 
-      // Reset
       cart = [];
       updateCartBadge();
       uploadedProofBase64 = null;
@@ -652,16 +767,13 @@
       document.getElementById('proofPreviewContainer').classList.add('hidden');
 
       closeInvoice();
-      alert("Terima kasih! Bukti transfer Anda berhasil diunggah. Pesanan sekarang dalam antrian verifikasi Admin.");
+      alert("Bukti transfer diunggah! Pesanan masuk ke antrian realtime.");
     }
 
-    // --- ADMIN DASHBOARD LOGIC ---
+    // ADMIN / OWNER PANEL
     function openAdminAuth() {
-      if(isAdminLoggedIn) {
-        showAdminView();
-      } else {
-        document.getElementById('adminAuthModal').classList.remove('hidden');
-      }
+      if(isAdminLoggedIn) showAdminView();
+      else document.getElementById('adminAuthModal').classList.remove('hidden');
     }
 
     function closeAdminAuth() {
@@ -676,7 +788,7 @@
         closeAdminAuth();
         showAdminView();
       } else {
-        alert("PIN Keamanan Owner Salah!");
+        alert("PIN Owner Salah!");
       }
     }
 
@@ -694,17 +806,7 @@
     function logoutAdmin() {
       isAdminLoggedIn = false;
       showStorefront();
-      alert("Anda telah logout dari Panel Admin.");
-    }
-
-    function changeAdminPin() {
-      const newPin = prompt("Masukkan PIN Owner Baru:");
-      if(newPin && newPin.trim().length >= 4) {
-        currentOwnerPin = newPin.trim();
-        alert("PIN Owner berhasil diubah!");
-      } else if(newPin !== null) {
-        alert("PIN minimal 4 karakter!");
-      }
+      alert("Logout berhasil.");
     }
 
     function renderAdminOrders() {
@@ -716,14 +818,9 @@
       let rejectedCount = 0;
 
       queueOrders.forEach(q => {
-        if(q.status === 'Lunas') {
-          totalOmset += q.price || 0;
-          approvedCount++;
-        } else if(q.status === 'Mengecek Pembayaran') {
-          pendingCount++;
-        } else if(q.status === 'Ditolak') {
-          rejectedCount++;
-        }
+        if(q.status === 'Lunas') { totalOmset += q.price || 0; approvedCount++; }
+        else if(q.status === 'Mengecek Pembayaran' || q.status === 'Diproses') { pendingCount++; }
+        else if(q.status === 'Ditolak') { rejectedCount++; }
       });
 
       document.getElementById('statOmset').innerText = `Rp ${totalOmset.toLocaleString('id-ID')}`;
@@ -740,42 +837,32 @@
             <div class="text-amber-400 font-bold text-[11px]">Rp ${(q.price || 0).toLocaleString('id-ID')}</div>
           </td>
           <td class="p-3">
-            <button onclick="openLightbox('${q.proof}')" class="px-2 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded text-[10px] font-bold hover:bg-amber-500/30 flex items-center gap-1">
-              <i class="fa-solid fa-image"></i> Lihat Bukti
+            <button onclick="openLightbox('${q.proof}')" class="px-2 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded text-[10px] font-bold">
+              Lihat Bukti
             </button>
           </td>
           <td class="p-3 text-center">
-            ${q.status === 'Mengecek Pembayaran' ? `
-              <div class="flex items-center justify-center gap-2">
-                <button onclick="approveOrder(${idx})" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg">
-                  ✔ Setujui (Uang Masuk)
-                </button>
-                <button onclick="rejectOrder(${idx})" class="px-2.5 py-1 bg-red-600 hover:bg-red-500 text-white font-bold text-[10px] rounded-lg">
-                  ✖ Tolak
-                </button>
-              </div>
-            ` : `
-              <span class="text-[11px] font-bold ${q.status === 'Lunas' ? 'text-emerald-400' : 'text-red-400'}">
-                ${q.status === 'Lunas' ? '✔ Telah Disetujui' : '✖ Telah Ditolak'}
-              </span>
-            `}
+            <select onchange="updateOrderStatus(${idx}, this.value)" class="bg-zinc-950 border border-amber-800 text-xs text-amber-300 rounded px-2 py-1">
+              <option value="Mengecek Pembayaran" ${q.status==='Mengecek Pembayaran'?'selected':''}>Mengecek TF</option>
+              <option value="Diproses" ${q.status==='Diproses'?'selected':''}>Sedang Diproses</option>
+              <option value="Lunas" ${q.status==='Lunas'?'selected':''}>✔ Setujui (Lunas)</option>
+              <option value="Ditolak" ${q.status==='Ditolak'?'selected':''}>✖ Tolak</option>
+            </select>
+          </td>
+          <td class="p-3 text-right">
+            <button onclick="openChatModal('${q.id}', 'owner')" class="px-2.5 py-1 bg-amber-500 text-black font-bold text-[10px] rounded-lg">
+              <i class="fa-solid fa-comments"></i> Chat & Kirim Bukti
+            </button>
           </td>
         </tr>
       `).join('');
     }
 
-    function approveOrder(idx) {
-      queueOrders[idx].status = "Lunas";
+    function updateOrderStatus(idx, newStatus) {
+      queueOrders[idx].status = newStatus;
       renderQueue();
       renderAdminOrders();
-      alert(`Pesanan ${queueOrders[idx].id} Berhasil Disetujui (Lunas)! Status di antrian pembeli ter-update.`);
-    }
-
-    function rejectOrder(idx) {
-      queueOrders[idx].status = "Ditolak";
-      renderQueue();
-      renderAdminOrders();
-      alert(`Pesanan ${queueOrders[idx].id} Ditolak.`);
+      alert(`Status pesanan ${queueOrders[idx].id} diperbarui menjadi: ${newStatus}`);
     }
 
     function openLightbox(src) {
@@ -787,37 +874,23 @@
       document.getElementById('imageLightboxModal').classList.add('hidden');
     }
 
-    // --- TESTIMONIAL FORM ---
-    function openReviewModal() {
-      document.getElementById('reviewModal').classList.remove('hidden');
-    }
-
-    function closeReviewModal() {
-      document.getElementById('reviewModal').classList.add('hidden');
-    }
+    // CS & REVIEW MODALS
+    function openCSModal() { document.getElementById('csModal').classList.remove('hidden'); }
+    function closeCSModal() { document.getElementById('csModal').classList.add('hidden'); }
+    function openReviewModal() { document.getElementById('reviewModal').classList.remove('hidden'); }
+    function closeReviewModal() { document.getElementById('reviewModal').classList.add('hidden'); }
 
     function submitReview() {
       const u = document.getElementById('revUser').value.trim();
       const i = document.getElementById('revItem').value.trim();
       const c = document.getElementById('revComment').value.trim();
-      const r = parseInt(document.getElementById('revRating').value);
 
-      if(!u || !i || !c) {
-        alert("Silakan lengkapi semua kolom ulasan!");
-        return;
-      }
+      if(!u || !i || !c) return alert("Lengkapi data ulasan!");
 
-      testimonials.unshift({
-        user: u,
-        item: i,
-        comment: c,
-        rating: r,
-        date: "Baru saja"
-      });
-
+      testimonials.unshift({ user: u, item: i, comment: c, rating: 5 });
       renderTestimonials();
       closeReviewModal();
-      alert("Terima kasih atas ulasan Anda!");
+      alert("Ulasan terkirim!");
     }
 
     function setCategory(cat) {
@@ -831,11 +904,9 @@
       renderProducts();
     }
 
-    function filterProducts() {
-      renderProducts();
-    }
+    function filterProducts() { renderProducts(); }
 
-    // --- INITIALIZE PAGE ---
+    // INIT
     renderProducts();
     renderQueue();
     renderTestimonials();
