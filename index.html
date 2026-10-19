@@ -310,4 +310,691 @@
         }
 
         .product-badge {
-            position: absolute
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .badge-success { background: rgba(46, 196, 182, 0.9); color: #000; }
+        .badge-danger { background: rgba(231, 76, 60, 0.9); color: #fff; }
+
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-gold);
+            background: #18110b;
+        }
+
+        .product-info {
+            padding: 12px 15px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+        }
+
+        .product-info .btn {
+            margin-top: auto;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Testimonials Section */
+        .testimonial-section {
+            margin-top: 3.5rem;
+            background: var(--bg-card);
+            padding: 1.8rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-main);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            color: #140d07;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.8rem;
+        }
+
+        .testimonial-comment {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 500px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        input, textarea, select {
+            background: var(--bg-main);
+            border: 1px solid var(--border-gold);
+            color: var(--text-light);
+            padding: 9px;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--accent-gold);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .payment-btn {
+            background: var(--bg-main);
+            border: 1px solid var(--border-gold);
+            padding: 8px;
+            border-radius: 6px;
+            color: var(--text-light);
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .payment-btn.selected {
+            border-color: var(--accent-gold);
+            background: rgba(230, 184, 0, 0.15);
+            color: var(--accent-gold);
+            font-weight: bold;
+        }
+
+        .queue-box {
+            background: rgba(230, 184, 0, 0.1);
+            border: 1px dashed var(--accent-gold);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 12px 0;
+        }
+
+        .queue-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+
+        footer {
+            background: #0d0804;
+            border-top: 1px solid var(--border-gold);
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .slider-container { height: 180px; }
+            .slide-title { font-size: 1.1rem; }
+            .slide-desc { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        ⚡ Promo zyou market: Proses cepat 1-5 Menit, Garansi 100% Aman & Legal!
+    </div>
+
+    <!-- Header Navbar -->
+    <header>
+        <div class="navbar">
+            <div class="logo" onclick="window.scrollTo(0,0)">
+                <i class="fa-solid fa-gem"></i> zyou market
+            </div>
+            <ul class="nav-links">
+                <li><a href="#catalog">Katalog</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
+            </ul>
+            <div class="nav-btns">
+                <button class="cart-icon-btn" onclick="openCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+                <button class="btn btn-outline" id="auth-btn" onclick="openAuthModal()">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Banner Slider -->
+        <div class="slider-container">
+            <div class="slide active" style="background-image: url('banner.jpg'), url('https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=1000&q=80');">
+                <div class="slide-overlay">
+                    <div class="slide-title">STOK ROBUX BESAR TERSEDIA</div>
+                    <div class="slide-desc">Dapatkan rate Robux terbaik hanya di zyou market hari ini.</div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('banner2.jpg'), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&q=80');">
+                <div class="slide-overlay">
+                    <div class="slide-title">GAMEPASS BLOX FRUITS & KING LEGACY</div>
+                    <div class="slide-desc">Diskon harga murah untuk semua item & pass populer!</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Catalog Section -->
+        <section id="catalog">
+            <div class="section-title">
+                <span><i class="fa-solid fa-store"></i> Katalog zyou market</span>
+            </div>
+
+            <!-- Search & Filter Bar -->
+            <div class="search-filter-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="Cari robux, gamepass, atau item..." oninput="filterProducts()">
+                </div>
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterCategory('all', this)">Semua</button>
+                    <button class="filter-btn" onclick="filterCategory('robux', this)">Robux</button>
+                    <button class="filter-btn" onclick="filterCategory('gamepass', this)">Gamepass</button>
+                    <button class="filter-btn" onclick="filterCategory('item-game', this)">Item Game</button>
+                    <button class="filter-btn" onclick="filterCategory('akun', this)">Akun Roblox</button>
+                </div>
+            </div>
+
+            <!-- Grid Produk -->
+            <div class="product-grid" id="product-container">
+                <!-- Diisi via JS -->
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonial-section" id="testimonials">
+            <div class="section-title">
+                <span><i class="fa-solid fa-comments"></i> Testimoni Pembeli zyou market</span>
+            </div>
+
+            <div class="testimonial-grid" id="testimonial-container">
+                <!-- Diisi via JS -->
+            </div>
+
+            <hr style="border-color: var(--border-gold); margin: 1.5rem 0;">
+
+            <h3 style="color: var(--accent-gold); margin-bottom: 0.8rem; font-size: 1.1rem;">Tambah Ulasan Anda</h3>
+            <form class="testimonial-form" onsubmit="addTestimonial(event)">
+                <div class="form-group">
+                    <label>Username Roblox / Nama</label>
+                    <input type="text" id="testi-name" placeholder="Contoh: Gamerzyou123" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select id="testi-rating">
+                        <option value="5">⭐⭐⭐⭐⭐ (Sangat Puas)</option>
+                        <option value="4">⭐⭐⭐⭐ (Puas)</option>
+                        <option value="3">⭐⭐⭐ (Cukup)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Ulasan Pesanan</label>
+                    <textarea id="testi-comment" rows="3" placeholder="Tuliskan pengalaman bertransaksi di zyou market..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-gold" style="width: fit-content;">Kirim Testimoni</button>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 zyou market. All rights reserved.</p>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+            <h3 style="color: var(--accent-gold); margin-bottom: 0.8rem;"><i class="fa-solid fa-cart-shopping"></i> Keranjang Belanja</h3>
+            
+            <div id="cart-items-list">
+                <!-- Items list -->
+            </div>
+
+            <div style="margin-top: 12px; text-align: right; font-weight: bold; font-size: 1rem;">
+                Total: <span id="cart-total" style="color: var(--accent-gold);">Rp 0</span>
+            </div>
+
+            <hr style="border-color: var(--border-gold); margin: 12px 0;">
+
+            <!-- Checkout Form -->
+            <div class="form-group" style="margin-bottom: 8px;">
+                <label>Username Roblox Anda</label>
+                <input type="text" id="checkout-username" placeholder="Masukkan Username Roblox..." required>
+            </div>
+
+            <div class="form-group">
+                <label>Pilih Metode Pembayaran</label>
+                <div class="payment-options">
+                    <div class="payment-btn" onclick="selectPayment('QRIS Instant', this)">QRIS All Bank</div>
+                    <div class="payment-btn" onclick="selectPayment('Bank BCA', this)">Bank BCA</div>
+                    <div class="payment-btn" onclick="selectPayment('DANA', this)">DANA</div>
+                    <div class="payment-btn" onclick="selectPayment('GoPay / OVO', this)">GoPay / OVO</div>
+                </div>
+            </div>
+
+            <div class="queue-box">
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Nomor Antrean Pesanan Anda:</div>
+                <div class="queue-number" id="generated-queue-num">#ZYU-1001</div>
+                <div style="font-size: 0.8rem; color: var(--success);"><i class="fa-regular fa-clock"></i> Estimasi Proses: 1 - 5 Menit</div>
+            </div>
+
+            <button class="btn btn-gold" style="width: 100%;" onclick="processCheckout()"><i class="fa-brands fa-whatsapp"></i> Bayar Via WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeAuthModal()">&times;</span>
+            <h3 style="color: var(--accent-gold); margin-bottom: 1rem;" id="auth-title">Login Akun</h3>
+            
+            <form onsubmit="handleAuth(event)" style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="form-group">
+                    <label>Username / Email</label>
+                    <input type="text" id="auth-user" required placeholder="Masukkan username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-pass" required placeholder="Masukkan password">
+                </div>
+                <button type="submit" class="btn btn-gold" style="margin-top: 5px;">Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Data Produk zyou market
+        const products = [
+            { id: 1, name: "1.000 Robux (Instant)", category: "robux", price: 120000, stock: 15000, image: "robux1.jpg", fallbackImg: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500&q=80" },
+            { id: 2, name: "5.000 Robux (Group 7 Hari)", category: "robux", price: 550000, stock: 0, image: "robux2.jpg", fallbackImg: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=500&q=80" },
+            { id: 3, name: "VIP Server Pass (Blox Fruits)", category: "gamepass", price: 45000, stock: 99, image: "gamepass1.jpg", fallbackImg: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&q=80" },
+            { id: 4, name: "2x Money Gamepass (King Legacy)", category: "gamepass", price: 85000, stock: 50, image: "gamepass2.jpg", fallbackImg: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&q=80" },
+            { id: 5, name: "Permanent Kitsune Fruit", category: "item-game", price: 400000, stock: 3, image: "item1.jpg", fallbackImg: "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=500&q=80" },
+            { id: 6, name: "Akun Roblox Veteran (2018)", category: "akun", price: 75000, stock: 8, image: "akun1.jpg", fallbackImg: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&q=80" }
+        ];
+
+        let testimonials = JSON.parse(localStorage.getItem('zyou_testimonials')) || [
+            { name: "RizkyPro", rating: 5, comment: "Beli 1000 Robux di zyou market kilat banget masuknya!" },
+            { name: "BobaGamer", rating: 5, comment: "Gamepass Blox Fruits murah dan pelayanannya mantap." }
+        ];
+
+        let cart = [];
+        let selectedCategory = 'all';
+        let selectedPaymentMethod = '';
+        let currentUser = localStorage.getItem('zyou_user') || null;
+
+        // Slider Banner Auto Play
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 4000);
+
+        // Render Products
+        function renderProducts() {
+            const container = document.getElementById('product-container');
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            container.innerHTML = "";
+
+            const filtered = products.filter(p => {
+                const matchCat = selectedCategory === 'all' || p.category === selectedCategory;
+                const matchSearch = p.name.toLowerCase().includes(searchVal);
+                return matchCat && matchSearch;
+            });
+
+            if(!filtered.length) {
+                container.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--text-muted); padding:2rem;">Produk tidak ditemukan...</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const isOut = p.stock <= 0;
+                const badgeText = isOut ? "Stok Habis" : `Ready Stok: ${p.stock.toLocaleString()}`;
+                const badgeClass = isOut ? "badge-danger" : "badge-success";
+
+                container.innerHTML += `
+                    <div class="product-card">
+                        <span class="product-badge ${badgeClass}">${badgeText}</span>
+                        <img src="${p.image}" onerror="this.onerror=null; this.src='${p.fallbackImg}'" class="product-img" alt="${p.name}">
+                        <div class="product-info">
+                            <div class="product-category">${p.category}</div>
+                            <div class="product-title">${p.name}</div>
+                            <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
+                            <button class="btn btn-gold" ${isOut ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''} onclick="addToCart(${p.id})">
+                                <i class="fa-solid fa-cart-plus"></i> ${isOut ? 'Stok Habis' : 'Tambah Ke Keranjang'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedCategory = cat;
+            renderProducts();
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        // Cart Logic
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const exist = cart.find(i => i.id === id);
+
+            if(exist) {
+                if(exist.qty < product.stock) exist.qty++;
+            } else {
+                cart.push({...product, qty: 1});
+            }
+            updateCartUI();
+            openCart();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items-list');
+            const totalEl = document.getElementById('cart-total');
+            const countEl = document.getElementById('cart-count');
+
+            list.innerHTML = "";
+            let total = 0;
+            let totalCount = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                totalCount += item.qty;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <div style="font-weight:bold; font-size:0.9rem;">${item.name}</div>
+                            <div style="font-size:0.8rem; color:var(--text-muted);">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</div>
+                        </div>
+                        <button class="btn btn-outline" style="padding:2px 8px; font-size:0.75rem;" onclick="removeFromCart(${item.id})">Hapus</button>
+                    </div>
+                `;
+            });
+
+            totalEl.innerText = `Rp ${total.toLocaleString('id-ID')}`;
+            countEl.innerText = totalCount;
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        function openCart() {
+            generateQueueNumber();
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function selectPayment(method, element) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function generateQueueNumber() {
+            const randomNum = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('generated-queue-num').innerText = `#ZYU-${randomNum}`;
+        }
+
+        function processCheckout() {
+            const username = document.getElementById('checkout-username').value;
+            const queueNum = document.getElementById('generated-queue-num').innerText;
+
+            if(!cart.length) return alert("Keranjang belanja Anda masih kosong!");
+            if(!username) return alert("Silakan masukkan Username Roblox Anda!");
+            if(!selectedPaymentMethod) return alert("Silakan pilih metode pembayaran!");
+
+            let message = `*HALO ADMIN ZYOU MARKET, SAYA INGIN ORDER!*%0A%0A`;
+            message += `📌 *Nomor Antrean:* ${queueNum}%0A`;
+            message += `👤 *Username Roblox:* ${username}%0A`;
+            message += `💳 *Metode Pembayaran:* ${selectedPaymentMethod}%0A%0A`;
+            message += `🛒 *Rincian Pesanan:*%0A`;
+
+            let total = 0;
+            cart.forEach(item => {
+                const sub = item.price * item.qty;
+                total += sub;
+                message += `- ${item.name} (${item.qty}x) : Rp ${sub.toLocaleString('id-ID')}%0A`;
+            });
+
+            message += `%0A💰 *TOTAL BAYAR:* Rp ${total.toLocaleString('id-ID')}%0A%0AMohon instruksi pembayaran selanjutnya, terima kasih!`;
+
+            window.open(`https://wa.me/628123456789?text=${message}`, '_blank');
+        }
+
+        // Testimonials Logic
+        function renderTestimonials() {
+            const container = document.getElementById('testimonial-container');
+            container.innerHTML = "";
+
+            testimonials.forEach(t => {
+                const stars = "⭐".repeat(t.rating);
+                const initial = t.name.charAt(0).toUpperCase();
+                container.innerHTML += `
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="user-info">
+                                <div class="user-avatar">${initial}</div>
+                                <span class="user-name">${t.name}</span>
+                            </div>
+                            <span class="stars">${stars}</span>
+                        </div>
+                        <p class="testimonial-comment">${t.comment}</p>
+                    </div>
+                `;
+            });
+        }
+
+        function addTestimonial(e) {
+            e.preventDefault();
+            const name = document.getElementById('testi-name').value;
+            const rating = parseInt(document.getElementById('testi-rating').value);
+            const comment = document.getElementById('testi-comment').value;
+
+            testimonials.unshift({ name, rating, comment });
+            localStorage.setItem('zyou_testimonials', JSON.stringify(testimonials));
+            
+            renderTestimonials();
+            e.target.reset();
+            alert("Terima kasih atas testimoni Anda di zyou market!");
+        }
+
+        // Auth Logic
+        function openAuthModal() {
+            document.getElementById('auth-modal').style.display = 'flex';
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').style.display = 'none';
+        }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const user = document.getElementById('auth-user').value;
+            currentUser = user;
+            localStorage.setItem('zyou_user', user);
+            updateAuthUI();
+            closeAuthModal();
+        }
+
+        function updateAuthUI() {
+            const btn = document.getElementById('auth-btn');
+            if(currentUser) {
+                btn.innerText = `Halo, ${currentUser}`;
+                btn.onclick = () => {
+                    if(confirm("Apakah Anda ingin logout dari zyou market?")) {
+                        localStorage.removeItem('zyou_user');
+                        currentUser = null;
+                        updateAuthUI();
+                    }
+                };
+            } else {
+                btn.innerText = "Login";
+                btn.onclick = openAuthModal;
+            }
+        }
+
+        // Init App
+        window.onload = () => {
+            renderProducts();
+            renderTestimonials();
+            updateAuthUI();
+        };
+    </script>
+</body>
+</html>
