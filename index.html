@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZYOU MARKET - Store</title>
+  <title>ZYOU MARKET - Store & Admin Panel</title>
   <style>
     * {
       box-sizing: border-box;
@@ -18,15 +18,59 @@
       padding: 20px;
     }
 
+    /* Switcher Navigation (Navigasi Antar Tampilan) */
+    .view-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      background: #161618;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #28282c;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .switch-btn {
+      background: #222;
+      color: #aaa;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      flex: 1;
+    }
+
+    .switch-btn.active {
+      background: #f39c12;
+      color: #000;
+    }
+
+    /* Layout Containers */
     .container {
-      max-width: 500px;
-      margin: 40px auto;
+      max-width: 550px;
+      margin: 0 auto;
       background-color: #161618;
       border: 1px solid #28282c;
       border-radius: 12px;
       padding: 25px;
     }
 
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: none;
+    }
+
+    .buyer-container {
+      display: block;
+    }
+
+    /* Branding Header */
     .brand {
       display: flex;
       align-items: center;
@@ -67,6 +111,7 @@
       padding-bottom: 10px;
     }
 
+    /* Form Styles (Toko Pembeli) */
     .form-group {
       margin-bottom: 15px;
     }
@@ -111,23 +156,146 @@
       background-color: #e67e22;
     }
 
-    .link-admin {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #f39c12;
-      font-size: 13px;
-      text-decoration: none;
+    /* Admin Panel Styles */
+    .banner {
+      background: linear-gradient(135deg, #2c1a04 0%, #1a1002 100%);
+      border: 1px solid #5a3808;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .link-admin:hover {
-      text-decoration: underline;
+    .banner-text h2 {
+      color: #f39c12;
+      font-size: 18px;
+      margin-bottom: 4px;
+      border: none;
+    }
+
+    .banner-text p {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background-color: #161618;
+      border: 1px solid #28282c;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .stat-title {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .val-green { color: #2ecc71; }
+    .val-yellow { color: #f1c40f; }
+    .val-red { color: #e74c3c; }
+
+    .table-container {
+      background-color: #161618;
+      border: 1px solid #28282c;
+      border-radius: 10px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+      min-width: 700px;
+    }
+
+    th {
+      background-color: #0f0f11;
+      color: #ffffff;
+      padding: 12px;
+      border-bottom: 2px solid #28282c;
+    }
+
+    td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #222226;
+    }
+
+    .order-id {
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    .item-price {
+      color: #f39c12;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .btn-bukti {
+      background-color: #2b2308;
+      color: #f39c12;
+      border: 1px solid #5a430b;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    select.status-select {
+      background-color: #2b2308;
+      color: #f39c12;
+      border: 1px solid #5a430b;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .btn-chat {
+      background-color: #f39c12;
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: #666;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- TOMBOL NAVIGASI TAMPILAN -->
+  <div class="view-switcher">
+    <button class="switch-btn active" id="btnBuyerView" onclick="switchView('buyer')">🛒 Tampilan Toko (Pembeli)</button>
+    <button class="switch-btn" id="btnAdminView" onclick="switchView('admin')">⚙️ Dasbor Admin</button>
+  </div>
+
+  <!-- 1. TAMPILAN TOKO / PEMBELI -->
+  <div id="buyerView" class="container buyer-container">
     <div class="brand">
       <div class="brand-logo">Z</div>
       <div>
@@ -162,11 +330,108 @@
 
       <button type="submit" class="btn-submit">🚀 Kirim Orderan</button>
     </form>
+  </div>
 
-    <a href="admin.html" target="_blank" class="link-admin">👉 Buka Dasbor Admin (Uji Coba)</a>
+  <!-- 2. TAMPILAN DASBOR ADMIN -->
+  <div id="adminView" class="admin-container">
+    <div class="banner">
+      <div class="banner-text">
+        <h2>👤 Panel Owner ZYOU MARKET</h2>
+        <p>Verifikasi transfer, beri ACC untuk membuka ruang Live Chat pembeli.</p>
+      </div>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total Omset Lunas</div>
+        <div class="stat-value val-green" id="stat-omset">Rp 0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Menunggu Verifikasi</div>
+        <div class="stat-value val-yellow" id="stat-pending">0 TRX</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Berhasil Lunas</div>
+        <div class="stat-value val-yellow" id="stat-lunas">0 TRX</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Ditolak / Expired</div>
+        <div class="stat-value val-red" id="stat-ditolak">0 TRX</div>
+      </div>
+    </div>
+
+    <!-- Table Transaksi -->
+    <div class="table-container">
+      <div style="color: #f39c12; font-size: 16px; margin-bottom: 15px; font-weight: bold;">
+        ⚙️ Kelola Transaksi Masuk
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>No. Antrian</th>
+            <th>Roblox User</th>
+            <th>Item & Total</th>
+            <th>Bukti TF Pembeli</th>
+            <th>Verifikasi Admin</th>
+            <th>Ruang Chat & Selesai</th>
+          </tr>
+        </thead>
+        <tbody id="transaction-list">
+          <!-- Data masuk otomatis di sini -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script>
+    // Inisialisasi Data Bawaan jika Storage Kosong
+    function initDefaultData() {
+      if (!localStorage.getItem('transactions')) {
+        const initialData = [
+          {
+            id: "#ZY-8912",
+            robloxUser: "GamerPro99",
+            item: "500 Robux Fast",
+            price: 72000,
+            bukti: "https://via.placeholder.com/150",
+            status: "acc"
+          },
+          {
+            id: "#ZY-8911",
+            robloxUser: "RobloxIndo_1",
+            item: "Perm Buddha - Blox Fruits",
+            price: 165000,
+            bukti: "https://via.placeholder.com/150",
+            status: "lunas"
+          }
+        ];
+        localStorage.setItem('transactions', JSON.stringify(initialData));
+      }
+    }
+
+    // Ganti Tampilan Antara Toko dan Admin
+    function switchView(view) {
+      const buyerView = document.getElementById('buyerView');
+      const adminView = document.getElementById('adminView');
+      const btnBuyerView = document.getElementById('btnBuyerView');
+      const btnAdminView = document.getElementById('btnAdminView');
+
+      if (view === 'buyer') {
+        buyerView.style.display = 'block';
+        adminView.style.display = 'none';
+        btnBuyerView.classList.add('active');
+        btnAdminView.classList.remove('active');
+      } else {
+        buyerView.style.display = 'none';
+        adminView.style.display = 'block';
+        btnAdminView.classList.add('active');
+        btnBuyerView.classList.remove('active');
+        renderDashboard();
+      }
+    }
+
+    // Submit Orderan Dari Pembeli
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -176,34 +441,104 @@
       const itemPrice = parseInt(itemData[1]);
       const bukti = document.getElementById('buktiTF').value;
 
-      // Ambil transaksi lama dari localStorage
       const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-
-      // Buat No. Antrian unik (#ZY-xxxx)
       const newAntrian = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
 
-      // Buat objek order baru
       const newOrder = {
         id: newAntrian,
         robloxUser: username,
         item: itemName,
         price: itemPrice,
         bukti: bukti,
-        status: "pending" // Status default
+        status: "pending"
       };
 
-      // Tambahkan transaksi baru ke paling atas
       transactions.unshift(newOrder);
-
-      // Simpan kembali ke localStorage
       localStorage.setItem('transactions', JSON.stringify(transactions));
 
-      alert('Orderan berhasil dikirim dengan Antrian ' + newAntrian + '! Silakan cek Dasbor Admin.');
-      
-      // Reset Form
+      alert('Orderan berhasil dikirim dengan Antrian ' + newAntrian + '! Pindah ke Dasbor Admin untuk melihat.');
       document.getElementById('orderForm').reset();
     });
-  </script>
 
+    // Render Data di Dasbor Admin
+    function renderDashboard() {
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      const tbody = document.getElementById('transaction-list');
+      
+      let totalOmset = 0;
+      let pendingCount = 0;
+      let lunasCount = 0;
+      let ditolakCount = 0;
+
+      tbody.innerHTML = '';
+
+      if (transactions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty-msg">Belum ada transaksi masuk.</td></tr>';
+      }
+
+      transactions.forEach((tx, index) => {
+        if (tx.status === 'lunas') {
+          totalOmset += tx.price;
+          lunasCount++;
+        } else if (tx.status === 'pending' || tx.status === 'acc') {
+          pendingCount++;
+        } else if (tx.status === 'ditolak') {
+          ditolakCount++;
+        }
+
+        const priceFormatted = new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          maximumFractionDigits: 0
+        }).format(tx.price);
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="order-id">${tx.id}</td>
+          <td><strong>${tx.robloxUser}</strong></td>
+          <td>
+            <div>${tx.item}</div>
+            <div class="item-price">${priceFormatted}</div>
+          </td>
+          <td>
+            <button class="btn-bukti" onclick="window.open('${tx.bukti}', '_blank')">Lihat Bukti</button>
+          </td>
+          <td>
+            <select class="status-select" onchange="updateStatus(${index}, this.value)">
+              <option value="pending" ${tx.status === 'pending' ? 'selected' : ''}>⏳ Menunggu ACC</option>
+              <option value="acc" ${tx.status === 'acc' ? 'selected' : ''}>✓ ACC (Buka Chat)</option>
+              <option value="lunas" ${tx.status === 'lunas' ? 'selected' : ''}>⭐ Lunas / Selesai</option>
+              <option value="ditolak" ${tx.status === 'ditolak' ? 'selected' : ''}>❌ Ditolak / Expired</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn-chat" onclick="alert('Membuka Chat untuk Antrian: ${tx.id}')">💬 Chat & Selesaikan</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('stat-omset').innerText = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+      }).format(totalOmset);
+
+      document.getElementById('stat-pending').innerText = `${pendingCount} TRX`;
+      document.getElementById('stat-lunas').innerText = `${lunasCount} TRX`;
+      document.getElementById('stat-ditolak').innerText = `${ditolakCount} TRX`;
+    }
+
+    // Update Status Verifikasi Admin
+    function updateStatus(index, newStatus) {
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      transactions[index].status = newStatus;
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+      renderDashboard();
+    }
+
+    // Inisialisasi awal saat pertama kali dibuka
+    initDefaultData();
+  </script>
 </body>
 </html>
