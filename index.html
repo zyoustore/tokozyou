@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZYOU MARKET - Robux & Gamepass Roblox Store</title>
+  <title>ZYOU MARKET - Robux & Gamepass Store</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <script>
@@ -13,19 +13,9 @@
         extend: {
           colors: {
             brand: {
-              50: '#fffbeb',
-              100: '#fef3c7',
-              200: '#fde68a',
-              300: '#fcd34d',
-              400: '#fbbf24',
-              500: '#facc15',
-              600: '#d97706',
-              700: '#b45309',
-              800: '#92400e',
-              900: '#78350f',
-              dark: '#0c0703',
-              card: '#1a1008',
-              border: '#2f1c0c'
+              50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d',
+              400: '#fbbf24', 500: '#facc15', 600: '#d97706', 700: '#b45309',
+              800: '#92400e', 900: '#78350f', dark: '#0c0703', card: '#1a1008'
             }
           }
         }
@@ -47,19 +37,17 @@
       width: max-content;
       animation: scrollTesti 25s linear infinite;
     }
-    .animate-scroll:hover {
-      animation-play-state: paused;
-    }
+    .animate-scroll:hover { animation-play-state: paused; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between custom-scrollbar">
 
-  <!-- TOP TICKER -->
+  <!-- TOP TICKER BAR -->
   <div class="bg-gradient-to-r from-amber-950 via-yellow-900 to-amber-950 border-b border-amber-800/40 py-1.5 px-4 text-[11px] text-amber-200 flex items-center justify-between overflow-hidden">
     <div class="flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-      <span class="font-bold text-yellow-400 uppercase tracking-wider">Antrian Server:</span>
-      <span>Sistem Otomatis & Live Chat Owner Online 24 Jam</span>
+      <span class="font-bold text-yellow-400 uppercase tracking-wider">Server Status:</span>
+      <span>Sistem Otomatis & Live Chat Admin Online 24 Jam</span>
     </div>
     <div class="hidden sm:block text-amber-300/80 font-medium">
       ⚡ Garansi 100% Legal & Safe Roblox Store
@@ -106,12 +94,12 @@
           Pusat <span class="text-amber-400">Robux</span> & <span class="text-yellow-400">Gamepass Roblox</span>
         </h2>
         <p class="text-xs md:text-sm text-zinc-300">
-          Upload bukti TF untuk mendapatkan Nomor Antrian. Live Chat dengan Admin terbuka otomatis begitu pesanan di-ACC oleh Admin!
+          Upload bukti TF untuk mendapatkan Nomor Antrian. Ruang Live Chat terbuka otomatis saat pesanan di-ACC oleh Owner!
         </p>
       </div>
     </div>
 
-    <!-- AUTO-RUNNING TESTIMONIALS CAROUSEL -->
+    <!-- TESTIMONIALS CAROUSEL -->
     <section class="bg-zinc-900/80 border border-amber-900/30 rounded-2xl p-4 overflow-hidden">
       <div class="flex items-center justify-between mb-3 px-2">
         <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
@@ -182,7 +170,7 @@
 
   </div>
 
-  <!-- HIDDEN OWNER DASHBOARD VIEW -->
+  <!-- OWNER DASHBOARD VIEW -->
   <div id="adminView" class="max-w-7xl mx-auto px-4 py-6 w-full space-y-6 hidden">
     <div class="flex items-center justify-between bg-amber-950/60 border border-amber-600/40 p-4 rounded-2xl">
       <div>
@@ -242,7 +230,7 @@
     </section>
   </div>
 
-  <!-- ORDER TICKET / NOMOR ANTRIAN MODAL -->
+  <!-- TICKET / NOMOR ANTRIAN MODAL -->
   <div id="ticketModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-500/50 max-w-sm w-full rounded-2xl p-6 text-center relative shadow-2xl">
       <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
@@ -258,7 +246,7 @@
 
       <div class="bg-amber-950/30 border border-amber-800/40 p-3 rounded-xl text-left text-xs text-amber-200/90 mb-4 space-y-1.5">
         <p class="flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-circle-notch animate-spin text-amber-400"></i> <strong>Status:</strong> Menunggu ACC Verifikasi Admin</p>
-        <p class="text-[10px] text-zinc-400">*Pesanan Anda sudah masuk di tabel Antrian Live. Setelah Admin memeriksa bukti transfer & menekan ACC, tombol Live Chat akan otomatis AKTIF.*</p>
+        <p class="text-[10px] text-zinc-400">*Pesanan Anda telah otomatis didaftarkan di Panel Owner & Antrian Publik. Setelah Owner menekan tombol ACC, Live Chat akan aktif secara otomatis.*</p>
       </div>
 
       <button onclick="closeTicketModal()" class="w-full py-2.5 bg-amber-500 text-black font-extrabold text-xs rounded-xl hover:bg-amber-400 transition">
@@ -297,7 +285,6 @@
   <!-- LIVE CHAT MODAL (OWNER ↔ BUYER) -->
   <div id="chatModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl flex flex-col h-[620px] shadow-2xl relative overflow-hidden">
-      <!-- Chat Header -->
       <div class="bg-zinc-900 border-b border-amber-900/40 p-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="w-9 h-9 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold">
@@ -313,12 +300,8 @@
         <button onclick="closeChat()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
 
-      <!-- Messages Body -->
-      <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar bg-zinc-950/60">
-        <!-- JS Rendered Messages -->
-      </div>
+      <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar bg-zinc-950/60"></div>
 
-      <!-- Owner Control Action Bar Inside Chat -->
       <div id="ownerChatActionBar" class="bg-amber-950/40 border-t border-amber-900/40 px-3 py-2 flex items-center justify-between hidden">
         <span class="text-[10px] text-amber-300 font-medium">Panel Khusus Owner:</span>
         <button onclick="completeOrderAndRequestReview()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg shadow flex items-center gap-1">
@@ -326,7 +309,6 @@
         </button>
       </div>
 
-      <!-- Chat Input Controls -->
       <div class="bg-zinc-900 border-t border-amber-900/40 p-3 space-y-2">
         <div id="chatImgPreviewContainer" class="hidden flex items-center gap-2 bg-zinc-950 p-2 rounded-xl border border-amber-800">
           <img id="chatImgPreview" src="" alt="Proof Preview" class="w-12 h-12 object-cover rounded-lg border border-amber-500" />
@@ -335,13 +317,11 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <label class="p-2.5 bg-zinc-800 hover:bg-zinc-700 text-amber-400 rounded-xl cursor-pointer border border-amber-900/40 text-xs" title="Lampirkan Gambar/Bukti Pengiriman">
+          <label class="p-2.5 bg-zinc-800 hover:bg-zinc-700 text-amber-400 rounded-xl cursor-pointer border border-amber-900/40 text-xs">
             <i class="fa-solid fa-paperclip"></i>
             <input type="file" id="chatFileInput" accept="image/*" class="hidden" onchange="handleChatImageSelect(event)" />
           </label>
-          
           <input type="text" id="chatInputText" placeholder="Ketik pesan..." class="flex-1 bg-zinc-950 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" onkeypress="if(event.key==='Enter') sendChatMessage()" />
-          
           <button onclick="sendChatMessage()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-xl text-xs flex items-center gap-1">
             <span>Kirim</span>
             <i class="fa-solid fa-paper-plane text-[10px]"></i>
@@ -404,7 +384,7 @@
     </div>
   </div>
 
-  <!-- PAYMENT INVOICE & PROOF UPLOAD MODAL WITH 5-MIN TIMER -->
+  <!-- PAYMENT INVOICE & PROOF UPLOAD MODAL -->
   <div id="invoiceModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
       <button onclick="cancelInvoiceManual()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
@@ -415,11 +395,11 @@
         <p class="text-xs text-amber-300/80 mt-1">No. TRX: <span id="invTrxCode" class="font-mono font-bold text-yellow-400">#ZY-000</span></p>
       </div>
 
-      <!-- 5-MINUTE COUNTDOWN TIMER DISPLAY -->
+      <!-- TIMER 5 MENIT -->
       <div class="bg-red-950/40 border border-red-800/60 p-3 rounded-xl mb-4 text-center">
         <p class="text-[10px] text-red-300 font-bold uppercase tracking-wider mb-0.5">Batas Waktu Pembayaran:</p>
         <div id="paymentTimerDisplay" class="text-2xl font-black text-red-400 font-mono">05:00</div>
-        <p class="text-[9px] text-zinc-400 mt-0.5">*Jika lewat dari 5 menit, pesanan batal otomatis & stok dikembalikan.</p>
+        <p class="text-[9px] text-zinc-400 mt-0.5">*Jika lewat 5 menit, transaksi otomatis batal & stok dikembalikan.</p>
       </div>
 
       <div id="paymentDetailsBox" class="bg-zinc-900 border border-amber-900/40 p-4 rounded-xl mb-4 text-xs">
@@ -454,14 +434,14 @@
     </div>
   </div>
 
-  <!-- OWNER HIDDEN AUTH MODAL -->
+  <!-- OWNER PIN AUTH MODAL -->
   <div id="adminAuthModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 text-center">
       <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
         <i class="fa-solid fa-user-gear"></i>
       </div>
       <h3 class="text-lg font-bold text-white mb-1">Akses Khusus Owner</h3>
-      <p class="text-xs text-zinc-400 mb-4">Masukkan PIN Keamanan Owner Store</p>
+      <p class="text-xs text-zinc-400 mb-4">Masukkan PIN Keamanan Owner Store (Default: 123456)</p>
       
       <input type="password" id="adminPinInput" placeholder="Masukkan PIN" class="w-full bg-zinc-900 border border-amber-900 rounded-xl px-4 py-2.5 text-center text-sm text-white focus:outline-none focus:border-amber-400 mb-4 tracking-widest" />
       
@@ -507,9 +487,8 @@
     </button>
   </footer>
 
-  <!-- SCRIPT UTAMA -->
+  <!-- JAVASCRIPT SYSTEM ENGINE -->
   <script>
-    // --- PRODUCTS DATA WITH DYNAMIC STOCK ---
     const products = [
       { id: 1, name: "100 Robux Fast", category: "robux", price: 15000, desc: "Proses Gamepass 1-5 Menit", stock: 25 },
       { id: 2, name: "500 Robux Fast", category: "robux", price: 72000, desc: "Proses Cepat Legal & Safe", stock: 12 },
@@ -528,26 +507,24 @@
     let activeChatTrx = null;
     let chatImageAttachment = null;
 
-    // Direct Buy State
     let selectedDirectItem = null;
-
-    // 5-Min Payment Timer State
     let paymentTimerInterval = null;
     let paymentSecondsLeft = 300;
     let pendingPurchasedItems = [];
+    let activeTargetUsername = "";
 
-    // Database Orders
+    // DATABASE ORDERS (SHARED)
     let queueOrders = [
       {
         id: "#ZY-8912",
-        user: "GamerPro99",
+        user: "GramerPro99",
         item: "500 Robux Fast",
         time: "3 Menit lalu",
-        status: "Diproses",
+        status: "Lunas",
         proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+GamerPro99",
         price: 72000,
         messages: [
-          { sender: "owner", text: "Halo GamerPro99! Pesanan kamu sudah di-ACC dan sedang diproses tim kami.", time: "12:01", img: null }
+          { sender: "owner", text: "Halo GamerPro99! Pesanan kamu sudah selesai dikirim.", time: "12:01", img: null }
         ]
       },
       {
@@ -559,8 +536,7 @@
         proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+RobloxIndo",
         price: 165000,
         messages: [
-          { sender: "owner", text: "Berikut bukti gift Perm Buddha telah terkirim!", time: "11:55", img: "https://placehold.co/600x400/0d0703/facc15?text=Bukti+Pengiriman+Gamepass+Selesai" },
-          { sender: "buyer", text: "Terima kasih banyak min! Sudah masuk.", time: "11:56", img: null }
+          { sender: "owner", text: "Berikut bukti gift Perm Buddha telah terkirim!", time: "11:55", img: "https://placehold.co/600x400/0d0703/facc15?text=Bukti+Pengiriman+Gamepass" }
         ]
       }
     ];
@@ -611,7 +587,7 @@
       `).join('');
     }
 
-    // DIRECT BUY SEPARATE FLOW
+    // DIRECT BUY
     function openDirectBuy(id) {
       const item = products.find(p => p.id === id);
       if(!item || item.stock <= 0) return alert("Stok produk tidak mencukupi!");
@@ -633,20 +609,20 @@
 
       if(selectedDirectItem.stock < 1) return alert("Stok habis!");
       
+      activeTargetUsername = user;
       selectedDirectItem.stock -= 1;
       pendingPurchasedItems = [{ product: selectedDirectItem, qty: 1 }];
       renderProducts();
 
       currentTrxCode = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById('invTrxCode').innerText = currentTrxCode;
-      document.getElementById('robloxUsername').value = user;
 
       closeDirectBuy();
       startPaymentTimer();
       document.getElementById('invoiceModal').classList.remove('hidden');
     }
 
-    // 5-MINUTE PAYMENT TIMER SYSTEM
+    // 5-MINUTE TIMER SYSTEM
     function startPaymentTimer() {
       clearInterval(paymentTimerInterval);
       paymentSecondsLeft = 300;
@@ -670,7 +646,7 @@
     }
 
     function cancelInvoiceManual() {
-      if(confirm("Apakah Anda yakin ingin membatalkan pembayaran ini? Stok akan dikembalikan.")) {
+      if(confirm("Batal pembayaran? Stok produk akan dikembalikan.")) {
         restorePendingStock();
         clearInterval(paymentTimerInterval);
         closeInvoice();
@@ -680,18 +656,16 @@
     function cancelInvoiceAutoExpired() {
       restorePendingStock();
       closeInvoice();
-      alert("⏱ Batas waktu pembayaran 5 menit telah habis! Pesanan otomatis dibatalkan dan stok produk dikembalikan.");
+      alert("⏱ Batas waktu pembayaran habis! Pesanan dibatalkan & stok dikembalikan.");
     }
 
     function restorePendingStock() {
-      pendingPurchasedItems.forEach(item => {
-        item.product.stock += item.qty;
-      });
+      pendingPurchasedItems.forEach(item => { item.product.stock += item.qty; });
       pendingPurchasedItems = [];
       renderProducts();
     }
 
-    // RENDER QUEUE TABLE
+    // RENDER QUEUE TABLE FOR PUBLIC
     function renderQueue() {
       const tbody = document.getElementById('queueTableBody');
       tbody.innerHTML = queueOrders.map(q => {
@@ -701,7 +675,7 @@
         if(q.status === 'Lunas') {
           badge = `<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✔ Selesai (Lunas)</span>`;
         } else if(q.status === 'Diproses') {
-          badge = `<span class="bg-amber-950/80 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full text-[10px] font-bold animate-pulse">⏳ ACC Admin (Diproses)</span>`;
+          badge = `<span class="bg-amber-950/80 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full text-[10px] font-bold animate-pulse">⏳ ACC (Diproses)</span>`;
         } else if(q.status === 'Mengecek Pembayaran') {
           badge = `<span class="bg-yellow-950/80 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full text-[10px] font-bold">🔍 Menunggu ACC Admin</span>`;
         } else {
@@ -711,7 +685,7 @@
         return `
           <tr class="hover:bg-amber-950/20">
             <td class="p-3 font-mono text-amber-400 font-bold">${q.id}</td>
-            <td class="p-3 font-bold">${q.user}</td>
+            <td class="p-3 font-bold text-white">${q.user}</td>
             <td class="p-3">${q.item}</td>
             <td class="p-3 text-zinc-400 text-[11px]">${q.time}</td>
             <td class="p-3">${badge}</td>
@@ -721,7 +695,7 @@
                   <i class="fa-solid fa-comments"></i> Buka Chat
                 </button>
               ` : `
-                <button onclick="alert('Ruang Live Chat baru terbuka setelah bukti transfer di-ACC oleh Admin/Owner!')" class="px-2.5 py-1 bg-zinc-800 text-zinc-500 border border-zinc-700 rounded-lg text-[10px] font-bold cursor-not-allowed">
+                <button onclick="alert('Ruang Chat baru terbuka setelah bukti TF di-ACC oleh Admin!')" class="px-2.5 py-1 bg-zinc-800 text-zinc-500 border border-zinc-700 rounded-lg text-[10px] font-bold cursor-not-allowed">
                   <i class="fa-solid fa-lock"></i> Chat Terkunci
                 </button>
               `}
@@ -731,7 +705,7 @@
       }).join('');
     }
 
-    // RENDER TESTIMONIALS CAROUSEL
+    // RENDER TESTIMONIALS
     function renderTestimonials() {
       const track = document.getElementById('testiTrack');
       const list = [...testimonials, ...testimonials];
@@ -747,13 +721,13 @@
       `).join('');
     }
 
-    // LIVE CHAT SYSTEM WITH OWNER COMPLETE ORDER
+    // LIVE CHAT ENGINE
     function openChatModal(trxCode, role) {
       const order = queueOrders.find(q => q.id === trxCode);
       if(!order) return;
 
       if(role === 'buyer' && order.status === 'Mengecek Pembayaran') {
-        alert("Ruang chat belum aktif. Mohon tunggu Admin memeriksa bukti transfer Anda.");
+        alert("Ruang chat belum aktif. Tunggu Admin memeriksa bukti transfer Anda.");
         return;
       }
 
@@ -807,7 +781,7 @@
 
       activeChatTrx.messages.push({
         sender: 'owner',
-        text: "✅ Transaksi kamu telah SELESAI! Silakan berikan testimoni ulasan Anda. Terima kasih sudah order di ZYOU MARKET!",
+        text: "✅ Transaksi telah SELESAI! Terima kasih sudah berbelanja di ZYOU MARKET.",
         time: "Baru saja",
         img: null
       });
@@ -819,7 +793,7 @@
       document.getElementById('revItem').value = activeChatTrx.item;
       openReviewModal();
 
-      alert("Transaksi diselesaikan! Status diubah menjadi Lunas & Form Testimoni terbuka untuk Pembeli.");
+      alert("Transaksi diselesaikan! Status menjadi Lunas.");
     }
 
     function handleChatImageSelect(e) {
@@ -864,14 +838,14 @@
       renderChatMessages();
     }
 
-    // CART & CHECKOUT
+    // CART SYSTEM
     function addToCart(id) {
       const item = products.find(p => p.id === id);
-      if(item.stock <= 0) return alert("Stok produk ini sedang habis!");
+      if(item.stock <= 0) return alert("Stok produk ini habis!");
 
       cart.push(item);
       updateCartBadge();
-      alert(`"${item.name}" ditambahkan ke keranjang!`);
+      alert(`"${item.name}" berhasil masuk keranjang!`);
     }
 
     function updateCartBadge() {
@@ -882,7 +856,7 @@
     }
 
     function openCart() {
-      if(cart.length === 0) return alert("Keranjang kamu masih kosong!");
+      if(cart.length === 0) return alert("Keranjang belanja masih kosong!");
       renderCartModal();
       document.getElementById('cartModal').classList.remove('hidden');
     }
@@ -918,8 +892,9 @@
 
     function proceedToInvoice() {
       const username = document.getElementById('robloxUsername').value.trim();
-      if(!username) return alert("Silakan masukkan Username Roblox Anda terlebih dahulu!");
+      if(!username) return alert("Masukkan Username Roblox Anda terlebih dahulu!");
 
+      activeTargetUsername = username;
       pendingPurchasedItems = [];
       cart.forEach(cItem => {
         cItem.stock -= 1;
@@ -952,12 +927,13 @@
       }
     }
 
+    // CRITICAL FIX: REALTIME ORDER SUBMIT TO OWNER DASHBOARD & QUEUE
     function submitCustomerOrder() {
-      if(!uploadedProofBase64) return alert("Silakan unggah foto/gambar bukti transfer Anda terlebih dahulu!");
+      if(!uploadedProofBase64) return alert("Unggah gambar bukti transfer Anda terlebih dahulu!");
 
       clearInterval(paymentTimerInterval);
 
-      const username = document.getElementById('robloxUsername').value.trim();
+      const username = activeTargetUsername || "User_" + Math.floor(100 + Math.random() * 900);
       const itemNames = pendingPurchasedItems.map(p => p.product.name).join(', ');
       const totalPrice = pendingPurchasedItems.reduce((sum, p) => sum + p.product.price, 0);
 
@@ -970,16 +946,21 @@
         proof: uploadedProofBase64,
         price: totalPrice,
         messages: [
-          { sender: "owner", text: `Halo ${username}! Bukti transfer kamu sedang diperiksa Admin. Mohon tunggu sebentar ya.`, time: "Baru saja", img: null }
+          { sender: "owner", text: `Halo ${username}! Bukti transfer sudah diterima dan sedang diverifikasi Admin.`, time: "Baru saja", img: null }
         ]
       };
 
+      // Push to Shared Array Database
       queueOrders.unshift(newOrder);
-      renderQueue();
-      if(isAdminLoggedIn) renderAdminOrders();
 
+      // Force Update Both Realtime Displays Immediately
+      renderQueue();
+      renderAdminOrders();
+
+      // Reset
       cart = [];
       pendingPurchasedItems = [];
+      activeTargetUsername = "";
       updateCartBadge();
       uploadedProofBase64 = null;
       document.getElementById('proofFileInput').value = "";
@@ -987,7 +968,7 @@
 
       closeInvoice();
 
-      // Show Order Ticket Modal
+      // Open Ticket Modal
       document.getElementById('ticketTrxCode').innerText = newOrder.id;
       document.getElementById('ticketRobloxUser').innerText = username;
       document.getElementById('ticketModal').classList.remove('hidden');
@@ -997,7 +978,7 @@
       document.getElementById('ticketModal').classList.add('hidden');
     }
 
-    // ADMIN / OWNER PANEL
+    // OWNER DASHBOARD MANAGEMENT
     function openAdminAuth() {
       if(isAdminLoggedIn) showAdminView();
       else document.getElementById('adminAuthModal').classList.remove('hidden');
@@ -1038,7 +1019,8 @@
 
     function renderAdminOrders() {
       const tbody = document.getElementById('adminOrderTable');
-      
+      if(!tbody) return;
+
       let totalOmset = 0;
       let pendingCount = 0;
       let approvedCount = 0;
@@ -1091,7 +1073,7 @@
       renderAdminOrders();
 
       if(newStatus === 'Diproses') {
-        alert(`Pesanan ${queueOrders[idx].id} berhasil di-ACC! Ruang Live Chat pembeli telah ter buka.`);
+        alert(`Pesanan ${queueOrders[idx].id} di-ACC! Ruang Live Chat pembeli diaktifkan.`);
       } else {
         alert(`Status pesanan ${queueOrders[idx].id} diperbarui menjadi: ${newStatus}`);
       }
@@ -1106,7 +1088,7 @@
       document.getElementById('imageLightboxModal').classList.add('hidden');
     }
 
-    // CS & REVIEW MODALS
+    // HELPER MODALS
     function openCSModal() { document.getElementById('csModal').classList.remove('hidden'); }
     function closeCSModal() { document.getElementById('csModal').classList.add('hidden'); }
     function openReviewModal() { document.getElementById('reviewModal').classList.remove('hidden'); }
@@ -1117,12 +1099,12 @@
       const i = document.getElementById('revItem').value.trim();
       const c = document.getElementById('revComment').value.trim();
 
-      if(!u || !i || !c) return alert("Lengkapi data ulasan!");
+      if(!u || !i || !c) return alert("Lengkapi form ulasan!");
 
       testimonials.unshift({ user: u, item: i, comment: c, rating: 5 });
       renderTestimonials();
       closeReviewModal();
-      alert("Terima kasih! Ulasan Anda berhasil ditampilkan di testimoni running.");
+      alert("Terima kasih! Ulasan berhasil ditambahkan.");
     }
 
     function setCategory(cat) {
@@ -1138,7 +1120,7 @@
 
     function filterProducts() { renderProducts(); }
 
-    // INIT
+    // INITIALIZATION
     renderProducts();
     renderQueue();
     renderTestimonials();
