@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+v<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -18,7 +18,7 @@
       padding: 20px;
     }
 
-    /* Switcher Navigation (Navigasi Antar Tampilan) */
+    /* Switcher Navigation (Tombol Pindah Tampilan) */
     .view-switcher {
       display: flex;
       justify-content: center;
@@ -50,7 +50,7 @@
       color: #000;
     }
 
-    /* Layout Containers */
+    /* Container Tampilan */
     .container {
       max-width: 550px;
       margin: 0 auto;
@@ -70,7 +70,14 @@
       display: block;
     }
 
-    /* Branding Header */
+    /* Header & Branding */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
     .brand {
       display: flex;
       align-items: center;
@@ -101,6 +108,15 @@
       font-size: 11px;
       color: #888;
       letter-spacing: 1px;
+    }
+
+    .nav-btn {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
     h2 {
@@ -156,7 +172,7 @@
       background-color: #e67e22;
     }
 
-    /* Admin Panel Styles */
+    /* Banner Panel Admin */
     .banner {
       background: linear-gradient(135deg, #2c1a04 0%, #1a1002 100%);
       border: 1px solid #5a3808;
@@ -180,6 +196,7 @@
       font-size: 13px;
     }
 
+    /* Stat Cards */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -209,12 +226,23 @@
     .val-yellow { color: #f1c40f; }
     .val-red { color: #e74c3c; }
 
+    /* Table Section */
     .table-container {
       background-color: #161618;
       border: 1px solid #28282c;
       border-radius: 10px;
       padding: 20px;
       overflow-x: auto;
+    }
+
+    .section-title {
+      color: #f39c12;
+      font-size: 16px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: bold;
     }
 
     table {
@@ -242,6 +270,10 @@
       font-weight: bold;
     }
 
+    .item-title {
+      font-size: 13px;
+    }
+
     .item-price {
       color: #f39c12;
       font-size: 12px;
@@ -266,6 +298,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-size: 12px;
+      outline: none;
     }
 
     .btn-chat {
@@ -288,13 +321,13 @@
 </head>
 <body>
 
-  <!-- TOMBOL NAVIGASI TAMPILAN -->
+  <!-- TOMBOL SWITCHER (PILIH TAMPILAN) -->
   <div class="view-switcher">
     <button class="switch-btn active" id="btnBuyerView" onclick="switchView('buyer')">🛒 Tampilan Toko (Pembeli)</button>
-    <button class="switch-btn" id="btnAdminView" onclick="switchView('admin')">⚙️ Dasbor Admin</button>
+    <button class="switch-btn" id="btnAdminView" onclick="switchView('admin')">⚙️ Tampilan Dasbor Admin</button>
   </div>
 
-  <!-- 1. TAMPILAN TOKO / PEMBELI -->
+  <!-- BAGIAN 1: HALAMAN PEMBELI -->
   <div id="buyerView" class="container buyer-container">
     <div class="brand">
       <div class="brand-logo">Z</div>
@@ -324,7 +357,7 @@
       </div>
 
       <div class="form-group">
-        <label for="buktiTF">Link Bukti Transfer (Image URL / Drive)</label>
+        <label for="buktiTF">Link Bukti Transfer (Image URL)</label>
         <input type="url" id="buktiTF" placeholder="https://..." required>
       </div>
 
@@ -332,8 +365,23 @@
     </form>
   </div>
 
-  <!-- 2. TAMPILAN DASBOR ADMIN -->
+  <!-- BAGIAN 2: HALAMAN ADMIN -->
   <div id="adminView" class="admin-container">
+    <!-- Navbar Header -->
+    <div class="navbar">
+      <div class="brand">
+        <div class="brand-logo">Z</div>
+        <div>
+          <div class="brand-title">ZYOU MARKET</div>
+          <div class="brand-sub">ROBUX & GAMEPASS STORE</div>
+        </div>
+      </div>
+      <div>
+        <button class="nav-btn">🎧 Bantuan CS</button>
+      </div>
+    </div>
+
+    <!-- Banner -->
     <div class="banner">
       <div class="banner-text">
         <h2>👤 Panel Owner ZYOU MARKET</h2>
@@ -363,8 +411,8 @@
 
     <!-- Table Transaksi -->
     <div class="table-container">
-      <div style="color: #f39c12; font-size: 16px; margin-bottom: 15px; font-weight: bold;">
-        ⚙️ Kelola Transaksi Masuk
+      <div class="section-title">
+        <span>⚙️</span> Kelola Transaksi Masuk
       </div>
       <table>
         <thead>
@@ -385,7 +433,7 @@
   </div>
 
   <script>
-    // Inisialisasi Data Bawaan jika Storage Kosong
+    // 1. Data Bawaan jika Storage Kosong
     function initDefaultData() {
       if (!localStorage.getItem('transactions')) {
         const initialData = [
@@ -410,7 +458,7 @@
       }
     }
 
-    // Ganti Tampilan Antara Toko dan Admin
+    // 2. Fungsi untuk Switch View (Ganti Tampilan Pembeli/Admin)
     function switchView(view) {
       const buyerView = document.getElementById('buyerView');
       const adminView = document.getElementById('adminView');
@@ -431,7 +479,7 @@
       }
     }
 
-    // Submit Orderan Dari Pembeli
+    // 3. Submit Form Orderan Pembeli
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -456,11 +504,11 @@
       transactions.unshift(newOrder);
       localStorage.setItem('transactions', JSON.stringify(transactions));
 
-      alert('Orderan berhasil dikirim dengan Antrian ' + newAntrian + '! Pindah ke Dasbor Admin untuk melihat.');
+      alert('Orderan berhasil dikirim dengan Antrian ' + newAntrian + '! Klik "Tampilan Dasbor Admin" di atas untuk memverifikasi.');
       document.getElementById('orderForm').reset();
     });
 
-    // Render Data di Dasbor Admin
+    // 4. Render Dasbor Admin & Hitung Statistik
     function renderDashboard() {
       const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
       const tbody = document.getElementById('transaction-list');
@@ -497,11 +545,11 @@
           <td class="order-id">${tx.id}</td>
           <td><strong>${tx.robloxUser}</strong></td>
           <td>
-            <div>${tx.item}</div>
+            <div class="item-title">${tx.item}</div>
             <div class="item-price">${priceFormatted}</div>
           </td>
           <td>
-            <button class="btn-bukti" onclick="window.open('${tx.bukti}', '_blank')">Lihat Bukti</button>
+            <button class="btn-bukti" onclick="viewBukti('${tx.bukti}')">Lihat Bukti</button>
           </td>
           <td>
             <select class="status-select" onchange="updateStatus(${index}, this.value)">
@@ -512,12 +560,13 @@
             </select>
           </td>
           <td>
-            <button class="btn-chat" onclick="alert('Membuka Chat untuk Antrian: ${tx.id}')">💬 Chat & Selesaikan</button>
+            <button class="btn-chat" onclick="openChat('${tx.id}')">💬 Chat & Selesaikan</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
 
+      // Update Card Statistik
       document.getElementById('stat-omset').innerText = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR',
@@ -529,7 +578,7 @@
       document.getElementById('stat-ditolak').innerText = `${ditolakCount} TRX`;
     }
 
-    // Update Status Verifikasi Admin
+    // 5. Update Status Verifikasi Admin
     function updateStatus(index, newStatus) {
       const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
       transactions[index].status = newStatus;
@@ -537,7 +586,23 @@
       renderDashboard();
     }
 
-    // Inisialisasi awal saat pertama kali dibuka
+    function viewBukti(url) {
+      if(url) window.open(url, '_blank');
+      else alert('Bukti transfer tidak tersedia.');
+    }
+
+    function openChat(id) {
+      alert('Membuka Ruang Chat untuk Antrian: ' + id);
+    }
+
+    // Auto Refresh Sync
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'transactions') {
+        renderDashboard();
+      }
+    });
+
+    // Inisialisasi awal
     initDefaultData();
   </script>
 </body>
