@@ -38,7 +38,6 @@
     .custom-scrollbar::-webkit-scrollbar-track { background: #1a1008; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #78350f; border-radius: 4px; }
     
-    /* Running Testimonial Animation */
     @keyframes scrollTesti {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -60,7 +59,7 @@
     <div class="flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
       <span class="font-bold text-yellow-400 uppercase tracking-wider">Antrian Server:</span>
-      <span>Sistem Otomatis Aktivasi Instant & Online 24 Jam</span>
+      <span>Sistem Otomatis & Live Chat Owner Online 24 Jam</span>
     </div>
     <div class="hidden sm:block text-amber-300/80 font-medium">
       ⚡ Garansi 100% Legal & Safe Roblox Store
@@ -107,7 +106,7 @@
           Pusat <span class="text-amber-400">Robux</span> & <span class="text-yellow-400">Gamepass Roblox</span>
         </h2>
         <p class="text-xs md:text-sm text-zinc-300">
-          Proses cepat, garansi aman legal. Dilengkapi sistem live chat dengan owner dan pemantauan antrian realtime.
+          Stok otomatis berkurang realtime. Dilengkapi timer pembayaran 5 menit, opsi beli langsung, dan live chat bukti pengiriman.
         </p>
       </div>
     </div>
@@ -190,7 +189,7 @@
         <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
           <i class="fa-solid fa-user-shield"></i> Panel Owner ZYOU MARKET
         </h2>
-        <p class="text-xs text-zinc-400">Verifikasi transfer, kelola status, dan kirim bukti pesanan via Live Chat.</p>
+        <p class="text-xs text-zinc-400">Verifikasi transfer, kelola status, dan selesaikan transaksi via Live Chat.</p>
       </div>
       <div class="flex items-center gap-2">
         <button onclick="showStorefront()" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-xl text-xs font-medium">Ke Toko</button>
@@ -213,7 +212,7 @@
         <h4 id="statApproved" class="text-lg font-bold text-amber-400 mt-1">0 TRX</h4>
       </div>
       <div class="bg-zinc-900 border border-amber-900/30 p-4 rounded-xl">
-        <p class="text-[11px] text-zinc-400">Ditolak / Invalid</p>
+        <p class="text-[11px] text-zinc-400">Ditolak / Expired</p>
         <h4 id="statRejected" class="text-lg font-bold text-red-400 mt-1">0 TRX</h4>
       </div>
     </div>
@@ -232,7 +231,7 @@
               <th class="p-3">Item & Total</th>
               <th class="p-3">Bukti TF Pembeli</th>
               <th class="p-3 text-center">Aksi Status</th>
-              <th class="p-3 text-right">Ruang Chat</th>
+              <th class="p-3 text-right">Ruang Chat & Selesai</th>
             </tr>
           </thead>
           <tbody id="adminOrderTable" class="divide-y divide-zinc-800 text-zinc-300">
@@ -243,9 +242,36 @@
     </section>
   </div>
 
+  <!-- DIRECT BUY MODAL -->
+  <div id="directBuyModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 relative">
+      <button onclick="closeDirectBuy()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      
+      <h3 class="text-lg font-bold text-amber-400 mb-1 flex items-center gap-2">
+        <i class="fa-solid fa-bolt"></i> Beli Langsung Fast
+      </h3>
+      <p class="text-xs text-zinc-400 mb-4">Transaksi cepat tanpa perlu masuk keranjang.</p>
+
+      <div class="bg-zinc-900 p-3 rounded-xl border border-amber-900/30 mb-4">
+        <span class="text-[10px] text-amber-400 font-bold uppercase">Item Terpilih:</span>
+        <h4 id="directItemName" class="font-bold text-sm text-white mt-0.5">-</h4>
+        <span id="directItemPrice" class="text-xs text-amber-400 font-extrabold mt-1 block">Rp 0</span>
+      </div>
+
+      <div class="bg-amber-950/30 border border-amber-800/40 p-3.5 rounded-xl mb-4">
+        <label class="block text-xs font-bold text-amber-300 mb-1">Username Roblox Target *</label>
+        <input type="text" id="directRobloxUser" placeholder="Contoh: RobloxGamer123" class="w-full bg-zinc-900 border border-amber-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" />
+      </div>
+
+      <button onclick="proceedDirectBuyInvoice()" class="w-full py-2.5 bg-gradient-to-r from-amber-600 to-yellow-500 text-black font-extrabold text-xs rounded-xl shadow-lg">
+        Lanjut Ke Pembayaran <i class="fa-solid fa-arrow-right ml-1"></i>
+      </button>
+    </div>
+  </div>
+
   <!-- LIVE CHAT MODAL (OWNER ↔ BUYER) -->
   <div id="chatModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl flex flex-col h-[600px] shadow-2xl relative overflow-hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl flex flex-col h-[620px] shadow-2xl relative overflow-hidden">
       <!-- Chat Header -->
       <div class="bg-zinc-900 border-b border-amber-900/40 p-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -267,9 +293,16 @@
         <!-- JS Rendered Messages -->
       </div>
 
+      <!-- Owner Control Action Bar Inside Chat -->
+      <div id="ownerChatActionBar" class="bg-amber-950/40 border-t border-amber-900/40 px-3 py-2 flex items-center justify-between hidden">
+        <span class="text-[10px] text-amber-300 font-medium">Panel Khusus Owner:</span>
+        <button onclick="completeOrderAndRequestReview()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg shadow flex items-center gap-1">
+          <i class="fa-solid fa-circle-check"></i> Selesaikan Transaksi & Minta Ulasan
+        </button>
+      </div>
+
       <!-- Chat Input Controls -->
       <div class="bg-zinc-900 border-t border-amber-900/40 p-3 space-y-2">
-        <!-- Image Attachment Preview if selected -->
         <div id="chatImgPreviewContainer" class="hidden flex items-center gap-2 bg-zinc-950 p-2 rounded-xl border border-amber-800">
           <img id="chatImgPreview" src="" alt="Proof Preview" class="w-12 h-12 object-cover rounded-lg border border-amber-500" />
           <span class="text-[10px] text-amber-300 flex-1">Gambar/Bukti Pengiriman Terlampir</span>
@@ -346,15 +379,22 @@
     </div>
   </div>
 
-  <!-- PAYMENT INVOICE & PROOF UPLOAD MODAL -->
+  <!-- PAYMENT INVOICE & PROOF UPLOAD MODAL WITH 5-MIN TIMER -->
   <div id="invoiceModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
-      <button onclick="closeInvoice()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      <button onclick="cancelInvoiceManual()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
       
       <div class="text-center mb-4">
         <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold rounded-full uppercase">Invoice Pembayaran</span>
         <h3 class="text-xl font-extrabold text-white mt-2">Selesaikan Pembayaran</h3>
         <p class="text-xs text-amber-300/80 mt-1">No. TRX: <span id="invTrxCode" class="font-mono font-bold text-yellow-400">#ZY-000</span></p>
+      </div>
+
+      <!-- 5-MINUTE COUNTDOWN TIMER DISPLAY -->
+      <div class="bg-red-950/40 border border-red-800/60 p-3 rounded-xl mb-4 text-center">
+        <p class="text-[10px] text-red-300 font-bold uppercase tracking-wider mb-0.5">Batas Waktu Pembayaran:</p>
+        <div id="paymentTimerDisplay" class="text-2xl font-black text-red-400 font-mono">05:00</div>
+        <p class="text-[9px] text-zinc-400 mt-0.5">*Jika lewat dari 5 menit, pesanan batal otomatis & stok dikembalikan.</p>
       </div>
 
       <div id="paymentDetailsBox" class="bg-zinc-900 border border-amber-900/40 p-4 rounded-xl mb-4 text-xs">
@@ -410,7 +450,9 @@
   <!-- REVIEW FORM MODAL -->
   <div id="reviewModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-zinc-950 border border-amber-600/40 max-w-md w-full rounded-2xl p-6">
-      <h3 class="text-lg font-bold text-amber-400 mb-3">Tulis Ulasan Pembeli</h3>
+      <h3 class="text-lg font-bold text-amber-400 mb-1">Tulis Ulasan Pembeli</h3>
+      <p class="text-xs text-zinc-400 mb-3">Bagikan pengalaman belanja Anda di ZYOU MARKET!</p>
+
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-zinc-300 mb-1">Nama / Username Roblox</label>
@@ -426,7 +468,7 @@
         </div>
       </div>
       <div class="flex gap-2 mt-4">
-        <button onclick="closeReviewModal()" class="w-1/2 py-2 bg-zinc-800 text-zinc-300 rounded-xl text-xs font-bold">Batal</button>
+        <button onclick="closeReviewModal()" class="w-1/2 py-2 bg-zinc-800 text-zinc-300 rounded-xl text-xs font-bold">Nanti Saja</button>
         <button onclick="submitReview()" class="w-1/2 py-2 bg-amber-500 text-black rounded-xl text-xs font-bold">Kirim Ulasan</button>
       </div>
     </div>
@@ -442,13 +484,14 @@
 
   <!-- SCRIPT UTAMA -->
   <script>
+    // --- PRODUCTS DATA WITH DYNAMIC STOCK ---
     const products = [
-      { id: 1, name: "100 Robux Fast", category: "robux", price: 15000, desc: "Proses Gamepass 1-5 Menit" },
-      { id: 2, name: "500 Robux Fast", category: "robux", price: 72000, desc: "Proses Cepat Legal & Safe" },
-      { id: 3, name: "1,000 Robux Fast", category: "robux", price: 140000, desc: "Best Seller Package" },
-      { id: 4, name: "Perm Buddha - Blox Fruits", category: "bloxfruits", price: 165000, desc: "Permanent Fruit Gift" },
-      { id: 5, name: "2x Money - Blox Fruits", category: "bloxfruits", price: 45000, desc: "Gamepass Fast Delivery" },
-      { id: 6, name: "Super VIP - Pet Sim 99", category: "ps99", price: 85000, desc: "Instant Trade / Gift" }
+      { id: 1, name: "100 Robux Fast", category: "robux", price: 15000, desc: "Proses Gamepass 1-5 Menit", stock: 25 },
+      { id: 2, name: "500 Robux Fast", category: "robux", price: 72000, desc: "Proses Cepat Legal & Safe", stock: 12 },
+      { id: 3, name: "1,000 Robux Fast", category: "robux", price: 140000, desc: "Best Seller Package", stock: 8 },
+      { id: 4, name: "Perm Buddha - Blox Fruits", category: "bloxfruits", price: 165000, desc: "Permanent Fruit Gift", stock: 5 },
+      { id: 5, name: "2x Money - Blox Fruits", category: "bloxfruits", price: 45000, desc: "Gamepass Fast Delivery", stock: 10 },
+      { id: 6, name: "Super VIP - Pet Sim 99", category: "ps99", price: 85000, desc: "Instant Trade / Gift", stock: 15 }
     ];
 
     let currentOwnerPin = "123456";
@@ -460,7 +503,15 @@
     let activeChatTrx = null;
     let chatImageAttachment = null;
 
-    // Database Orders & Chat Messages
+    // Direct Buy State
+    let selectedDirectItem = null;
+
+    // 5-Min Payment Timer State
+    let paymentTimerInterval = null;
+    let paymentSecondsLeft = 300; // 5 minutes
+    let pendingPurchasedItems = []; // Items in active checkout to restore if canceled
+
+    // Database Orders
     let queueOrders = [
       {
         id: "#ZY-8912",
@@ -509,18 +560,111 @@
       grid.innerHTML = filtered.map(p => `
         <div class="bg-zinc-900/80 border border-amber-900/40 rounded-xl p-4 flex flex-col justify-between hover:border-amber-500/50 transition">
           <div>
-            <span class="text-[10px] text-amber-400 font-semibold uppercase bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">${p.category}</span>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] text-amber-400 font-semibold uppercase bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">${p.category}</span>
+              <span class="text-[10px] ${p.stock > 0 ? 'text-emerald-400 bg-emerald-950/60 border border-emerald-800/40' : 'text-red-400 bg-red-950/60 border border-red-800/40'} font-bold px-2 py-0.5 rounded">
+                Stok: ${p.stock}
+              </span>
+            </div>
             <h4 class="font-bold text-sm text-white mt-2">${p.name}</h4>
             <p class="text-[11px] text-zinc-400 mt-1">${p.desc}</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
-            <span class="font-extrabold text-amber-400 text-sm">Rp ${p.price.toLocaleString('id-ID')}</span>
-            <button onclick="addToCart(${p.id})" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-lg text-xs transition">
-              + Beli
-            </button>
+
+          <div class="mt-4 pt-3 border-t border-zinc-800">
+            <span class="font-extrabold text-amber-400 text-sm block mb-3">Rp ${p.price.toLocaleString('id-ID')}</span>
+            
+            <div class="grid grid-cols-2 gap-1.5">
+              <button onclick="addToCart(${p.id})" ${p.stock <= 0 ? 'disabled' : ''} class="py-1.5 bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 text-amber-300 font-bold rounded-lg text-[11px] border border-amber-900/40 transition">
+                + Keranjang
+              </button>
+              <button onclick="openDirectBuy(${p.id})" ${p.stock <= 0 ? 'disabled' : ''} class="py-1.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-extrabold rounded-lg text-[11px] transition">
+                Beli Langsung
+              </button>
+            </div>
           </div>
         </div>
       `).join('');
+    }
+
+    // DIRECT BUY SEPARATE FLOW
+    function openDirectBuy(id) {
+      const item = products.find(p => p.id === id);
+      if(!item || item.stock <= 0) return alert("Stok produk tidak mencukupi!");
+
+      selectedDirectItem = item;
+      document.getElementById('directItemName').innerText = item.name;
+      document.getElementById('directItemPrice').innerText = `Rp ${item.price.toLocaleString('id-ID')}`;
+      document.getElementById('directBuyModal').classList.remove('hidden');
+    }
+
+    function closeDirectBuy() {
+      document.getElementById('directBuyModal').classList.add('hidden');
+      selectedDirectItem = null;
+    }
+
+    function proceedDirectBuyInvoice() {
+      const user = document.getElementById('directRobloxUser').value.trim();
+      if(!user) return alert("Masukkan Username Roblox Anda!");
+
+      if(selectedDirectItem.stock < 1) return alert("Stok habis!");
+      
+      // Deduct stock
+      selectedDirectItem.stock -= 1;
+      pendingPurchasedItems = [{ product: selectedDirectItem, qty: 1 }];
+      renderProducts();
+
+      currentTrxCode = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('invTrxCode').innerText = currentTrxCode;
+      document.getElementById('robloxUsername').value = user;
+
+      closeDirectBuy();
+      startPaymentTimer();
+      document.getElementById('invoiceModal').classList.remove('hidden');
+    }
+
+    // 5-MINUTE PAYMENT TIMER SYSTEM
+    function startPaymentTimer() {
+      clearInterval(paymentTimerInterval);
+      paymentSecondsLeft = 300; // 5 mins
+      updateTimerDisplay();
+
+      paymentTimerInterval = setInterval(() => {
+        paymentSecondsLeft--;
+        updateTimerDisplay();
+
+        if(paymentSecondsLeft <= 0) {
+          clearInterval(paymentTimerInterval);
+          cancelInvoiceAutoExpired();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(paymentSecondsLeft / 60).toString().padStart(2, '0');
+      const s = (paymentSecondsLeft % 60).toString().padStart(2, '0');
+      document.getElementById('paymentTimerDisplay').innerText = `${m}:${s}`;
+    }
+
+    function cancelInvoiceManual() {
+      if(confirm("Apakah Anda yakin ingin membatalkan pembayaran ini? Stok akan dikembalikan.")) {
+        restorePendingStock();
+        clearInterval(paymentTimerInterval);
+        closeInvoice();
+      }
+    }
+
+    function cancelInvoiceAutoExpired() {
+      restorePendingStock();
+      closeInvoice();
+      alert("⏱ Batas waktu pembayaran 5 menit telah habis! Pesanan otomatis dibatalkan dan stok produk dikembalikan.");
+    }
+
+    function restorePendingStock() {
+      pendingPurchasedItems.forEach(item => {
+        item.product.stock += item.qty;
+      });
+      pendingPurchasedItems = [];
+      renderProducts();
     }
 
     // RENDER QUEUE TABLE
@@ -531,7 +675,7 @@
         if(q.status === 'Lunas') badge = `<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✔ Selesai (Lunas)</span>`;
         else if(q.status === 'Diproses') badge = `<span class="bg-amber-950/80 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full text-[10px] font-bold animate-pulse">⏳ Sedang Diproses</span>`;
         else if(q.status === 'Mengecek Pembayaran') badge = `<span class="bg-yellow-950/80 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full text-[10px] font-bold">🔍 Pengecekan TF</span>`;
-        else badge = `<span class="bg-red-950/80 text-red-400 border border-red-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✖ Ditolak</span>`;
+        else badge = `<span class="bg-red-950/80 text-red-400 border border-red-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✖ Ditolak / Expired</span>`;
 
         return `
           <tr class="hover:bg-amber-950/20">
@@ -553,7 +697,6 @@
     // RENDER TESTIMONIALS CAROUSEL
     function renderTestimonials() {
       const track = document.getElementById('testiTrack');
-      // Duplicate testimonials to create smooth infinite loop
       const list = [...testimonials, ...testimonials];
       track.innerHTML = list.map(t => `
         <div class="bg-zinc-950 border border-amber-900/40 p-3 rounded-xl w-64 shrink-0">
@@ -567,7 +710,7 @@
       `).join('');
     }
 
-    // LIVE CHAT SYSTEM
+    // LIVE CHAT SYSTEM WITH OWNER COMPLETE ORDER
     function openChatModal(trxCode, role) {
       const order = queueOrders.find(q => q.id === trxCode);
       if(!order) return;
@@ -575,8 +718,14 @@
       activeChatTrx = order;
       document.getElementById('chatTrxCode').innerText = order.id;
       document.getElementById('chatUserTarget').innerText = order.user;
-      renderChatMessages();
 
+      if(isAdminLoggedIn) {
+        document.getElementById('ownerChatActionBar').classList.remove('hidden');
+      } else {
+        document.getElementById('ownerChatActionBar').classList.add('hidden');
+      }
+
+      renderChatMessages();
       document.getElementById('chatModal').classList.remove('hidden');
     }
 
@@ -605,6 +754,31 @@
         `;
       }).join('');
       box.scrollTop = box.scrollHeight;
+    }
+
+    function completeOrderAndRequestReview() {
+      if(!activeChatTrx) return;
+
+      activeChatTrx.status = "Lunas";
+      renderQueue();
+      if(isAdminLoggedIn) renderAdminOrders();
+
+      activeChatTrx.messages.push({
+        sender: 'owner',
+        text: "✅ Transaksi kamu telah SELESAI! Silakan berikan testimoni ulasan Anda. Terima kasih sudah order di ZYOU MARKET!",
+        time: "Baru saja",
+        img: null
+      });
+      renderChatMessages();
+
+      closeChat();
+      
+      // Auto open review modal for buyer
+      document.getElementById('revUser').value = activeChatTrx.user;
+      document.getElementById('revItem').value = activeChatTrx.item;
+      openReviewModal();
+
+      alert("Transaksi diselesaikan! Status diubah menjadi Lunas & Form Testimoni otomatis dibuka untuk Pembeli.");
     }
 
     function handleChatImageSelect(e) {
@@ -652,6 +826,8 @@
     // CART & CHECKOUT
     function addToCart(id) {
       const item = products.find(p => p.id === id);
+      if(item.stock <= 0) return alert("Stok produk ini sedang habis!");
+
       cart.push(item);
       updateCartBadge();
       alert(`"${item.name}" ditambahkan ke keranjang!`);
@@ -665,10 +841,7 @@
     }
 
     function openCart() {
-      if(cart.length === 0) {
-        alert("Keranjang kamu masih kosong!");
-        return;
-      }
+      if(cart.length === 0) return alert("Keranjang kamu masih kosong!");
       renderCartModal();
       document.getElementById('cartModal').classList.remove('hidden');
     }
@@ -704,15 +877,21 @@
 
     function proceedToInvoice() {
       const username = document.getElementById('robloxUsername').value.trim();
-      if(!username) {
-        alert("Silakan masukkan Username Roblox Anda terlebih dahulu!");
-        return;
-      }
+      if(!username) return alert("Silakan masukkan Username Roblox Anda terlebih dahulu!");
+
+      // Deduct stock for all items in cart
+      pendingPurchasedItems = [];
+      cart.forEach(cItem => {
+        cItem.stock -= 1;
+        pendingPurchasedItems.push({ product: cItem, qty: 1 });
+      });
+      renderProducts();
 
       currentTrxCode = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
       document.getElementById('invTrxCode').innerText = currentTrxCode;
 
       closeCart();
+      startPaymentTimer();
       document.getElementById('invoiceModal').classList.remove('hidden');
     }
 
@@ -734,14 +913,13 @@
     }
 
     function submitCustomerOrder() {
-      if(!uploadedProofBase64) {
-        alert("Silakan unggah foto/gambar bukti transfer Anda terlebih dahulu!");
-        return;
-      }
+      if(!uploadedProofBase64) return alert("Silakan unggah foto/gambar bukti transfer Anda terlebih dahulu!");
+
+      clearInterval(paymentTimerInterval); // Clear timer on success
 
       const username = document.getElementById('robloxUsername').value.trim();
-      const itemNames = cart.map(c => c.name).join(', ');
-      const totalPrice = cart.reduce((sum, c) => sum + c.price, 0);
+      const itemNames = pendingPurchasedItems.map(p => p.product.name).join(', ');
+      const totalPrice = pendingPurchasedItems.reduce((sum, p) => sum + p.product.price, 0);
 
       const newOrder = {
         id: currentTrxCode,
@@ -752,7 +930,7 @@
         proof: uploadedProofBase64,
         price: totalPrice,
         messages: [
-          { sender: "owner", text: `Halo ${username}! Pesanan ${itemNames} kamu sudah terdaftar. Tunggu verifikasi transfer ya.`, time: "Baru saja", img: null }
+          { sender: "owner", text: `Halo ${username}! Pesanan ${itemNames} kamu telah terdaftar. Mohon tunggu verifikasi transfer.`, time: "Baru saja", img: null }
         ]
       };
 
@@ -761,13 +939,14 @@
       if(isAdminLoggedIn) renderAdminOrders();
 
       cart = [];
+      pendingPurchasedItems = [];
       updateCartBadge();
       uploadedProofBase64 = null;
       document.getElementById('proofFileInput').value = "";
       document.getElementById('proofPreviewContainer').classList.add('hidden');
 
       closeInvoice();
-      alert("Bukti transfer diunggah! Pesanan masuk ke antrian realtime.");
+      alert("Bukti transfer diunggah! Pesanan berhasil masuk ke antrian realtime.");
     }
 
     // ADMIN / OWNER PANEL
@@ -820,7 +999,7 @@
       queueOrders.forEach(q => {
         if(q.status === 'Lunas') { totalOmset += q.price || 0; approvedCount++; }
         else if(q.status === 'Mengecek Pembayaran' || q.status === 'Diproses') { pendingCount++; }
-        else if(q.status === 'Ditolak') { rejectedCount++; }
+        else { rejectedCount++; }
       });
 
       document.getElementById('statOmset').innerText = `Rp ${totalOmset.toLocaleString('id-ID')}`;
@@ -846,12 +1025,12 @@
               <option value="Mengecek Pembayaran" ${q.status==='Mengecek Pembayaran'?'selected':''}>Mengecek TF</option>
               <option value="Diproses" ${q.status==='Diproses'?'selected':''}>Sedang Diproses</option>
               <option value="Lunas" ${q.status==='Lunas'?'selected':''}>✔ Setujui (Lunas)</option>
-              <option value="Ditolak" ${q.status==='Ditolak'?'selected':''}>✖ Tolak</option>
+              <option value="Ditolak" ${q.status==='Ditolak'?'selected':''}>✖ Tolak / Expired</option>
             </select>
           </td>
           <td class="p-3 text-right">
             <button onclick="openChatModal('${q.id}', 'owner')" class="px-2.5 py-1 bg-amber-500 text-black font-bold text-[10px] rounded-lg">
-              <i class="fa-solid fa-comments"></i> Chat & Kirim Bukti
+              <i class="fa-solid fa-comments"></i> Chat & Selesaikan
             </button>
           </td>
         </tr>
@@ -890,7 +1069,7 @@
       testimonials.unshift({ user: u, item: i, comment: c, rating: 5 });
       renderTestimonials();
       closeReviewModal();
-      alert("Ulasan terkirim!");
+      alert("Terima kasih! Ulasan Anda berhasil ditampilkan di testimoni running.");
     }
 
     function setCategory(cat) {
