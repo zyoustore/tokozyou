@@ -1,609 +1,1147 @@
-v<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html>
+<html lang="id" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZYOU MARKET - Store & Admin Panel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZYOU MARKET - Robux & Gamepass Roblox Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#facc15',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+              dark: '#0c0703',
+              card: '#1a1008',
+              border: '#2f1c0c'
+            }
+          }
+        }
+      }
+    };
+  </script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    body { background-color: #0c0703; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #1a1008; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #78350f; border-radius: 4px; }
+    
+    @keyframes scrollTesti {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
-
-    body {
-      background-color: #0d0d0d;
-      color: #ffffff;
-      padding: 20px;
-    }
-
-    /* Switcher Navigation (Tombol Pindah Tampilan) */
-    .view-switcher {
+    .animate-scroll {
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 25px;
-      background: #161618;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid #28282c;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      width: max-content;
+      animation: scrollTesti 25s linear infinite;
     }
-
-    .switch-btn {
-      background: #222;
-      color: #aaa;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-      flex: 1;
-    }
-
-    .switch-btn.active {
-      background: #f39c12;
-      color: #000;
-    }
-
-    /* Container Tampilan */
-    .container {
-      max-width: 550px;
-      margin: 0 auto;
-      background-color: #161618;
-      border: 1px solid #28282c;
-      border-radius: 12px;
-      padding: 25px;
-    }
-
-    .admin-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: none;
-    }
-
-    .buyer-container {
-      display: block;
-    }
-
-    /* Header & Branding */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .brand-logo {
-      background-color: #f39c12;
-      color: #000;
-      font-weight: bold;
-      font-size: 24px;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-    }
-
-    .brand-title {
-      font-size: 20px;
-      font-weight: bold;
-      color: #f39c12;
-    }
-
-    .brand-sub {
-      font-size: 11px;
-      color: #888;
-      letter-spacing: 1px;
-    }
-
-    .nav-btn {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    h2 {
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 15px;
-      border-bottom: 1px solid #28282c;
-      padding-bottom: 10px;
-    }
-
-    /* Form Styles (Toko Pembeli) */
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      color: #ccc;
-      margin-bottom: 6px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px 12px;
-      background-color: #0d0d0d;
-      border: 1px solid #333;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 14px;
-      outline: none;
-    }
-
-    input:focus, select:focus {
-      border-color: #f39c12;
-    }
-
-    .btn-submit {
-      width: 100%;
-      background-color: #f39c12;
-      color: #000;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: 0.2s;
-    }
-
-    .btn-submit:hover {
-      background-color: #e67e22;
-    }
-
-    /* Banner Panel Admin */
-    .banner {
-      background: linear-gradient(135deg, #2c1a04 0%, #1a1002 100%);
-      border: 1px solid #5a3808;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .banner-text h2 {
-      color: #f39c12;
-      font-size: 18px;
-      margin-bottom: 4px;
-      border: none;
-    }
-
-    .banner-text p {
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    /* Stat Cards */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .stat-card {
-      background-color: #161618;
-      border: 1px solid #28282c;
-      border-radius: 10px;
-      padding: 18px;
-    }
-
-    .stat-title {
-      font-size: 12px;
-      color: #aaa;
-      margin-bottom: 8px;
-    }
-
-    .stat-value {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .val-green { color: #2ecc71; }
-    .val-yellow { color: #f1c40f; }
-    .val-red { color: #e74c3c; }
-
-    /* Table Section */
-    .table-container {
-      background-color: #161618;
-      border: 1px solid #28282c;
-      border-radius: 10px;
-      padding: 20px;
-      overflow-x: auto;
-    }
-
-    .section-title {
-      color: #f39c12;
-      font-size: 16px;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: bold;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 14px;
-      min-width: 700px;
-    }
-
-    th {
-      background-color: #0f0f11;
-      color: #ffffff;
-      padding: 12px;
-      border-bottom: 2px solid #28282c;
-    }
-
-    td {
-      padding: 14px 12px;
-      border-bottom: 1px solid #222226;
-    }
-
-    .order-id {
-      color: #f39c12;
-      font-weight: bold;
-    }
-
-    .item-title {
-      font-size: 13px;
-    }
-
-    .item-price {
-      color: #f39c12;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .btn-bukti {
-      background-color: #2b2308;
-      color: #f39c12;
-      border: 1px solid #5a430b;
-      padding: 6px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    select.status-select {
-      background-color: #2b2308;
-      color: #f39c12;
-      border: 1px solid #5a430b;
-      padding: 6px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-      outline: none;
-    }
-
-    .btn-chat {
-      background-color: #f39c12;
-      color: #000;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .empty-msg {
-      text-align: center;
-      color: #666;
-      padding: 20px;
+    .animate-scroll:hover {
+      animation-play-state: paused;
     }
   </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between custom-scrollbar">
 
-  <!-- TOMBOL SWITCHER (PILIH TAMPILAN) -->
-  <div class="view-switcher">
-    <button class="switch-btn active" id="btnBuyerView" onclick="switchView('buyer')">🛒 Tampilan Toko (Pembeli)</button>
-    <button class="switch-btn" id="btnAdminView" onclick="switchView('admin')">⚙️ Tampilan Dasbor Admin</button>
-  </div>
-
-  <!-- BAGIAN 1: HALAMAN PEMBELI -->
-  <div id="buyerView" class="container buyer-container">
-    <div class="brand">
-      <div class="brand-logo">Z</div>
-      <div>
-        <div class="brand-title">ZYOU MARKET</div>
-        <div class="brand-sub">ROBUX & GAMEPASS STORE</div>
-      </div>
+  <!-- TOP TICKER -->
+  <div class="bg-gradient-to-r from-amber-950 via-yellow-900 to-amber-950 border-b border-amber-800/40 py-1.5 px-4 text-[11px] text-amber-200 flex items-center justify-between overflow-hidden">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span class="font-bold text-yellow-400 uppercase tracking-wider">Antrian Server:</span>
+      <span>Sistem Otomatis & Live Chat Owner Online 24 Jam</span>
     </div>
-
-    <h2>🛒 Form Order Pembeli</h2>
-
-    <form id="orderForm">
-      <div class="form-group">
-        <label for="robloxUser">Roblox Username</label>
-        <input type="text" id="robloxUser" placeholder="Masukkan Username Roblox..." required>
-      </div>
-
-      <div class="form-group">
-        <label for="itemSelect">Pilih Item / Gamepass</label>
-        <select id="itemSelect" required>
-          <option value="">-- Pilih Item --</option>
-          <option value="500 Robux Fast|72000">500 Robux Fast - Rp 72.000</option>
-          <option value="Perm Buddha - Blox Fruits|165000">Perm Buddha - Blox Fruits - Rp 165.000</option>
-          <option value="1000 Robux Fast|140000">1000 Robux Fast - Rp 140.000</option>
-          <option value="Perm Dough - Blox Fruits|250000">Perm Dough - Blox Fruits - Rp 250.000</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="buktiTF">Link Bukti Transfer (Image URL)</label>
-        <input type="url" id="buktiTF" placeholder="https://..." required>
-      </div>
-
-      <button type="submit" class="btn-submit">🚀 Kirim Orderan</button>
-    </form>
+    <div class="hidden sm:block text-amber-300/80 font-medium">
+      ⚡ Garansi 100% Legal & Safe Roblox Store
+    </div>
   </div>
 
-  <!-- BAGIAN 2: HALAMAN ADMIN -->
-  <div id="adminView" class="admin-container">
-    <!-- Navbar Header -->
-    <div class="navbar">
-      <div class="brand">
-        <div class="brand-logo">Z</div>
+  <!-- NAVBAR HEADER -->
+  <header class="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-amber-900/40 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="showStorefront()">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-yellow-500 to-amber-300 flex items-center justify-center font-black text-black text-xl shadow-lg shadow-amber-500/20">
+          Z
+        </div>
         <div>
-          <div class="brand-title">ZYOU MARKET</div>
-          <div class="brand-sub">ROBUX & GAMEPASS STORE</div>
+          <h1 class="font-extrabold text-lg text-amber-400 tracking-wider">ZYOU MARKET</h1>
+          <p class="text-[10px] text-amber-200/60 uppercase tracking-widest">Robux & Gamepass Store</p>
         </div>
       </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openCart()" class="relative p-2.5 bg-amber-950/50 border border-amber-600/40 rounded-xl text-amber-400 hover:bg-amber-900/50 transition">
+          <i class="fa-solid fa-cart-shopping text-lg"></i>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+        </button>
+
+        <button onclick="openCSModal()" class="px-3.5 py-2 bg-zinc-900 border border-amber-900/50 text-amber-300 hover:border-amber-500 font-bold text-xs rounded-xl flex items-center gap-2 transition">
+          <i class="fa-solid fa-headset text-yellow-400"></i>
+          <span>Bantuan CS</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STOREFRONT VIEW -->
+  <div id="storefrontView" class="max-w-7xl mx-auto px-4 py-6 w-full space-y-8">
+    
+    <!-- HERO BANNER -->
+    <div class="relative rounded-2xl bg-gradient-to-r from-amber-950 via-zinc-900 to-amber-900 border border-amber-600/30 p-6 md:p-8 overflow-hidden shadow-2xl">
+      <div class="relative z-10 max-w-2xl">
+        <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold rounded-full mb-3">
+          🔥 Top Up Robux Fast & Item Gamepass Roblox
+        </span>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-2 leading-tight">
+          Pusat <span class="text-amber-400">Robux</span> & <span class="text-yellow-400">Gamepass Roblox</span>
+        </h2>
+        <p class="text-xs md:text-sm text-zinc-300">
+          Upload bukti TF untuk mendapatkan Nomor Antrian. Live Chat dengan Admin terbuka otomatis begitu pesanan di-ACC oleh Admin!
+        </p>
+      </div>
+    </div>
+
+    <!-- AUTO-RUNNING TESTIMONIALS CAROUSEL -->
+    <section class="bg-zinc-900/80 border border-amber-900/30 rounded-2xl p-4 overflow-hidden">
+      <div class="flex items-center justify-between mb-3 px-2">
+        <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-star text-yellow-400"></i> Testimoni Pembeli (Auto Scroll)
+        </h3>
+        <button onclick="openReviewModal()" class="text-[11px] text-amber-300 hover:underline font-semibold">+ Tulis Ulasan</button>
+      </div>
+      <div class="overflow-hidden relative w-full">
+        <div id="testiTrack" class="animate-scroll gap-4 py-1">
+          <!-- JS Rendered Moving Testimonials -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOG & SEARCH -->
+    <section>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <h3 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+          <i class="fa-solid fa-store"></i> Katalog Produk
+        </h3>
+        
+        <div class="relative w-full md:w-72">
+          <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Cari gamepass / robux..." class="w-full bg-zinc-900/90 border border-amber-900/50 rounded-xl px-4 py-2 pl-10 text-xs text-white focus:outline-none focus:border-amber-400" />
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-zinc-500 text-xs"></i>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="flex gap-2 overflow-x-auto pb-2 mb-6 custom-scrollbar">
+        <button onclick="setCategory('all')" class="cat-btn active px-4 py-2 bg-amber-500 text-black font-semibold text-xs rounded-xl whitespace-nowrap">Semua Produk</button>
+        <button onclick="setCategory('robux')" class="cat-btn px-4 py-2 bg-zinc-900 border border-amber-900/40 text-zinc-300 font-semibold text-xs rounded-xl whitespace-nowrap hover:border-amber-500">Robux Fast</button>
+        <button onclick="setCategory('bloxfruits')" class="cat-btn px-4 py-2 bg-zinc-900 border border-amber-900/40 text-zinc-300 font-semibold text-xs rounded-xl whitespace-nowrap hover:border-amber-500">Blox Fruits</button>
+        <button onclick="setCategory('ps99')" class="cat-btn px-4 py-2 bg-zinc-900 border border-amber-900/40 text-zinc-300 font-semibold text-xs rounded-xl whitespace-nowrap hover:border-amber-500">Pet Simulator 99</button>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <!-- JS Rendered -->
+      </div>
+    </section>
+
+    <!-- LIVE QUEUE TABLE -->
+    <section class="bg-zinc-900/60 border border-amber-900/30 rounded-2xl p-5 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
+          <i class="fa-solid fa-list-check"></i> Antrian Transaksi Realtime
+        </h3>
+        <span class="text-[10px] text-amber-300/80 bg-amber-950/60 border border-amber-800/40 px-2.5 py-1 rounded-full animate-pulse">● Live Updating</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-amber-950/50 text-amber-300 border-b border-amber-900/40">
+            <tr>
+              <th class="p-3">No. Antrian</th>
+              <th class="p-3">Roblox User</th>
+              <th class="p-3">Item Dipesan</th>
+              <th class="p-3">Waktu</th>
+              <th class="p-3">Status Verifikasi</th>
+              <th class="p-3 text-right">Ruang Chat</th>
+            </tr>
+          </thead>
+          <tbody id="queueTableBody" class="divide-y divide-zinc-800/50 text-zinc-300">
+            <!-- JS Rendered -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- HIDDEN OWNER DASHBOARD VIEW -->
+  <div id="adminView" class="max-w-7xl mx-auto px-4 py-6 w-full space-y-6 hidden">
+    <div class="flex items-center justify-between bg-amber-950/60 border border-amber-600/40 p-4 rounded-2xl">
       <div>
-        <button class="nav-btn">🎧 Bantuan CS</button>
+        <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+          <i class="fa-solid fa-user-shield"></i> Panel Owner ZYOU MARKET
+        </h2>
+        <p class="text-xs text-zinc-400">Verifikasi transfer, beri ACC untuk membuka ruang Live Chat pembeli.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="showStorefront()" class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-xl text-xs font-medium">Ke Toko</button>
+        <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-900/50 border border-red-700 hover:bg-red-800/50 text-red-200 rounded-xl text-xs font-medium">Logout</button>
       </div>
     </div>
 
-    <!-- Banner -->
-    <div class="banner">
-      <div class="banner-text">
-        <h2>👤 Panel Owner ZYOU MARKET</h2>
-        <p>Verifikasi transfer, beri ACC untuk membuka ruang Live Chat pembeli.</p>
+    <!-- Analytics Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-zinc-900 border border-amber-900/30 p-4 rounded-xl">
+        <p class="text-[11px] text-zinc-400">Total Omset Lunas</p>
+        <h4 id="statOmset" class="text-lg font-bold text-emerald-400 mt-1">Rp 0</h4>
+      </div>
+      <div class="bg-zinc-900 border border-amber-900/30 p-4 rounded-xl">
+        <p class="text-[11px] text-zinc-400">Menunggu Verifikasi</p>
+        <h4 id="statPending" class="text-lg font-bold text-yellow-400 mt-1">0 TRX</h4>
+      </div>
+      <div class="bg-zinc-900 border border-amber-900/30 p-4 rounded-xl">
+        <p class="text-[11px] text-zinc-400">Berhasil Lunas</p>
+        <h4 id="statApproved" class="text-lg font-bold text-amber-400 mt-1">0 TRX</h4>
+      </div>
+      <div class="bg-zinc-900 border border-amber-900/30 p-4 rounded-xl">
+        <p class="text-[11px] text-zinc-400">Ditolak / Expired</p>
+        <h4 id="statRejected" class="text-lg font-bold text-red-400 mt-1">0 TRX</h4>
       </div>
     </div>
 
-    <!-- Stat Cards -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-title">Total Omset Lunas</div>
-        <div class="stat-value val-green" id="stat-omset">Rp 0</div>
+    <!-- Owner Order Management Table -->
+    <section class="bg-zinc-900 border border-amber-900/40 rounded-2xl p-5">
+      <h3 class="text-base font-bold text-amber-400 mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-list-check"></i> Kelola Transaksi Masuk
+      </h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-zinc-950 text-amber-300 border-b border-amber-900/40">
+            <tr>
+              <th class="p-3">No. Antrian</th>
+              <th class="p-3">Roblox User</th>
+              <th class="p-3">Item & Total</th>
+              <th class="p-3">Bukti TF Pembeli</th>
+              <th class="p-3 text-center">Verifikasi Admin</th>
+              <th class="p-3 text-right">Ruang Chat & Selesai</th>
+            </tr>
+          </thead>
+          <tbody id="adminOrderTable" class="divide-y divide-zinc-800 text-zinc-300">
+            <!-- JS Rendered Admin Orders -->
+          </tbody>
+        </table>
       </div>
-      <div class="stat-card">
-        <div class="stat-title">Menunggu Verifikasi</div>
-        <div class="stat-value val-yellow" id="stat-pending">0 TRX</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-title">Berhasil Lunas</div>
-        <div class="stat-value val-yellow" id="stat-lunas">0 TRX</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-title">Ditolak / Expired</div>
-        <div class="stat-value val-red" id="stat-ditolak">0 TRX</div>
-      </div>
-    </div>
+    </section>
+  </div>
 
-    <!-- Table Transaksi -->
-    <div class="table-container">
-      <div class="section-title">
-        <span>⚙️</span> Kelola Transaksi Masuk
+  <!-- ORDER TICKET / NOMOR ANTRIAN MODAL -->
+  <div id="ticketModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-500/50 max-w-sm w-full rounded-2xl p-6 text-center relative shadow-2xl">
+      <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+        <i class="fa-solid fa-ticket"></i>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>No. Antrian</th>
-            <th>Roblox User</th>
-            <th>Item & Total</th>
-            <th>Bukti TF Pembeli</th>
-            <th>Verifikasi Admin</th>
-            <th>Ruang Chat & Selesai</th>
-          </tr>
-        </thead>
-        <tbody id="transaction-list">
-          <!-- Data masuk otomatis di sini -->
-        </tbody>
-      </table>
+      <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-3 py-0.5 rounded-full uppercase font-bold">Bukti TF Diterima</span>
+      <h3 class="text-lg font-bold text-white mt-2">Nomor Antrian Anda</h3>
+      
+      <div class="bg-zinc-900 border border-amber-900/50 p-4 rounded-xl my-4 text-center">
+        <div id="ticketTrxCode" class="text-3xl font-black text-amber-400 font-mono tracking-widest">#ZY-0000</div>
+        <p class="text-[11px] text-zinc-300 mt-1">Roblox User: <span id="ticketRobloxUser" class="font-bold text-white">-</span></p>
+      </div>
+
+      <div class="bg-amber-950/30 border border-amber-800/40 p-3 rounded-xl text-left text-xs text-amber-200/90 mb-4 space-y-1.5">
+        <p class="flex items-center gap-1.5 text-[11px]"><i class="fa-solid fa-circle-notch animate-spin text-amber-400"></i> <strong>Status:</strong> Menunggu ACC Verifikasi Admin</p>
+        <p class="text-[10px] text-zinc-400">*Pesanan Anda sudah masuk di tabel Antrian Live. Setelah Admin memeriksa bukti transfer & menekan ACC, tombol Live Chat akan otomatis AKTIF.*</p>
+      </div>
+
+      <button onclick="closeTicketModal()" class="w-full py-2.5 bg-amber-500 text-black font-extrabold text-xs rounded-xl hover:bg-amber-400 transition">
+        Mengerti & Lihat Antrian
+      </button>
     </div>
   </div>
 
+  <!-- DIRECT BUY MODAL -->
+  <div id="directBuyModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 relative">
+      <button onclick="closeDirectBuy()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      
+      <h3 class="text-lg font-bold text-amber-400 mb-1 flex items-center gap-2">
+        <i class="fa-solid fa-bolt"></i> Beli Langsung Fast
+      </h3>
+      <p class="text-xs text-zinc-400 mb-4">Transaksi cepat tanpa perlu masuk keranjang.</p>
+
+      <div class="bg-zinc-900 p-3 rounded-xl border border-amber-900/30 mb-4">
+        <span class="text-[10px] text-amber-400 font-bold uppercase">Item Terpilih:</span>
+        <h4 id="directItemName" class="font-bold text-sm text-white mt-0.5">-</h4>
+        <span id="directItemPrice" class="text-xs text-amber-400 font-extrabold mt-1 block">Rp 0</span>
+      </div>
+
+      <div class="bg-amber-950/30 border border-amber-800/40 p-3.5 rounded-xl mb-4">
+        <label class="block text-xs font-bold text-amber-300 mb-1">Username Roblox Target *</label>
+        <input type="text" id="directRobloxUser" placeholder="Contoh: RobloxGamer123" class="w-full bg-zinc-900 border border-amber-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" />
+      </div>
+
+      <button onclick="proceedDirectBuyInvoice()" class="w-full py-2.5 bg-gradient-to-r from-amber-600 to-yellow-500 text-black font-extrabold text-xs rounded-xl shadow-lg">
+        Lanjut Ke Pembayaran <i class="fa-solid fa-arrow-right ml-1"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- LIVE CHAT MODAL (OWNER ↔ BUYER) -->
+  <div id="chatModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl flex flex-col h-[620px] shadow-2xl relative overflow-hidden">
+      <!-- Chat Header -->
+      <div class="bg-zinc-900 border-b border-amber-900/40 p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/40 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-white flex items-center gap-2">
+              Ruang Chat Transaksi <span id="chatTrxCode" class="text-amber-400 font-mono">#ZY-000</span>
+            </h4>
+            <p class="text-[10px] text-zinc-400">Owner Store ↔ Pembeli (<span id="chatUserTarget" class="text-yellow-400">User</span>)</p>
+          </div>
+        </div>
+        <button onclick="closeChat()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+
+      <!-- Messages Body -->
+      <div id="chatMessagesBox" class="flex-1 p-4 overflow-y-auto space-y-3 custom-scrollbar bg-zinc-950/60">
+        <!-- JS Rendered Messages -->
+      </div>
+
+      <!-- Owner Control Action Bar Inside Chat -->
+      <div id="ownerChatActionBar" class="bg-amber-950/40 border-t border-amber-900/40 px-3 py-2 flex items-center justify-between hidden">
+        <span class="text-[10px] text-amber-300 font-medium">Panel Khusus Owner:</span>
+        <button onclick="completeOrderAndRequestReview()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[10px] rounded-lg shadow flex items-center gap-1">
+          <i class="fa-solid fa-circle-check"></i> Selesaikan Transaksi & Minta Ulasan
+        </button>
+      </div>
+
+      <!-- Chat Input Controls -->
+      <div class="bg-zinc-900 border-t border-amber-900/40 p-3 space-y-2">
+        <div id="chatImgPreviewContainer" class="hidden flex items-center gap-2 bg-zinc-950 p-2 rounded-xl border border-amber-800">
+          <img id="chatImgPreview" src="" alt="Proof Preview" class="w-12 h-12 object-cover rounded-lg border border-amber-500" />
+          <span class="text-[10px] text-amber-300 flex-1">Gambar/Bukti Pengiriman Terlampir</span>
+          <button onclick="cancelChatImage()" class="text-red-400 text-xs px-2"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <label class="p-2.5 bg-zinc-800 hover:bg-zinc-700 text-amber-400 rounded-xl cursor-pointer border border-amber-900/40 text-xs" title="Lampirkan Gambar/Bukti Pengiriman">
+            <i class="fa-solid fa-paperclip"></i>
+            <input type="file" id="chatFileInput" accept="image/*" class="hidden" onchange="handleChatImageSelect(event)" />
+          </label>
+          
+          <input type="text" id="chatInputText" placeholder="Ketik pesan..." class="flex-1 bg-zinc-950 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" onkeypress="if(event.key==='Enter') sendChatMessage()" />
+          
+          <button onclick="sendChatMessage()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-black font-bold rounded-xl text-xs flex items-center gap-1">
+            <span>Kirim</span>
+            <i class="fa-solid fa-paper-plane text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING CS BUTTON & MODAL -->
+  <div class="fixed bottom-5 right-5 z-40">
+    <button onclick="openCSModal()" class="px-4 py-3 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-extrabold text-xs rounded-full shadow-2xl border border-emerald-400/50 flex items-center gap-2 hover:scale-105 transition">
+      <i class="fa-solid fa-headset text-base"></i>
+      <span>CS WhatsApp</span>
+    </button>
+  </div>
+
+  <div id="csModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 text-center">
+      <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h3 class="text-base font-bold text-white mb-1">Customer Service ZYOU MARKET</h3>
+      <p class="text-xs text-zinc-400 mb-4">Butuh bantuan transaksi atau pertanyaan? Tim CS kami siap membantu!</p>
+      <a href="https://wa.me/6281234567890" target="_blank" class="block w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl mb-2">
+        Hubungi WhatsApp CS (0812-3456-7890)
+      </a>
+      <button onclick="closeCSModal()" class="w-full py-2 bg-zinc-800 text-zinc-300 text-xs rounded-xl">Tutup</button>
+    </div>
+  </div>
+
+  <!-- CART & CHECKOUT MODAL -->
+  <div id="cartModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex justify-end hidden">
+    <div class="w-full max-w-md bg-zinc-950 border-l border-amber-900/50 h-full p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between border-b border-amber-900/40 pb-4 mb-4">
+          <h3 class="font-bold text-lg text-amber-400 flex items-center gap-2">
+            <i class="fa-solid fa-basket-shopping"></i> Keranjang Belanja
+          </h3>
+          <button onclick="closeCart()" class="text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+
+        <div class="bg-amber-950/30 border border-amber-800/40 p-4 rounded-xl mb-4">
+          <label class="block text-xs font-bold text-amber-300 mb-1">Username Roblox Target *</label>
+          <input type="text" id="robloxUsername" placeholder="Contoh: RobloxGamer123" class="w-full bg-zinc-900 border border-amber-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400" />
+        </div>
+
+        <div id="cartItemsList" class="space-y-3 mb-4"></div>
+      </div>
+
+      <div class="border-t border-amber-900/40 pt-4">
+        <div class="flex items-center justify-between text-sm mb-4">
+          <span class="text-zinc-400">Total Pembayaran:</span>
+          <span id="cartTotalPrice" class="font-extrabold text-amber-400 text-base">Rp 0</span>
+        </div>
+        <button onclick="proceedToInvoice()" class="w-full py-3 bg-gradient-to-r from-amber-600 to-yellow-500 text-black font-extrabold text-sm rounded-xl shadow-lg transition">
+          Lanjut Ke Payment <i class="fa-solid fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT INVOICE & PROOF UPLOAD MODAL WITH 5-MIN TIMER -->
+  <div id="invoiceModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 w-full max-w-lg rounded-2xl p-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+      <button onclick="cancelInvoiceManual()" class="absolute top-4 right-4 text-zinc-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+      
+      <div class="text-center mb-4">
+        <span class="px-3 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold rounded-full uppercase">Invoice Pembayaran</span>
+        <h3 class="text-xl font-extrabold text-white mt-2">Selesaikan Pembayaran</h3>
+        <p class="text-xs text-amber-300/80 mt-1">No. TRX: <span id="invTrxCode" class="font-mono font-bold text-yellow-400">#ZY-000</span></p>
+      </div>
+
+      <!-- 5-MINUTE COUNTDOWN TIMER DISPLAY -->
+      <div class="bg-red-950/40 border border-red-800/60 p-3 rounded-xl mb-4 text-center">
+        <p class="text-[10px] text-red-300 font-bold uppercase tracking-wider mb-0.5">Batas Waktu Pembayaran:</p>
+        <div id="paymentTimerDisplay" class="text-2xl font-black text-red-400 font-mono">05:00</div>
+        <p class="text-[9px] text-zinc-400 mt-0.5">*Jika lewat dari 5 menit, pesanan batal otomatis & stok dikembalikan.</p>
+      </div>
+
+      <div id="paymentDetailsBox" class="bg-zinc-900 border border-amber-900/40 p-4 rounded-xl mb-4 text-xs">
+        <div class="text-center space-y-2">
+          <p class="text-amber-300 font-medium">Scan QRIS All Payment (DANA, GoPay, OVO, BCA)</p>
+          <div class="bg-white p-3 rounded-xl w-44 h-44 mx-auto border border-amber-500/50">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=ZYOU_MARKET_PAYMENT" alt="QRIS ZYOU" class="w-full h-full object-contain" />
+          </div>
+          <p class="text-[11px] text-zinc-400">An. <strong class="text-white">ZYOU MARKET STORE</strong></p>
+        </div>
+      </div>
+
+      <div class="bg-amber-950/30 border border-amber-800/40 p-4 rounded-xl mb-6">
+        <label class="block text-xs font-bold text-amber-300 mb-1">Unggah Bukti Transfer *</label>
+        <input type="file" id="proofFileInput" accept="image/*" onchange="previewProofImage(event)" class="w-full text-xs text-zinc-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-black" />
+        <div id="proofPreviewContainer" class="mt-3 hidden text-center">
+          <img id="proofPreviewImg" src="" alt="Bukti TF" class="w-32 h-32 object-cover mx-auto rounded-lg border border-amber-500/40" />
+        </div>
+      </div>
+
+      <button onclick="submitCustomerOrder()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-extrabold text-sm rounded-xl shadow-lg">
+        Konfirmasi Saya Sudah Transfer
+      </button>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX IMAGE MODAL -->
+  <div id="imageLightboxModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden" onclick="closeLightbox()">
+    <div class="relative max-w-2xl w-full text-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+      <img id="lightboxImg" src="" alt="Bukti Transfer" class="max-h-[80vh] mx-auto rounded-xl border border-amber-500/50 object-contain" />
+    </div>
+  </div>
+
+  <!-- OWNER HIDDEN AUTH MODAL -->
+  <div id="adminAuthModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 max-w-sm w-full rounded-2xl p-6 text-center">
+      <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+        <i class="fa-solid fa-user-gear"></i>
+      </div>
+      <h3 class="text-lg font-bold text-white mb-1">Akses Khusus Owner</h3>
+      <p class="text-xs text-zinc-400 mb-4">Masukkan PIN Keamanan Owner Store</p>
+      
+      <input type="password" id="adminPinInput" placeholder="Masukkan PIN" class="w-full bg-zinc-900 border border-amber-900 rounded-xl px-4 py-2.5 text-center text-sm text-white focus:outline-none focus:border-amber-400 mb-4 tracking-widest" />
+      
+      <div class="flex gap-2">
+        <button onclick="closeAdminAuth()" class="w-1/2 py-2.5 bg-zinc-800 text-zinc-300 font-bold text-xs rounded-xl">Batal</button>
+        <button onclick="verifyAdminPin()" class="w-1/2 py-2.5 bg-amber-500 text-black font-bold text-xs rounded-xl">Masuk</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEW FORM MODAL -->
+  <div id="reviewModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-950 border border-amber-600/40 max-w-md w-full rounded-2xl p-6">
+      <h3 class="text-lg font-bold text-amber-400 mb-1">Tulis Ulasan Pembeli</h3>
+      <p class="text-xs text-zinc-400 mb-3">Bagikan pengalaman belanja Anda di ZYOU MARKET!</p>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-zinc-300 mb-1">Nama / Username Roblox</label>
+          <input type="text" id="revUser" placeholder="Misal: PlayerGamer1" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-zinc-300 mb-1">Item Yang Dibeli</label>
+          <input type="text" id="revItem" placeholder="Misal: 500 Robux Fast" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white" />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-zinc-300 mb-1">Ulasan</label>
+          <textarea id="revComment" rows="3" placeholder="Proses cepat dan lancar!" class="w-full bg-zinc-900 border border-amber-900/50 rounded-xl px-3 py-2 text-xs text-white"></textarea>
+        </div>
+      </div>
+      <div class="flex gap-2 mt-4">
+        <button onclick="closeReviewModal()" class="w-1/2 py-2 bg-zinc-800 text-zinc-300 rounded-xl text-xs font-bold">Nanti Saja</button>
+        <button onclick="submitReview()" class="w-1/2 py-2 bg-amber-500 text-black rounded-xl text-xs font-bold">Kirim Ulasan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-amber-900/30 bg-zinc-950 py-6 text-center text-xs text-zinc-500">
+    <p>© 2026 <span class="text-amber-400 font-bold">ZYOU MARKET</span>. All Rights Reserved.</p>
+    <button onclick="openAdminAuth()" class="mt-3 text-[10px] text-zinc-700 hover:text-amber-500/80 transition">
+      [ Access Owner Store ]
+    </button>
+  </footer>
+
+  <!-- SCRIPT UTAMA -->
   <script>
-    // 1. Data Bawaan jika Storage Kosong
-    function initDefaultData() {
-      if (!localStorage.getItem('transactions')) {
-        const initialData = [
-          {
-            id: "#ZY-8912",
-            robloxUser: "GamerPro99",
-            item: "500 Robux Fast",
-            price: 72000,
-            bukti: "https://via.placeholder.com/150",
-            status: "acc"
-          },
-          {
-            id: "#ZY-8911",
-            robloxUser: "RobloxIndo_1",
-            item: "Perm Buddha - Blox Fruits",
-            price: 165000,
-            bukti: "https://via.placeholder.com/150",
-            status: "lunas"
-          }
-        ];
-        localStorage.setItem('transactions', JSON.stringify(initialData));
+    // --- PRODUCTS DATA WITH DYNAMIC STOCK ---
+    const products = [
+      { id: 1, name: "100 Robux Fast", category: "robux", price: 15000, desc: "Proses Gamepass 1-5 Menit", stock: 25 },
+      { id: 2, name: "500 Robux Fast", category: "robux", price: 72000, desc: "Proses Cepat Legal & Safe", stock: 12 },
+      { id: 3, name: "1,000 Robux Fast", category: "robux", price: 140000, desc: "Best Seller Package", stock: 8 },
+      { id: 4, name: "Perm Buddha - Blox Fruits", category: "bloxfruits", price: 165000, desc: "Permanent Fruit Gift", stock: 5 },
+      { id: 5, name: "2x Money - Blox Fruits", category: "bloxfruits", price: 45000, desc: "Gamepass Fast Delivery", stock: 10 },
+      { id: 6, name: "Super VIP - Pet Sim 99", category: "ps99", price: 85000, desc: "Instant Trade / Gift", stock: 15 }
+    ];
+
+    let currentOwnerPin = "123456";
+    let isAdminLoggedIn = false;
+    let cart = [];
+    let activeCat = 'all';
+    let uploadedProofBase64 = null;
+    let currentTrxCode = "";
+    let activeChatTrx = null;
+    let chatImageAttachment = null;
+
+    // Direct Buy State
+    let selectedDirectItem = null;
+
+    // 5-Min Payment Timer State
+    let paymentTimerInterval = null;
+    let paymentSecondsLeft = 300;
+    let pendingPurchasedItems = [];
+
+    // Database Orders
+    let queueOrders = [
+      {
+        id: "#ZY-8912",
+        user: "GamerPro99",
+        item: "500 Robux Fast",
+        time: "3 Menit lalu",
+        status: "Diproses",
+        proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+GamerPro99",
+        price: 72000,
+        messages: [
+          { sender: "owner", text: "Halo GamerPro99! Pesanan kamu sudah di-ACC dan sedang diproses tim kami.", time: "12:01", img: null }
+        ]
+      },
+      {
+        id: "#ZY-8911",
+        user: "RobloxIndo_1",
+        item: "Perm Buddha - Blox Fruits",
+        time: "10 Menit lalu",
+        status: "Lunas",
+        proof: "https://placehold.co/400x600/170a03/facc15?text=Struk+Transfer+RobloxIndo",
+        price: 165000,
+        messages: [
+          { sender: "owner", text: "Berikut bukti gift Perm Buddha telah terkirim!", time: "11:55", img: "https://placehold.co/600x400/0d0703/facc15?text=Bukti+Pengiriman+Gamepass+Selesai" },
+          { sender: "buyer", text: "Terima kasih banyak min! Sudah masuk.", time: "11:56", img: null }
+        ]
+      }
+    ];
+
+    let testimonials = [
+      { user: "Rian_Roblox", item: "1,000 Robux", comment: "Robux langsung masuk! Mantap ZYOU MARKET.", rating: 5 },
+      { user: "BintangGames", item: "Perm Buddha Blox Fruits", comment: "Fast response banget obrolan chatnya!", rating: 5 },
+      { user: "Dandi_Gamer", item: "500 Robux Fast", comment: "Recomended store roblox terpercaya.", rating: 5 }
+    ];
+
+    // RENDER PRODUCTS
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      
+      const filtered = products.filter(p => {
+        const matchesCat = activeCat === 'all' || p.category === activeCat;
+        const matchesSearch = p.name.toLowerCase().includes(search);
+        return matchesCat && matchesSearch;
+      });
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="bg-zinc-900/80 border border-amber-900/40 rounded-xl p-4 flex flex-col justify-between hover:border-amber-500/50 transition">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-[10px] text-amber-400 font-semibold uppercase bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/40">${p.category}</span>
+              <span class="text-[10px] ${p.stock > 0 ? 'text-emerald-400 bg-emerald-950/60 border border-emerald-800/40' : 'text-red-400 bg-red-950/60 border border-red-800/40'} font-bold px-2 py-0.5 rounded">
+                Stok: ${p.stock}
+              </span>
+            </div>
+            <h4 class="font-bold text-sm text-white mt-2">${p.name}</h4>
+            <p class="text-[11px] text-zinc-400 mt-1">${p.desc}</p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-zinc-800">
+            <span class="font-extrabold text-amber-400 text-sm block mb-3">Rp ${p.price.toLocaleString('id-ID')}</span>
+            
+            <div class="grid grid-cols-2 gap-1.5">
+              <button onclick="addToCart(${p.id})" ${p.stock <= 0 ? 'disabled' : ''} class="py-1.5 bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50 text-amber-300 font-bold rounded-lg text-[11px] border border-amber-900/40 transition">
+                + Keranjang
+              </button>
+              <button onclick="openDirectBuy(${p.id})" ${p.stock <= 0 ? 'disabled' : ''} class="py-1.5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 text-black font-extrabold rounded-lg text-[11px] transition">
+                Beli Langsung
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // DIRECT BUY SEPARATE FLOW
+    function openDirectBuy(id) {
+      const item = products.find(p => p.id === id);
+      if(!item || item.stock <= 0) return alert("Stok produk tidak mencukupi!");
+
+      selectedDirectItem = item;
+      document.getElementById('directItemName').innerText = item.name;
+      document.getElementById('directItemPrice').innerText = `Rp ${item.price.toLocaleString('id-ID')}`;
+      document.getElementById('directBuyModal').classList.remove('hidden');
+    }
+
+    function closeDirectBuy() {
+      document.getElementById('directBuyModal').classList.add('hidden');
+      selectedDirectItem = null;
+    }
+
+    function proceedDirectBuyInvoice() {
+      const user = document.getElementById('directRobloxUser').value.trim();
+      if(!user) return alert("Masukkan Username Roblox Anda!");
+
+      if(selectedDirectItem.stock < 1) return alert("Stok habis!");
+      
+      selectedDirectItem.stock -= 1;
+      pendingPurchasedItems = [{ product: selectedDirectItem, qty: 1 }];
+      renderProducts();
+
+      currentTrxCode = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('invTrxCode').innerText = currentTrxCode;
+      document.getElementById('robloxUsername').value = user;
+
+      closeDirectBuy();
+      startPaymentTimer();
+      document.getElementById('invoiceModal').classList.remove('hidden');
+    }
+
+    // 5-MINUTE PAYMENT TIMER SYSTEM
+    function startPaymentTimer() {
+      clearInterval(paymentTimerInterval);
+      paymentSecondsLeft = 300;
+      updateTimerDisplay();
+
+      paymentTimerInterval = setInterval(() => {
+        paymentSecondsLeft--;
+        updateTimerDisplay();
+
+        if(paymentSecondsLeft <= 0) {
+          clearInterval(paymentTimerInterval);
+          cancelInvoiceAutoExpired();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(paymentSecondsLeft / 60).toString().padStart(2, '0');
+      const s = (paymentSecondsLeft % 60).toString().padStart(2, '0');
+      document.getElementById('paymentTimerDisplay').innerText = `${m}:${s}`;
+    }
+
+    function cancelInvoiceManual() {
+      if(confirm("Apakah Anda yakin ingin membatalkan pembayaran ini? Stok akan dikembalikan.")) {
+        restorePendingStock();
+        clearInterval(paymentTimerInterval);
+        closeInvoice();
       }
     }
 
-    // 2. Fungsi untuk Switch View (Ganti Tampilan Pembeli/Admin)
-    function switchView(view) {
-      const buyerView = document.getElementById('buyerView');
-      const adminView = document.getElementById('adminView');
-      const btnBuyerView = document.getElementById('btnBuyerView');
-      const btnAdminView = document.getElementById('btnAdminView');
+    function cancelInvoiceAutoExpired() {
+      restorePendingStock();
+      closeInvoice();
+      alert("⏱ Batas waktu pembayaran 5 menit telah habis! Pesanan otomatis dibatalkan dan stok produk dikembalikan.");
+    }
 
-      if (view === 'buyer') {
-        buyerView.style.display = 'block';
-        adminView.style.display = 'none';
-        btnBuyerView.classList.add('active');
-        btnAdminView.classList.remove('active');
+    function restorePendingStock() {
+      pendingPurchasedItems.forEach(item => {
+        item.product.stock += item.qty;
+      });
+      pendingPurchasedItems = [];
+      renderProducts();
+    }
+
+    // RENDER QUEUE TABLE
+    function renderQueue() {
+      const tbody = document.getElementById('queueTableBody');
+      tbody.innerHTML = queueOrders.map(q => {
+        let badge = '';
+        let isChatAllowed = q.status === 'Diproses' || q.status === 'Lunas';
+
+        if(q.status === 'Lunas') {
+          badge = `<span class="bg-emerald-950/80 text-emerald-400 border border-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✔ Selesai (Lunas)</span>`;
+        } else if(q.status === 'Diproses') {
+          badge = `<span class="bg-amber-950/80 text-amber-300 border border-amber-800 px-2 py-0.5 rounded-full text-[10px] font-bold animate-pulse">⏳ ACC Admin (Diproses)</span>`;
+        } else if(q.status === 'Mengecek Pembayaran') {
+          badge = `<span class="bg-yellow-950/80 text-yellow-300 border border-yellow-800 px-2 py-0.5 rounded-full text-[10px] font-bold">🔍 Menunggu ACC Admin</span>`;
+        } else {
+          badge = `<span class="bg-red-950/80 text-red-400 border border-red-800 px-2 py-0.5 rounded-full text-[10px] font-bold">✖ Ditolak / Expired</span>`;
+        }
+
+        return `
+          <tr class="hover:bg-amber-950/20">
+            <td class="p-3 font-mono text-amber-400 font-bold">${q.id}</td>
+            <td class="p-3 font-bold">${q.user}</td>
+            <td class="p-3">${q.item}</td>
+            <td class="p-3 text-zinc-400 text-[11px]">${q.time}</td>
+            <td class="p-3">${badge}</td>
+            <td class="p-3 text-right">
+              ${isChatAllowed ? `
+                <button onclick="openChatModal('${q.id}', 'buyer')" class="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-black rounded-lg text-[10px] font-bold transition">
+                  <i class="fa-solid fa-comments"></i> Buka Chat
+                </button>
+              ` : `
+                <button onclick="alert('Ruang Live Chat baru terbuka setelah bukti transfer di-ACC oleh Admin/Owner!')" class="px-2.5 py-1 bg-zinc-800 text-zinc-500 border border-zinc-700 rounded-lg text-[10px] font-bold cursor-not-allowed">
+                  <i class="fa-solid fa-lock"></i> Chat Terkunci
+                </button>
+              `}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // RENDER TESTIMONIALS CAROUSEL
+    function renderTestimonials() {
+      const track = document.getElementById('testiTrack');
+      const list = [...testimonials, ...testimonials];
+      track.innerHTML = list.map(t => `
+        <div class="bg-zinc-950 border border-amber-900/40 p-3 rounded-xl w-64 shrink-0">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-xs text-amber-300">${t.user}</span>
+            <span class="text-yellow-400 text-[10px]">★★★★★</span>
+          </div>
+          <p class="text-[11px] text-zinc-300 italic mb-1 truncate">"${t.comment}"</p>
+          <span class="text-[9px] text-zinc-500">${t.item}</span>
+        </div>
+      `).join('');
+    }
+
+    // LIVE CHAT SYSTEM WITH OWNER COMPLETE ORDER
+    function openChatModal(trxCode, role) {
+      const order = queueOrders.find(q => q.id === trxCode);
+      if(!order) return;
+
+      if(role === 'buyer' && order.status === 'Mengecek Pembayaran') {
+        alert("Ruang chat belum aktif. Mohon tunggu Admin memeriksa bukti transfer Anda.");
+        return;
+      }
+
+      activeChatTrx = order;
+      document.getElementById('chatTrxCode').innerText = order.id;
+      document.getElementById('chatUserTarget').innerText = order.user;
+
+      if(isAdminLoggedIn) {
+        document.getElementById('ownerChatActionBar').classList.remove('hidden');
       } else {
-        buyerView.style.display = 'none';
-        adminView.style.display = 'block';
-        btnAdminView.classList.add('active');
-        btnBuyerView.classList.remove('active');
-        renderDashboard();
+        document.getElementById('ownerChatActionBar').classList.add('hidden');
+      }
+
+      renderChatMessages();
+      document.getElementById('chatModal').classList.remove('hidden');
+    }
+
+    function closeChat() {
+      document.getElementById('chatModal').classList.add('hidden');
+      activeChatTrx = null;
+    }
+
+    function renderChatMessages() {
+      if(!activeChatTrx) return;
+      const box = document.getElementById('chatMessagesBox');
+      
+      box.innerHTML = activeChatTrx.messages.map(m => {
+        const isOwner = m.sender === 'owner';
+        return `
+          <div class="flex flex-col ${isOwner ? 'items-end' : 'items-start'}">
+            <div class="max-w-[80%] ${isOwner ? 'bg-amber-600/30 border border-amber-500/40 text-amber-100' : 'bg-zinc-900 border border-zinc-800 text-zinc-200'} p-3 rounded-2xl text-xs space-y-2">
+              <span class="text-[9px] font-bold uppercase tracking-wider block ${isOwner ? 'text-amber-400' : 'text-yellow-400'}">
+                ${isOwner ? '👑 Owner Store' : '👤 Pembeli (' + activeChatTrx.user + ')'}
+              </span>
+              ${m.text ? `<p>${m.text}</p>` : ''}
+              ${m.img ? `<img src="${m.img}" onclick="openLightbox('${m.img}')" alt="Attachment" class="w-full max-h-48 object-cover rounded-xl border border-amber-500/40 cursor-pointer" />` : ''}
+              <span class="text-[9px] text-zinc-400 block text-right">${m.time}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function completeOrderAndRequestReview() {
+      if(!activeChatTrx) return;
+
+      activeChatTrx.status = "Lunas";
+      renderQueue();
+      if(isAdminLoggedIn) renderAdminOrders();
+
+      activeChatTrx.messages.push({
+        sender: 'owner',
+        text: "✅ Transaksi kamu telah SELESAI! Silakan berikan testimoni ulasan Anda. Terima kasih sudah order di ZYOU MARKET!",
+        time: "Baru saja",
+        img: null
+      });
+      renderChatMessages();
+
+      closeChat();
+      
+      document.getElementById('revUser').value = activeChatTrx.user;
+      document.getElementById('revItem').value = activeChatTrx.item;
+      openReviewModal();
+
+      alert("Transaksi diselesaikan! Status diubah menjadi Lunas & Form Testimoni terbuka untuk Pembeli.");
+    }
+
+    function handleChatImageSelect(e) {
+      const file = e.target.files[0];
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          chatImageAttachment = evt.target.result;
+          document.getElementById('chatImgPreview').src = chatImageAttachment;
+          document.getElementById('chatImgPreviewContainer').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
       }
     }
 
-    // 3. Submit Form Orderan Pembeli
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-      e.preventDefault();
+    function cancelChatImage() {
+      chatImageAttachment = null;
+      document.getElementById('chatFileInput').value = "";
+      document.getElementById('chatImgPreviewContainer').classList.add('hidden');
+    }
 
-      const username = document.getElementById('robloxUser').value;
-      const itemData = document.getElementById('itemSelect').value.split('|');
-      const itemName = itemData[0];
-      const itemPrice = parseInt(itemData[1]);
-      const bukti = document.getElementById('buktiTF').value;
+    function sendChatMessage() {
+      if(!activeChatTrx) return;
+      const textInput = document.getElementById('chatInputText');
+      const text = textInput.value.trim();
 
-      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-      const newAntrian = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
+      if(!text && !chatImageAttachment) return;
+
+      const senderRole = isAdminLoggedIn ? 'owner' : 'buyer';
+      const now = new Date();
+      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+      activeChatTrx.messages.push({
+        sender: senderRole,
+        text: text,
+        img: chatImageAttachment,
+        time: timeStr
+      });
+
+      textInput.value = "";
+      cancelChatImage();
+      renderChatMessages();
+    }
+
+    // CART & CHECKOUT
+    function addToCart(id) {
+      const item = products.find(p => p.id === id);
+      if(item.stock <= 0) return alert("Stok produk ini sedang habis!");
+
+      cart.push(item);
+      updateCartBadge();
+      alert(`"${item.name}" ditambahkan ke keranjang!`);
+    }
+
+    function updateCartBadge() {
+      const badge = document.getElementById('cartBadge');
+      badge.innerText = cart.length;
+      if(cart.length > 0) badge.classList.remove('hidden');
+      else badge.classList.add('hidden');
+    }
+
+    function openCart() {
+      if(cart.length === 0) return alert("Keranjang kamu masih kosong!");
+      renderCartModal();
+      document.getElementById('cartModal').classList.remove('hidden');
+    }
+
+    function closeCart() {
+      document.getElementById('cartModal').classList.add('hidden');
+    }
+
+    function renderCartModal() {
+      const list = document.getElementById('cartItemsList');
+      let total = 0;
+      list.innerHTML = cart.map((item, index) => {
+        total += item.price;
+        return `
+          <div class="flex items-center justify-between bg-zinc-900 p-3 rounded-xl border border-amber-900/30">
+            <div>
+              <h5 class="font-bold text-xs text-white">${item.name}</h5>
+              <span class="text-xs text-amber-400 font-bold">Rp ${item.price.toLocaleString('id-ID')}</span>
+            </div>
+            <button onclick="removeFromCart(${index})" class="text-red-400 text-xs p-1"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('cartTotalPrice').innerText = `Rp ${total.toLocaleString('id-ID')}`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartBadge();
+      if(cart.length === 0) closeCart();
+      else renderCartModal();
+    }
+
+    function proceedToInvoice() {
+      const username = document.getElementById('robloxUsername').value.trim();
+      if(!username) return alert("Silakan masukkan Username Roblox Anda terlebih dahulu!");
+
+      pendingPurchasedItems = [];
+      cart.forEach(cItem => {
+        cItem.stock -= 1;
+        pendingPurchasedItems.push({ product: cItem, qty: 1 });
+      });
+      renderProducts();
+
+      currentTrxCode = "#ZY-" + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('invTrxCode').innerText = currentTrxCode;
+
+      closeCart();
+      startPaymentTimer();
+      document.getElementById('invoiceModal').classList.remove('hidden');
+    }
+
+    function closeInvoice() {
+      document.getElementById('invoiceModal').classList.add('hidden');
+    }
+
+    function previewProofImage(e) {
+      const file = e.target.files[0];
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          uploadedProofBase64 = evt.target.result;
+          document.getElementById('proofPreviewImg').src = uploadedProofBase64;
+          document.getElementById('proofPreviewContainer').classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function submitCustomerOrder() {
+      if(!uploadedProofBase64) return alert("Silakan unggah foto/gambar bukti transfer Anda terlebih dahulu!");
+
+      clearInterval(paymentTimerInterval);
+
+      const username = document.getElementById('robloxUsername').value.trim();
+      const itemNames = pendingPurchasedItems.map(p => p.product.name).join(', ');
+      const totalPrice = pendingPurchasedItems.reduce((sum, p) => sum + p.product.price, 0);
 
       const newOrder = {
-        id: newAntrian,
-        robloxUser: username,
-        item: itemName,
-        price: itemPrice,
-        bukti: bukti,
-        status: "pending"
+        id: currentTrxCode,
+        user: username,
+        item: itemNames,
+        time: "Baru saja",
+        status: "Mengecek Pembayaran",
+        proof: uploadedProofBase64,
+        price: totalPrice,
+        messages: [
+          { sender: "owner", text: `Halo ${username}! Bukti transfer kamu sedang diperiksa Admin. Mohon tunggu sebentar ya.`, time: "Baru saja", img: null }
+        ]
       };
 
-      transactions.unshift(newOrder);
-      localStorage.setItem('transactions', JSON.stringify(transactions));
+      queueOrders.unshift(newOrder);
+      renderQueue();
+      if(isAdminLoggedIn) renderAdminOrders();
 
-      alert('Orderan berhasil dikirim dengan Antrian ' + newAntrian + '! Klik "Tampilan Dasbor Admin" di atas untuk memverifikasi.');
-      document.getElementById('orderForm').reset();
-    });
+      cart = [];
+      pendingPurchasedItems = [];
+      updateCartBadge();
+      uploadedProofBase64 = null;
+      document.getElementById('proofFileInput').value = "";
+      document.getElementById('proofPreviewContainer').classList.add('hidden');
 
-    // 4. Render Dasbor Admin & Hitung Statistik
-    function renderDashboard() {
-      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-      const tbody = document.getElementById('transaction-list');
+      closeInvoice();
+
+      // Show Order Ticket Modal
+      document.getElementById('ticketTrxCode').innerText = newOrder.id;
+      document.getElementById('ticketRobloxUser').innerText = username;
+      document.getElementById('ticketModal').classList.remove('hidden');
+    }
+
+    function closeTicketModal() {
+      document.getElementById('ticketModal').classList.add('hidden');
+    }
+
+    // ADMIN / OWNER PANEL
+    function openAdminAuth() {
+      if(isAdminLoggedIn) showAdminView();
+      else document.getElementById('adminAuthModal').classList.remove('hidden');
+    }
+
+    function closeAdminAuth() {
+      document.getElementById('adminAuthModal').classList.add('hidden');
+    }
+
+    function verifyAdminPin() {
+      const pin = document.getElementById('adminPinInput').value;
+      if(pin === currentOwnerPin) {
+        isAdminLoggedIn = true;
+        document.getElementById('adminPinInput').value = "";
+        closeAdminAuth();
+        showAdminView();
+      } else {
+        alert("PIN Owner Salah!");
+      }
+    }
+
+    function showAdminView() {
+      document.getElementById('storefrontView').classList.add('hidden');
+      document.getElementById('adminView').classList.remove('hidden');
+      renderAdminOrders();
+    }
+
+    function showStorefront() {
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('storefrontView').classList.remove('hidden');
+    }
+
+    function logoutAdmin() {
+      isAdminLoggedIn = false;
+      showStorefront();
+      alert("Logout berhasil.");
+    }
+
+    function renderAdminOrders() {
+      const tbody = document.getElementById('adminOrderTable');
       
       let totalOmset = 0;
       let pendingCount = 0;
-      let lunasCount = 0;
-      let ditolakCount = 0;
+      let approvedCount = 0;
+      let rejectedCount = 0;
 
-      tbody.innerHTML = '';
-
-      if (transactions.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="empty-msg">Belum ada transaksi masuk.</td></tr>';
-      }
-
-      transactions.forEach((tx, index) => {
-        if (tx.status === 'lunas') {
-          totalOmset += tx.price;
-          lunasCount++;
-        } else if (tx.status === 'pending' || tx.status === 'acc') {
-          pendingCount++;
-        } else if (tx.status === 'ditolak') {
-          ditolakCount++;
-        }
-
-        const priceFormatted = new Intl.NumberFormat('id-ID', {
-          style: 'currency',
-          currency: 'IDR',
-          maximumFractionDigits: 0
-        }).format(tx.price);
-
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="order-id">${tx.id}</td>
-          <td><strong>${tx.robloxUser}</strong></td>
-          <td>
-            <div class="item-title">${tx.item}</div>
-            <div class="item-price">${priceFormatted}</div>
-          </td>
-          <td>
-            <button class="btn-bukti" onclick="viewBukti('${tx.bukti}')">Lihat Bukti</button>
-          </td>
-          <td>
-            <select class="status-select" onchange="updateStatus(${index}, this.value)">
-              <option value="pending" ${tx.status === 'pending' ? 'selected' : ''}>⏳ Menunggu ACC</option>
-              <option value="acc" ${tx.status === 'acc' ? 'selected' : ''}>✓ ACC (Buka Chat)</option>
-              <option value="lunas" ${tx.status === 'lunas' ? 'selected' : ''}>⭐ Lunas / Selesai</option>
-              <option value="ditolak" ${tx.status === 'ditolak' ? 'selected' : ''}>❌ Ditolak / Expired</option>
-            </select>
-          </td>
-          <td>
-            <button class="btn-chat" onclick="openChat('${tx.id}')">💬 Chat & Selesaikan</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
+      queueOrders.forEach(q => {
+        if(q.status === 'Lunas') { totalOmset += q.price || 0; approvedCount++; }
+        else if(q.status === 'Mengecek Pembayaran' || q.status === 'Diproses') { pendingCount++; }
+        else { rejectedCount++; }
       });
 
-      // Update Card Statistik
-      document.getElementById('stat-omset').innerText = new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-        maximumFractionDigits: 0
-      }).format(totalOmset);
+      document.getElementById('statOmset').innerText = `Rp ${totalOmset.toLocaleString('id-ID')}`;
+      document.getElementById('statPending').innerText = `${pendingCount} TRX`;
+      document.getElementById('statApproved').innerText = `${approvedCount} TRX`;
+      document.getElementById('statRejected').innerText = `${rejectedCount} TRX`;
 
-      document.getElementById('stat-pending').innerText = `${pendingCount} TRX`;
-      document.getElementById('stat-lunas').innerText = `${lunasCount} TRX`;
-      document.getElementById('stat-ditolak').innerText = `${ditolakCount} TRX`;
+      tbody.innerHTML = queueOrders.map((q, idx) => `
+        <tr class="hover:bg-zinc-800/40">
+          <td class="p-3 font-mono text-amber-400 font-bold">${q.id}</td>
+          <td class="p-3 font-bold text-white">${q.user}</td>
+          <td class="p-3">
+            <div>${q.item}</div>
+            <div class="text-amber-400 font-bold text-[11px]">Rp ${(q.price || 0).toLocaleString('id-ID')}</div>
+          </td>
+          <td class="p-3">
+            <button onclick="openLightbox('${q.proof}')" class="px-2 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded text-[10px] font-bold">
+              Lihat Bukti
+            </button>
+          </td>
+          <td class="p-3 text-center">
+            <select onchange="updateOrderStatus(${idx}, this.value)" class="bg-zinc-950 border border-amber-800 text-xs text-amber-300 rounded px-2 py-1 font-bold">
+              <option value="Mengecek Pembayaran" ${q.status==='Mengecek Pembayaran'?'selected':''}>⏳ Mengecek TF</option>
+              <option value="Diproses" ${q.status==='Diproses'?'selected':''}>✔ ACC (Buka Chat)</option>
+              <option value="Lunas" ${q.status==='Lunas'?'selected':''}>⭐ Lunas / Selesai</option>
+              <option value="Ditolak" ${q.status==='Ditolak'?'selected':''}>✖ Tolak / Expired</option>
+            </select>
+          </td>
+          <td class="p-3 text-right">
+            <button onclick="openChatModal('${q.id}', 'owner')" class="px-2.5 py-1 bg-amber-500 text-black font-bold text-[10px] rounded-lg">
+              <i class="fa-solid fa-comments"></i> Chat & Selesaikan
+            </button>
+          </td>
+        </tr>
+      `).join('');
     }
 
-    // 5. Update Status Verifikasi Admin
-    function updateStatus(index, newStatus) {
-      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-      transactions[index].status = newStatus;
-      localStorage.setItem('transactions', JSON.stringify(transactions));
-      renderDashboard();
-    }
+    function updateOrderStatus(idx, newStatus) {
+      queueOrders[idx].status = newStatus;
+      renderQueue();
+      renderAdminOrders();
 
-    function viewBukti(url) {
-      if(url) window.open(url, '_blank');
-      else alert('Bukti transfer tidak tersedia.');
-    }
-
-    function openChat(id) {
-      alert('Membuka Ruang Chat untuk Antrian: ' + id);
-    }
-
-    // Auto Refresh Sync
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'transactions') {
-        renderDashboard();
+      if(newStatus === 'Diproses') {
+        alert(`Pesanan ${queueOrders[idx].id} berhasil di-ACC! Ruang Live Chat pembeli telah ter buka.`);
+      } else {
+        alert(`Status pesanan ${queueOrders[idx].id} diperbarui menjadi: ${newStatus}`);
       }
-    });
+    }
 
-    // Inisialisasi awal
-    initDefaultData();
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('imageLightboxModal').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('imageLightboxModal').classList.add('hidden');
+    }
+
+    // CS & REVIEW MODALS
+    function openCSModal() { document.getElementById('csModal').classList.remove('hidden'); }
+    function closeCSModal() { document.getElementById('csModal').classList.add('hidden'); }
+    function openReviewModal() { document.getElementById('reviewModal').classList.remove('hidden'); }
+    function closeReviewModal() { document.getElementById('reviewModal').classList.add('hidden'); }
+
+    function submitReview() {
+      const u = document.getElementById('revUser').value.trim();
+      const i = document.getElementById('revItem').value.trim();
+      const c = document.getElementById('revComment').value.trim();
+
+      if(!u || !i || !c) return alert("Lengkapi data ulasan!");
+
+      testimonials.unshift({ user: u, item: i, comment: c, rating: 5 });
+      renderTestimonials();
+      closeReviewModal();
+      alert("Terima kasih! Ulasan Anda berhasil ditampilkan di testimoni running.");
+    }
+
+    function setCategory(cat) {
+      activeCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-black');
+        btn.classList.add('bg-zinc-900', 'text-zinc-300');
+      });
+      event.target.classList.remove('bg-zinc-900', 'text-zinc-300');
+      event.target.classList.add('bg-amber-500', 'text-black');
+      renderProducts();
+    }
+
+    function filterProducts() { renderProducts(); }
+
+    // INIT
+    renderProducts();
+    renderQueue();
+    renderTestimonials();
   </script>
 </body>
 </html>
