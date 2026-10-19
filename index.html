@@ -952,15 +952,17 @@
       }
     }
 
-    function submitCustomerOrder() {
+function submitCustomerOrder() {
       if(!uploadedProofBase64) return alert("Silakan unggah foto/gambar bukti transfer Anda terlebih dahulu!");
 
+      // Stop timer 5 menit
       clearInterval(paymentTimerInterval);
 
       const username = document.getElementById('robloxUsername').value.trim();
       const itemNames = pendingPurchasedItems.map(p => p.product.name).join(', ');
       const totalPrice = pendingPurchasedItems.reduce((sum, p) => sum + p.product.price, 0);
 
+      // Buat Objek Pesanan Baru
       const newOrder = {
         id: currentTrxCode,
         user: username,
@@ -970,14 +972,23 @@
         proof: uploadedProofBase64,
         price: totalPrice,
         messages: [
-          { sender: "owner", text: `Halo ${username}! Bukti transfer kamu sedang diperiksa Admin. Mohon tunggu sebentar ya.`, time: "Baru saja", img: null }
+          { 
+            sender: "owner", 
+            text: `Halo ${username}! Bukti transfer kamu sudah diterima dan sedang diperiksa Admin. Mohon tunggu sebentar ya.`, 
+            time: "Baru saja", 
+            img: null 
+          }
         ]
       };
 
+      // 1. Masukkan pesanan baru ke antrian
       queueOrders.unshift(newOrder);
-      renderQueue();
-      if(isAdminLoggedIn) renderAdminOrders();
 
+      // 2. LANGSUNG RENDER KE ANTRIAN PUBLIK & DASHBOARD OWNER SAKLAT ITU JUGA
+      renderQueue();
+      renderAdminOrders();
+
+      // Reset Form & Pembayaran
       cart = [];
       pendingPurchasedItems = [];
       updateCartBadge();
@@ -987,7 +998,7 @@
 
       closeInvoice();
 
-      // Show Order Ticket Modal
+      // Tampilkan Nomor Antrian ke Pembeli
       document.getElementById('ticketTrxCode').innerText = newOrder.id;
       document.getElementById('ticketRobloxUser').innerText = username;
       document.getElementById('ticketModal').classList.remove('hidden');
