@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Owner ZYOU MARKET</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    /* Navbar Header */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      background-color: #f39c12;
+      color: #000;
+      font-weight: bold;
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #f39c12;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 1px;
+    }
+
+    .nav-btn {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Banner Panel */
+    .banner {
+      background: linear-gradient(135deg, #2c1a04 0%, #1a1002 100%);
+      border: 1px solid #5a3808;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .banner-text h2 {
+      color: #f39c12;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .banner-text p {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .btn-logout {
+      background-color: #8b0000;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-toko {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background-color: #161618;
+      border: 1px solid #28282c;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .stat-title {
+      font-size: 12px;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .val-green { color: #2ecc71; }
+    .val-yellow { color: #f1c40f; }
+    .val-red { color: #e74c3c; }
+
+    /* Table Section */
+    .table-container {
+      background-color: #161618;
+      border: 1px solid #28282c;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .section-title {
+      color: #f39c12;
+      font-size: 16px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #0f0f11;
+      color: #ffffff;
+      padding: 12px;
+      border-bottom: 2px solid #28282c;
+    }
+
+    td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #222226;
+    }
+
+    .order-id {
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    .item-title {
+      font-size: 13px;
+    }
+
+    .item-price {
+      color: #f39c12;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .btn-bukti {
+      background-color: #2b2308;
+      color: #f39c12;
+      border: 1px solid #5a430b;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    select.status-select {
+      background-color: #2b2308;
+      color: #f39c12;
+      border: 1px solid #5a430b;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .btn-chat {
+      background-color: #f39c12;
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: #666;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="brand">
+      <div class="brand-logo">Z</div>
+      <div>
+        <div class="brand-title">ZYOU MARKET</div>
+        <div class="brand-sub">ROBUX & GAMEPASS STORE</div>
+      </div>
+    </div>
+    <div>
+      <button class="nav-btn">🎧 Bantuan CS</button>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div class="banner-text">
+      <h2>👤 Panel Owner ZYOU MARKET</h2>
+      <p>Verifikasi transfer, beri ACC untuk membuka ruang Live Chat pembeli.</p>
+    </div>
+    <div>
+      <button class="btn-toko" onclick="window.location.href='index.html'">Ke Toko</button>
+      <button class="btn-logout">Logout</button>
+    </div>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-title">Total Omset Lunas</div>
+      <div class="stat-value val-green" id="stat-omset">Rp 0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Menunggu Verifikasi</div>
+      <div class="stat-value val-yellow" id="stat-pending">0 TRX</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Berhasil Lunas</div>
+      <div class="stat-value val-yellow" id="stat-lunas">0 TRX</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Ditolak / Expired</div>
+      <div class="stat-value val-red" id="stat-ditolak">0 TRX</div>
+    </div>
+  </div>
+
+  <!-- Table Transaksi -->
+  <div class="table-container">
+    <div class="section-title">
+      <span>⚙️</span> Kelola Transaksi Masuk
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>No. Antrian</th>
+          <th>Roblox User</th>
+          <th>Item & Total</th>
+          <th>Bukti TF Pembeli</th>
+          <th>Verifikasi Admin</th>
+          <th>Ruang Chat & Selesai</th>
+        </tr>
+      </thead>
+      <tbody id="transaction-list">
+        <!-- Transaksi akan dimuat di sini -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // 1. Data bawaan jika penyimpanan masih kosong
+    function initDefaultData() {
+      if (!localStorage.getItem('transactions')) {
+        const initialData = [
+          {
+            id: "#ZY-8912",
+            robloxUser: "GamerPro99",
+            item: "500 Robux Fast",
+            price: 72000,
+            bukti: "https://via.placeholder.com/150",
+            status: "acc"
+          },
+          {
+            id: "#ZY-8911",
+            robloxUser: "RobloxIndo_1",
+            item: "Perm Buddha - Blox Fruits",
+            price: 165000,
+            bukti: "https://via.placeholder.com/150",
+            status: "lunas"
+          }
+        ];
+        localStorage.setItem('transactions', JSON.stringify(initialData));
+      }
+    }
+
+    // 2. Fungsi Render Transaksi ke Dasbor Admin
+    function renderDashboard() {
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      const tbody = document.getElementById('transaction-list');
+      
+      let totalOmset = 0;
+      let pendingCount = 0;
+      let lunasCount = 0;
+      let ditolakCount = 0;
+
+      tbody.innerHTML = '';
+
+      if (transactions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty-msg">Belum ada transaksi masuk.</td></tr>';
+      }
+
+      transactions.forEach((tx, index) => {
+        // Hitung Statistik
+        if (tx.status === 'lunas') {
+          totalOmset += tx.price;
+          lunasCount++;
+        } else if (tx.status === 'pending' || tx.status === 'acc') {
+          pendingCount++;
+        } else if (tx.status === 'ditolak') {
+          ditolakCount++;
+        }
+
+        const priceFormatted = new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          maximumFractionDigits: 0
+        }).format(tx.price);
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="order-id">${tx.id}</td>
+          <td><strong>${tx.robloxUser}</strong></td>
+          <td>
+            <div class="item-title">${tx.item}</div>
+            <div class="item-price">${priceFormatted}</div>
+          </td>
+          <td>
+            <button class="btn-bukti" onclick="viewBukti('${tx.bukti}')">Lihat Bukti</button>
+          </td>
+          <td>
+            <select class="status-select" onchange="updateStatus(${index}, this.value)">
+              <option value="pending" ${tx.status === 'pending' ? 'selected' : ''}>⏳ Menunggu ACC</option>
+              <option value="acc" ${tx.status === 'acc' ? 'selected' : ''}>✓ ACC (Buka Chat)</option>
+              <option value="lunas" ${tx.status === 'lunas' ? 'selected' : ''}>⭐ Lunas / Selesai</option>
+              <option value="ditolak" ${tx.status === 'ditolak' ? 'selected' : ''}>❌ Ditolak / Expired</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn-chat" onclick="openChat('${tx.id}')">💬 Chat & Selesaikan</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Update Card Statistik
+      document.getElementById('stat-omset').innerText = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+      }).format(totalOmset);
+
+      document.getElementById('stat-pending').innerText = `${pendingCount} TRX`;
+      document.getElementById('stat-lunas').innerText = `${lunasCount} TRX`;
+      document.getElementById('stat-ditolak').innerText = `${ditolakCount} TRX`;
+    }
+
+    // 3. Update Status
+    function updateStatus(index, newStatus) {
+      const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+      transactions[index].status = newStatus;
+      localStorage.setItem('transactions', JSON.stringify(transactions));
+      renderDashboard();
+    }
+
+    function viewBukti(url) {
+      if(url) window.open(url, '_blank');
+      else alert('Bukti transfer tidak tersedia.');
+    }
+
+    function openChat(id) {
+      alert('Membuka Ruang Chat untuk Antrian: ' + id);
+    }
+
+    // 4. METODE REAL-TIME SINKRONISASI
+    // A. Event listener saat ada perubahan di tab lain
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'transactions') {
+        renderDashboard();
+      }
+    });
+
+    // B. Auto-Polling (Interval setiap 2 detik)
+    setInterval(() => {
+      renderDashboard();
+    }, 2000);
+
+    // Inisialisasi awal
+    initDefaultData();
+    renderDashboard();
+  </script>
+</body>
+</html>
